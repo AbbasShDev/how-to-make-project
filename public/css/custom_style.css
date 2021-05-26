@@ -1,0 +1,562 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway&display=swap';
+@import 'https://fonts.googleapis.com/earlyaccess/notonaskharabic.css?display=swap';
+@import 'https://fonts.googleapis.com/css?family=Cairo:200,400,600?display=swap';
+
+:root {
+    --main-color: #7D6EDB;
+    --darker-main-color: #5A4ABE;
+    --lighter-main-color: #b6afe2;
+}
+
+body {
+    font-style: normal;
+    color: #ffffff;
+    font-family:noto naskh arabic,Arial,sans-serif !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.font-head {
+    font-family:railway,cairo,Arial,sans-serif !important;
+    font-weight: 700;
+}
+
+a,
+button:focus {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+span{
+    display: inline-block;
+}
+
+/* notification message */
+.notify-message {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #28a745;
+    color: #FFFFFF;
+    font-size: 18px;
+    width: 400px;
+    text-align: center;
+    position: fixed;
+    top: 61px;
+    left: -400px;
+    z-index: 9999;
+}
+/* notification message */
+
+.header {
+    position: relative;
+}
+
+.header-area{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    left: 0px;
+    width: 100%;
+    height: 597px;
+    background: url('/images/bg-hp.png') right top no-repeat, linear-gradient(to right, #5040b2 0%, #7a69e6 100%);
+
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .header-area{
+        height: 509px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .header-area{
+        height: 509px;
+    }
+}
+
+@media only screen and (max-width: 766px) {
+    .header-area{
+        height: 550px;
+    }
+}
+
+@media only screen and (max-width: 556px) {
+    .header-area{
+        height: 600px;
+    }
+}
+
+
+/* Start navbar */
+.navbar-area {
+    position: relative;
+    z-index: 4;
+
+}
+.navbar-area .logo {
+    width: 120px;
+}
+
+.navbar-area .navbar-toggler span {
+    background-color: #ffffff;
+    display: block;
+    width: 30px;
+    height: 2px;
+    margin: 5px 0;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+.navbar-area .navbar-toggler.active span:nth-of-type(1) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 7px;
+}
+
+.navbar-area .navbar-toggler.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.navbar-area .navbar-toggler.active span:nth-of-type(3) {
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    top: -7px;
+}
+
+@media only screen and (max-width: 992px) {
+    .navbar-area .navbar-collapse {
+        background-color: #ffffff;
+    }
+}
+
+.navbar-area .navbar-nav .nav-link {
+    color: #ffffff;
+    transition: all 0.3s ease-out;
+}
+
+@media only screen and (max-width: 992px) {
+    .navbar-area .navbar-collapse .nav-link{
+        color: var(--darker-main-color);
+    }
+}
+
+.navbar-area .navbar-nav a {
+    line-height: 1;
+}
+
+.navbar-area .navbar-nav a:hover {
+    color: var(--lighter-main-color);
+}
+
+
+.navbar-area .navbar-nav .btn {
+    display: inline-block;
+    padding: 2px 6px;
+    width: 110px;
+    font-weight: 400;
+}
+
+.navbar-area .navbar-nav .login-btn {
+    color: var(--darker-main-color);
+    display: inline-block;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    transition: all 0.3s ease-out;
+}
+
+.navbar-area .navbar-nav .login-btn:hover {
+    color: #ffffff;
+    background-color: var(--darker-main-color);
+    border-color: #ffffff;
+
+}
+
+@media only screen and (max-width: 992px) {
+    .navbar-area .navbar-nav .login-btn {
+        color: #ffffff;
+        display: inline-block;
+        background-color: var(--main-color);
+        border-color: #ffffff;
+        transition: all 0.3s ease-out;
+    }
+
+    .navbar-area .navbar-nav .login-btn:hover {
+        color: var(--main-color);
+        background-color: #ffffff;
+        border-color: var(--main-color);
+
+    }
+}
+
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.navbar-area .dropdown-menu {
+    border: none;
+    box-shadow: 0px 0px 6px #bcbdbecc;
+}
+
+.navbar-area .dropdown-menu a{
+    font-size: 14px;
+}
+
+.navbar-area .dropdown-menu a i{
+    font-size: 13px;
+}
+
+.navbar-area .header-profile-img {
+    box-shadow: 0px 0px 6px #717272e3;
+
+}
+
+/* End navbar */
+
+/* Start hero */
+.hero {
+
+}
+
+.hero .hero-image {
+    margin-top: 70px;
+    width: 338px !important;
+}
+
+.hero .intro {
+    margin-top: 100px;
+
+}
+
+@media only screen and (max-width: 991px) {
+    .hero .intro {
+        margin-top: 100px;
+        margin-bottom: 25px;
+
+    }
+}
+
+.hero .intro h4 {
+    color: #d8d2ff;
+    font-size: 19px;
+}
+
+.hero .intro h2 {
+    font-size: 36px;
+}
+
+
+.hero .intro button{
+    padding: 2px 6px;
+    width: 110px;
+    font-weight: 400;
+    color: var(--main-color);
+    background-color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0px 0px 4px #354a7c;
+    transition: all .3s ease-out;
+
+}
+
+.hero .intro button:hover{
+    color: #ffffff;
+    background-color: var(--main-color);
+    border-color: #ffffff;
+    box-shadow: none;
+}
+
+/* End hero */
+
+/* Start about */
+.about {
+    background: #F2F2F2;
+    padding: 80px 0px;
+    margin-top: 16px;
+}
+
+@media only screen and (max-width: 556px) {
+    .about {
+        margin-top: 55px;
+    }
+}
+
+.about .about-us {
+    padding: 100px 0px;
+}
+
+@media only screen and (max-width: 556px) {
+    .about .about-us {
+        padding: 40px 0px;
+    }
+}
+
+.about h1 {
+    font-size: 26px;
+}
+
+.about h1 span {
+    color: var(--main-color);
+}
+
+.about p {
+    color: #1b262c;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+/* End about */
+
+/* Start contact */
+.contact {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.contact h1 {
+    color: var(--main-color);
+}
+
+.contact .container {
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #bcbdbecc;
+}
+
+.contact .container label {
+    color: var(--main-color);
+}
+.contact .container input,
+.contact .container textarea {
+    color: #1b262c;
+    font-size: 18px;
+}
+
+.contact .container input::placeholder,
+.contact .container textarea::placeholder {
+    color: #1b262c4d;
+}
+
+.contact .container textarea {
+    height: 170px;
+}
+
+.contact .container .btn {
+    width: 118px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    font-size: 14px;
+    transition: all .5s ease-in-out;
+}
+
+.contact .container .btn:hover {
+    color: var(--main-color);
+    background-color: #fff;
+    border: 1px solid var(--main-color);
+}
+
+/* End contact */
+
+/* Start footer */
+.footer {
+    background-color: var(--main-color);
+    width: 100%;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+
+.footer i {
+    text-align: center;
+    color: #fff;
+    transform: scaleX(1);
+    font-size: 16px;
+    transition: all .3s ease-in-out;
+}
+
+.footer i:hover {
+    transform: scale(1.4);
+}
+/* End footer */
+
+/* ============== Register Login CSS ============== */
+
+.login-register {
+    background-color: #f7f9fc;
+    padding: 100px 0px;
+}
+
+.login-register .container{
+    box-shadow: 0px 0px 6px #bcbdbecc;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.login-register .container img{
+    width: 200px;
+}
+
+.login-register .container p{
+    color: var(--darker-main-color);
+}
+
+.login-register .container .sign input{
+    color: var(--darker-main-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #bcbdbecc;
+    height: 50px;
+    border: none;
+}
+
+.login-register .container .sign input::placeholder{
+    color: #aaaaaa;
+}
+
+.login-register .container .sign .btn{
+    color: #ffffff;
+    background-color: var(--main-color);
+    transition: all 0.3s ease-out;
+}
+
+.login-register .container .sign .btn:hover {
+    background-color: #3f64b5e8;
+}
+
+.login-register .container a {
+    color: #0060B9;
+}
+
+.login-register .container a:hover {
+    text-decoration: underline !important;
+}
+
+
+/* ===== profile page ===== */
+
+.profile .profile-left p {
+    color: var(--darker-main-color);
+}
+
+.profile .profile-left hr {
+    margin-top: 30px;
+    border-top: 1px dashed rgba(0,0,0,.1) !important;
+}
+
+.profile .profile-left .left-nav li {
+    list-style: none;
+}
+
+.profile .profile-left .left-nav li a,
+.profile .profile-right h4,
+.profile .profile-right form label {
+    color: var(--darker-main-color);
+}
+
+.profile .profile-left .left-nav li a {
+    transition: all .3s ease-in-out;
+    width: fit-content;
+}
+
+@media only screen and (max-width: 991px) {
+
+    .profile .profile-left .left-nav li a {
+        text-align: center !important;
+    }
+
+}
+
+.profile .profile-left .left-nav li a:hover {
+    background: #1e305624;
+    border-radius: 5px;
+}
+
+.profile .profile-left .left-nav li a.active {
+    background: #1e305624;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.profile .profile-right form input {
+    color: var(--darker-main-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #bcbdbecc;
+    height: 50px;
+}
+
+.profile .profile-right form .btn{
+    color: #ffffff;
+    background-color: var(--main-color);
+    transition: all 0.3s ease-out;
+}
+
+.profile .profile-right form .btn:hover {
+    background-color: #3f64b5e8;
+}
+
+.profile .profile-right form  .custom-file {
+    color: var(--darker-main-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #bcbdbecc;
+    height: 50px;
+}
+
+.profile .profile-right form  .custom-file span {
+    display: inline-block;
+    line-height: 1.5;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    z-index: 1;
+}
+.profile .profile-right form  .custom-file .fa-upload {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    z-index: 1;
+}
+
+.profile .profile-right form .custom-file input[type="file"]{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.profile-right .loader-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    background-color: #FFFFFF;
+}
+
+.profile-right .loader-bg .spinner-grow{
+    margin-top: 100px;
+    background-color: var(--main-color);
+}
+/* ===== profile page ===== */
