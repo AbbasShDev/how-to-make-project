@@ -12,6 +12,7 @@ body {
     font-style: normal;
     color: #ffffff;
     font-family:noto naskh arabic,Arial,sans-serif !important;
+    height: 5000px;
 }
 
 * {
@@ -64,34 +65,8 @@ span{
     right: 0px;
     left: 0px;
     width: 100%;
-    height: 597px;
     background: url('/images/bg-hp.png') right top no-repeat, linear-gradient(to right, #5040b2 0%, #7a69e6 100%);
 
-}
-
-
-@media only screen and (max-width: 1200px) {
-    .header-area{
-        height: 509px;
-    }
-}
-
-@media only screen and (max-width: 991px) {
-    .header-area{
-        height: 509px;
-    }
-}
-
-@media only screen and (max-width: 766px) {
-    .header-area{
-        height: 550px;
-    }
-}
-
-@media only screen and (max-width: 556px) {
-    .header-area{
-        height: 600px;
-    }
 }
 
 
@@ -243,15 +218,7 @@ span{
 
 .hero .intro {
     margin-top: 100px;
-
-}
-
-@media only screen and (max-width: 991px) {
-    .hero .intro {
-        margin-top: 100px;
-        margin-bottom: 25px;
-
-    }
+    margin-bottom: 150px;
 }
 
 .hero .intro h4 {
@@ -285,7 +252,69 @@ span{
 
 /* End hero */
 
-/* Start about */
+
+/* Start all-in-one */
+
+/* Start all-in-one */
+.all-in-one {
+    background-color: #F5F8FD;
+    padding-bottom: 100px;
+}
+
+.all-in-one h1 {
+    color: #2f3e47;
+
+}
+
+.all-in-one p {
+    color: #8492af;
+    font-size: 17px;
+}
+
+.all-in-one .all-in-one-btn {
+    color: #8492AF;
+    background-color: #ffffff;
+    opacity: 1;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 30px;
+    margin-right: 0;
+    transition: all .4s;
+    cursor: pointer;
+}
+
+.all-in-one .all-in-one-btn.active-all-in-one-btn {
+    background: rgb(82, 186, 213);
+    color: #fff;
+    -webkit-transform: translate(0px, -10px);
+    transform: translate(0px, -10px);
+}
+
+.all-in-one .all-in-one-btn:hover,
+.all-in-one .all-in-one-btn.active-all-in-one-btn:hover {
+    background-color: #2B9AB7;
+    color: #ffffff;
+}
+
+.all-in-one .panel .panel-right {
+    padding-top: 76px;
+    padding-bottom: 76px
+}
+
+@media only screen and (max-width: 991px) {
+    .all-in-one .panel .panel-right {
+        padding-top: 0px;
+    }
+}
+
+.all-in-one .panel .panel-right .panel-body {
+    height: 66px !important;
+}
+
+/* End all-in-one */
+
 .about {
     background: #F2F2F2;
     padding: 80px 0px;
