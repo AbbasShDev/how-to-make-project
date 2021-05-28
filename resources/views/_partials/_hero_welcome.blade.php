@@ -9,10 +9,10 @@
                     <h4 class="text-left font-head mt-4">يعد وثقها أسهل طريقة لإنشاء أدلة المستخدم الرقمية والإرشادات
                         خطوة بخطوة ومشاركتها بكل سهولة.</h4>
                     <a href="">
-                        <button class="btn btn-success mt-4 font-head" href="#">تسجيل</button>
+                        <button class="btn mt-4 font-head login-btn" href="#">دخول</button>
                     </a>
                     <a href="">
-                        <button class="btn btn-primary mt-4 font-head" href="#">دخول</button>
+                        <button class="btn mt-4 font-head register-btn" href="#">تسجيل</button>
                     </a>
                 </div>
             </div>
