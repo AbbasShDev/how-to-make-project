@@ -1,0 +1,147 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway&display=swap';
+@import 'https://fonts.googleapis.com/earlyaccess/notonaskharabic.css?display=swap';
+@import 'https://fonts.googleapis.com/css?family=Cairo:200,400,600?display=swap';
+
+:root {
+    --main-color: #7D6EDB;
+    --darker-main-color: #5A4ABE;
+    --lighter-main-color: #b6afe2;
+}
+
+body {
+    font-style: normal;
+    color: #ffffff;
+    font-family:noto naskh arabic,Arial,sans-serif !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.font-head, h1 ,h2, h3, h4, h5, h6{
+    font-family:railway,cairo,Arial,sans-serif !important;
+    font-weight: 700;
+}
+
+a,
+button:focus {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+span{
+    display: inline-block;
+}
+
+/* notification message */
+.notify-message {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #28a745;
+    color: #FFFFFF;
+    font-size: 18px;
+    width: 400px;
+    text-align: center;
+    position: fixed;
+    top: 61px;
+    left: -400px;
+    z-index: 9999;
+}
+/* notification message */
+
+/* Start navbar */
+.navbar {
+    background-color: #30373B !important;
+}
+
+.navbar .logo {
+    height: 50px;
+}
+
+.navbar .search-input {
+    color: #ffffff;
+    background-color: #1D2123;
+    border-color: #1D2123;
+    transition: all .3s ease-in-out;
+}
+
+.navbar .search-input:focus {
+    background-color: #000000;
+    border-color: #1D2123;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+    color: #838789;
+    transition: color .3s ease-in-out;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #ffffff;
+}
+/* End navbar */
+
+/* Start login, register */
+.login-register {
+    background-color: #F9FAFC;
+    padding: 40px 0px;
+}
+.login-register label {
+    color: #30373B;
+}
+
+.login-register .container{
+    box-shadow: 0px 0px 6px #bcbdbecc;
+    background-color: #FFFFFF;
+    padding: 0px 30px 30px 30px;
+    border-radius: 10px;
+}
+
+.login-register .container img{
+    width: 200px;
+}
+
+.login-register .container p{
+    color: #30373B;
+}
+
+.login-register .container .sign input{
+    color: #30373B;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #bcbdbecc;
+    height: 50px;
+    border: none;
+}
+
+.login-register .container .sign .form-check-input{
+    box-shadow: none;
+    height: fit-content;
+}
+
+.login-register .container .sign input::placeholder{
+    color: #aaaaaa;
+}
+
+.login-register .container .sign .btn{
+    color: #ffffff;
+    background-color: #30373B;
+    transition: all 0.3s ease-out;
+}
+
+.login-register .container .sign .btn:hover {
+    opacity: 0.9;
+}
+
+.login-register .container a {
+    color: #30373B;
+}
+
+.login-register .container a:hover {
+    text-decoration: underline !important;
+}
+/* End login, register */

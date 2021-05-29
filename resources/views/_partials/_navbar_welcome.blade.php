@@ -14,8 +14,8 @@
                         <a class="nav-link font-head" href="">اكتشف</a>
                     </li>
                     <li class="nav-item  mx-auto">
-                        <a href=""><button class="nav-link btn font-head login-btn">دخول</button></a>
-                        <a href=""><button class="nav-link btn font-head register-btn">تسجيل</button></a>
+                        <a href="{{ route('login') }}"><button class="nav-link btn font-head login-btn">دخول</button></a>
+                        <a href="{{ route('register') }}"><button class="nav-link btn font-head register-btn">تسجيل</button></a>
                     </li>
                 </ul>
             </div>

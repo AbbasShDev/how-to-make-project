@@ -8,11 +8,11 @@
                     <h2 class="text-left font-head">أنشأ أدلة مستخدم وإرشادات فريدة من نوعها</h2>
                     <h4 class="text-left font-head mt-4">يعد وثقها أسهل طريقة لإنشاء أدلة المستخدم الرقمية والإرشادات
                         خطوة بخطوة ومشاركتها بكل سهولة.</h4>
-                    <a href="">
-                        <button class="btn mt-4 font-head login-btn" href="#">دخول</button>
+                    <a href="{{ route('login') }}">
+                        <button class="btn mt-4 font-head login-btn">دخول</button>
                     </a>
-                    <a href="">
-                        <button class="btn mt-4 font-head register-btn" href="#">تسجيل</button>
+                    <a href="{{ route('register') }}">
+                        <button class="btn mt-4 font-head register-btn">تسجيل</button>
                     </a>
                 </div>
             </div>

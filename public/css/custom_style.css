@@ -385,57 +385,6 @@ span{
 
 /* ============== Register Login CSS ============== */
 
-.login-register {
-    background-color: #f7f9fc;
-    padding: 100px 0px;
-}
-
-.login-register .container{
-    box-shadow: 0px 0px 6px #bcbdbecc;
-    background-color: #FFFFFF;
-    padding: 30px;
-    border-radius: 10px;
-}
-
-.login-register .container img{
-    width: 200px;
-}
-
-.login-register .container p{
-    color: var(--darker-main-color);
-}
-
-.login-register .container .sign input{
-    color: var(--darker-main-color);
-    border-radius: 10px;
-    box-shadow: 0px 0px 6px #bcbdbecc;
-    height: 50px;
-    border: none;
-}
-
-.login-register .container .sign input::placeholder{
-    color: #aaaaaa;
-}
-
-.login-register .container .sign .btn{
-    color: #ffffff;
-    background-color: var(--main-color);
-    transition: all 0.3s ease-out;
-}
-
-.login-register .container .sign .btn:hover {
-    background-color: #3f64b5e8;
-}
-
-.login-register .container a {
-    color: #0060B9;
-}
-
-.login-register .container a:hover {
-    text-decoration: underline !important;
-}
-
-
 /* ===== profile page ===== */
 
 .profile .profile-left p {
