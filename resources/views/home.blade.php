@@ -1,23 +1,71 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="modal fade create-modal" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">قم بإنشاء صفحة</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <div class="nav-tabs-boxed">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info active" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الإرشادات" data-formAction="/tutorial/create" data-formDescription="قم بإنشاء إرشادات خطوة بخطوة لإكمال مهمة." ><i class="fa fa-list-ol fa-fw"></i> إرشادات</a></li>
+                                <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الصفحة" data-formAction="/page/create" data-formDescription="قم بإنشاء مقالة."><i class="far fa-file-alt fa-fw"></i> صفحة</a></li>
+                                <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الكتيب" data-formAction="/manual/create" data-formDescription="قم بإنشاء دليل لتجميع الإرشادات والمقالات الخاصة بك."><i class="fa fa-book fa-fw"></i> كتيب</a></li>
+                            </ul>
+                            <div class="tab-content border-0 pt-4 pb-0 px-0">
+                                <div class="modal-create-info">
+                                    <i class="fas fa-info-circle fa-fw"></i>
+                                    <h6 class="d-inline-block">
+                                        قم بإنشاء إرشادات خطوة بخطوة لإكمال مهمة.
+                                    </h6>
+                                    <form class="modal-create-form" action="/tutorial/create" method="get">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <input class="form-control title-input" type="text" name="title" placeholder="عنوان الإرشادات">
+                                            </div>
+                                            <div class="col-2 p-0">
+                                                <button class="btn btn-info" type="submit">إنشاء</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    </div>
                 </div>
             </div>
+
         </div>
+
     </div>
-</div>
+
+@endsection
+
+@section('js-scripts')
+    <script>
+        $(function() {
+            $('.create-modal .modal-body .nav-tabs .tab-btn').each(function (index) {
+                let modalCreateInfo = $('.create-modal .modal-body .tab-content .modal-create-info h6')
+                let modalCreateForm = $('.create-modal .modal-body .tab-content .modal-create-form')
+                let titleInput = $('.create-modal .modal-body .tab-content .modal-create-form .title-input')
+
+
+                $(this).on('click', function () {
+
+                    console.log($(this).data('formtitle'))
+                    console.log($(this).data('formaction'))
+                    console.log($(this).data('formdescription'))
+
+                    modalCreateInfo.text('').text($(this).data('formdescription'))
+                    modalCreateForm.attr('action', $(this).data('formaction'))
+                    titleInput.attr('placeholder', $(this).data('formtitle'))
+                })
+            })
+        });
+    </script>
 @endsection
