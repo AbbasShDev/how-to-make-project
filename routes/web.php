@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TutorialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ Route::view('/','welcome')->name('welcome');
 
 Route::view('/home', 'home');
 
+Route::get('/tutorial/create', [TutorialController::class, 'index'])->name('tutorial.create');
+
+//Route::view('test', 'test');
 //Route::get('tutorial/create', function (){
 //    return request('title');
 //});
