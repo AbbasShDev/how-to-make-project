@@ -18,14 +18,4 @@ Route::view('/','welcome')->name('welcome');
 
 Route::view('/home', 'home');
 
-Route::get('/tutorial/create', [TutorialController::class, 'index'])->name('tutorial.create');
-
-//Route::view('test', 'test');
-//Route::get('tutorial/create', function (){
-//    return request('title');
-//});
-//
-//Route::get('page/create', function (){
-//    return request('title');
-//});
-
+Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');

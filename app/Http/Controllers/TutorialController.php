@@ -8,23 +8,19 @@ use Illuminate\Contracts\View\View;
 class TutorialController extends Controller
 {
 
-    public function index(Request $request) : View
+    public function index()
     {
-        $attributes = $request->validate([
-           'title' => ['required']
-        ]);
 
-        return view('tutorial.index', ['title' => $attributes['title']]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function create(Request $request) : View
     {
-        //
+        $attributes = $request->validate([
+            'title' => ['required']
+        ]);
+
+        return view('tutorial.create', ['title' => $attributes['title']]);
     }
 
     /**

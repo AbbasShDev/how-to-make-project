@@ -24,35 +24,9 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+    @stack('css-links')
 </head>
-<style>
-    .select2-container .selection {
-        width: 100%;
-    }
-    .select2-container .select2-selection {
-        border-top-left-radius: 4px !important;
-        border-top-right-radius: 4px !important;
-        border-bottom-right-radius: 4px !important;
-        border-bottom-left-radius: 4px !important;
-        padding-right: 5px !important;
-    }
 
-    .select2-container .select2-selection .select2-selection__clear {
-        display: none;
-    }
-
-    /*.select2-container .select2-selection .select2-search.select2-search--inline {*/
-    /*    width: 100%;*/
-    /*}*/
-    .select2-dropdown.select2-dropdown--above,
-    .select2-dropdown.select2-dropdown--below {
-        display: none !important;
-    }
-
-
-</style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark py-0 px-3 px-lg-5">
     <a class="navbar-brand" href="#"><img class="logo" src="{{ asset('images/logo-white.png') }}" alt="logo"></a>
@@ -126,10 +100,9 @@
 <!-- End modal -->
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
 {{--<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>--}}
 <script src="{{ asset('js/app.js') }}"></script>
-@yield('js-scripts')
+@stack('js-scripts')
 <script>
     $(function() {
         $('.create-modal .modal-body .nav-tabs .tab-btn').each(function (index) {

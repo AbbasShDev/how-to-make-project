@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
+@push('css-links')
+
+@endpush
+
 @section('content')
 
 @endsection
 
-@section('js-scripts')
+@push('js-scripts')
 
-@endsection
+@endpush
