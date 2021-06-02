@@ -253,5 +253,9 @@ span{
 }
 /* End custom select2 styles */
 
-
+/* Start other */
+#cke_1_top {
+    text-align: right;
+}
+/* End other */
 

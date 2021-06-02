@@ -91,6 +91,10 @@
                 </div>
 
                 <hr class="custom-doted-hr">
+                <div class="form-group">
+                    <label for="introduction" style="font-size: 27px">مقدمة <span class="text-muted" style="font-size: 15px !important;">(اختياري)</span></label>
+                    <textarea class="form-control" id="introduction" name="introduction" dir="rtl"></textarea>
+                </div>
             </form>
         </div>
     </div>
@@ -100,6 +104,8 @@
     <script src="https://releases.transloadit.com/uppy/v1.29.1/uppy.min.js"></script>
     <script src="https://releases.transloadit.com/uppy/locales/v1.20.1/ar_SA.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+    <script src="//cdn.ckeditor.com/4.16.1/standard/ckeditor.js" defer></script>
+
     <script>
         $(document).ready(function(){
             $(".js-example-tokenizer").select2({
@@ -152,10 +158,19 @@
 
         })
     </script>
-
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>>
+    <script>
+        $(function () {
+            CKEDITOR.replace('introduction',{
+                language: 'ar',
+                contentsLangDirection: 'rtl',
+                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
         })
     </script>>
 @endpush

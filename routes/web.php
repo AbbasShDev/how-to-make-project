@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\TutorialController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,5 @@ Route::view('/','welcome')->name('welcome');
 Route::view('/home', 'home');
 
 Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
+
+Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
