@@ -228,6 +228,19 @@ span{
     border: 0;
     border-bottom: 2px dotted #ddd;
 }
+
+.create-tutorial .create-tutorial-form-container .steps-container .handle {
+    width: 2px !important;
+    opacity: 0.4;
+    transition: 0.2s;
+    cursor: move;
+    background-image: url(http://demo.dokit.io/w/extensions/PageForms/skins/rearrangeDots.png);
+    background-repeat: repeat;
+    max-width: 2px !important;
+    padding-left: 0 !important;
+    padding-right: 9px !important;
+}
+
 /* End create tutorial */
 
 /* Start custom select2 styles */
