@@ -11,7 +11,8 @@
             <h2>إنشاء إرشادات: <strong>{{ $title }}</strong></h2>
         </div>
         <div class="create-tutorial-form-container">
-            <form action="">
+            <form id="create-tutorial-form" action="{{ route('tutorial.store') }}" method="post">
+                @csrf
                 <div class="row">
                     <div class="col-md-4">
                         <label for="main_image" style="font-size: 18px">الصورة الرئيسية<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="يفضل التنسيق الأفقي (مثل 800 × 600 بكسل).<br/> يمكن تعديل الصورة بعد اضافتها.">
@@ -125,96 +126,28 @@
                                 <div class="bg-secondary rounded-lg" style="height: 100px"></div>
                             </div>
                         </div>
-                        <div class="col-md-6 p-3">
+                        <div class="col-md-6 p-0 pt-3">
+                            <input type="text" name="" class="step-order" hidden>
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text step-order">الخطوة 1</span>
+                                        <span class="input-group-text step-title-order">الخطوة 1</span>
                                     </div>
-                                    <input id="step_title" type="text" name="step_title" placeholder="عنوان الخطوة" class="form-control">
+                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control step_content" name="step_content[]" dir="rtl"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="single-step row rounded-lg bg-white px-3 pb-3 my-4">
-                        <div class="col-1 handle ml-3 mr-0 mt-3"></div>
-                        <div class="col-md-6 row justify-content-between align-content-center">
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-danger rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-danger rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-danger rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-danger rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-danger rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-danger rounded-lg" style="height: 100px"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 p-3">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text step-order">الخطوة 2</span>
-                                    </div>
-                                    <input id="step_title" type="text" name="step_title" placeholder="عنوان الخطوة" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control step_content" name="step_content[]" dir="rtl"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="single-step row rounded-lg bg-white px-3 pb-3 my-4 blue-background-class">
-                        <div class="col-1 handle ml-3 mr-0 mt-3"></div>
-                        <div class="col-md-6 row justify-content-between align-content-center">
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-info rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-info rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-info rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-info rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-info rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-info rounded-lg" style="height: 100px"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 p-3">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text step-order">الخطوة 3</span>
-                                    </div>
-                                    <input id="step_title" type="text" name="step_title" placeholder="عنوان الخطوة" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control step_content" name="step_content[]" dir="rtl"></textarea>
+                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="col-md-12 text-center">
+                    <button type="button" class="add-step-btn"><i class="fa fa-plus fa-fw"></i> إضافة خطوة</button>
+                </div>
+
+{{--                <input type="submit" name="submit" value="submit">--}}
             </form>
         </div>
     </div>
@@ -224,25 +157,107 @@
     <script src="https://releases.transloadit.com/uppy/v1.29.1/uppy.min.js"></script>
     <script src="https://releases.transloadit.com/uppy/locales/v1.20.1/ar_SA.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
-    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js" defer></script>
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.1/adapters/jquery.js" defer></script>
     <script src="https://unpkg.com/sortablejs-make/Sortable.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js" defer></script>
     <script>
         $(function () {
+
+            initiateStepsCkEditor()
+            setStepsValues()
+
             $('#steps').sortable({
                 group: 'list',
                 animation: 200,
                 handle: '.handle',
                 onSort: function (/**Event*/evt) {
-                    // let listLength = $('#steps .single-step').length;
-                    $('#steps .single-step').each(function (index) {
-                        $(this).find('.step-order').text("الخطوة " + (index + 1) )
-                    })
+                    setStepsValues()
                 },
             });
         })
 
+        $('.create-tutorial .create-tutorial-form-container .add-step-btn').on('click', function () {
+            $('#steps').append('<div class="single-step row rounded-lg bg-white px-3 pb-3 my-4 ">\n' +
+                '                        <div class="col-1 handle ml-3 mr-0 mt-3"></div>\n' +
+                '                        <div class="col-md-6 row justify-content-between align-content-center">\n' +
+                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
+                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
+                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
+                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
+                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
+                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
+                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
+                '                            </div>\n' +
+                '                        </div>\n' +
+                '                        <div class="col-md-6 p-0 pt-3">\n' +
+                '                            <input type="text" name="" class="step-order" hidden>\n' +
+                '                            <div class="form-group">\n' +
+                '                                <div class="input-group">\n' +
+                '                                    <div class="input-group-prepend">\n' +
+                '                                        <span class="input-group-text step-title-order">الخطوة 1</span>\n' +
+                '                                    </div>\n' +
+                '                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">\n' +
+                '                                </div>\n' +
+                '                            </div>\n' +
+                '                            <div class="form-group">\n' +
+                '                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>\n' +
+                '                            </div>\n' +
+                '                        </div>\n' +
+                '                    </div>')
+
+            initiateStepsCkEditor()
+            setStepsValues()
+
+        })
+
+        CKEDITOR.replace('introduction',{
+            language: 'ar',
+            contentsLangDirection: 'rtl',
+            filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+
+        function initiateStepsCkEditor() {
+            $('.step-content').ckeditor({
+                extraPlugins: 'divarea',
+                language: 'ar',
+                contentsLangDirection: 'rtl',
+                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form',
+                toolbar : [
+                    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike'] },
+                    { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+                    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                    { name: 'insert', items: [ 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', ] },
+                    { name: "paragraph", items: ["NumberedList", "BulletedList"] },
+                    { name: 'links', items: [ 'Link', 'Unlink' ] },
+                ],
+
+            });
+        }
+
+        function setStepsValues() {
+            $('#steps .single-step').each(function (index) {
+                $(this).find('.step-title-order').text("الخطوة " + (index + 1) )
+
+                $(this).find('.step-order').val(index + 1)
+                $(this).find('.step-order').attr('name', 'steps[' + index + '][step_order]')
+                $(this).find('.step-title').attr('name', 'steps[' + index + '][step_title]')
+                $(this).find('.step-content').attr('name', 'steps[' + index + '][step_content]')
+
+            })
+        }
     </script>
     <script>
         $(document).ready(function(){
@@ -300,32 +315,5 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-    </script>>
-    <script>
-        $(function () {
-            CKEDITOR.replace('introduction',{
-                language: 'ar',
-                contentsLangDirection: 'rtl',
-                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
-
-            $('.step_content').ckeditor({
-                language: 'ar',
-                contentsLangDirection: 'rtl',
-                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form',
-                toolbar : [
-                    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike'] },
-                    { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-                    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                    { name: 'insert', items: [ 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', ] },
-                    { name: "paragraph", items: ["NumberedList", "BulletedList"] },
-                    { name: 'links', items: [ 'Link', 'Unlink' ] },
-                    ],
-
-            });
-        })
-
-    </script>>
+    </script>
 @endpush

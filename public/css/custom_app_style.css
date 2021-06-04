@@ -28,7 +28,8 @@ body {
 }
 
 a,
-button:focus {
+button:focus,
+button:active{
     text-decoration: none !important;
     outline: none !important;
 }
@@ -239,6 +240,21 @@ span{
     max-width: 2px !important;
     padding-left: 0 !important;
     padding-right: 9px !important;
+}
+
+.create-tutorial .create-tutorial-form-container .add-step-btn {
+    outline: none !important;
+    border: none !important;
+    border-radius: 5px;
+    font-size: 1.25em;
+    padding: 12px 15px;
+    background-color: #52bad5;
+    color: #ffffff;
+    transition: all .3s ease-in-out;
+}
+
+.create-tutorial .create-tutorial-form-container .add-step-btn:hover {
+     background-color: #2c9ab7;
 }
 
 /* End create tutorial */
