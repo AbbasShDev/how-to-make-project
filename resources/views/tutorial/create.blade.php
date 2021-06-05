@@ -10,7 +10,7 @@
         <div class="create-tutorial-header py-5">
             <h2>إنشاء إرشادات: <strong>{{ $title }}</strong></h2>
         </div>
-        <div class="create-tutorial-form-container">
+        <div class="create-tutorial-form-container container">
             <form id="create-tutorial-form" action="{{ route('tutorial.store') }}" method="post">
                 @csrf
                 <div class="row">
@@ -94,7 +94,7 @@
                 <hr class="custom-doted-hr">
                 <div class="form-group">
                     <label for="introduction" style="font-size: 27px">مقدمة <span class="text-muted" style="font-size: 15px !important;">(اختياري)</span></label>
-                    <textarea class="form-control" id="introduction" name="introduction" dir="rtl"></textarea>
+                    <textarea class="form-control introduction" id="introduction" name="introduction" dir="rtl"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -105,6 +105,7 @@
                 <hr class="custom-doted-hr">
                 <div id="steps" class="steps-container">
                     <div class="single-step row rounded-lg bg-white px-3 pb-3 my-4 ">
+                        <i class="fas fa-times-circle remove-step"></i>
                         <div class="col-1 handle ml-3 mr-0 mt-3"></div>
                         <div class="col-md-6 row justify-content-between align-content-center">
                             <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
@@ -147,7 +148,7 @@
                     <button type="button" class="add-step-btn"><i class="fa fa-plus fa-fw"></i> إضافة خطوة</button>
                 </div>
 
-{{--                <input type="submit" name="submit" value="submit">--}}
+                <input type="submit" name="submit" value="submit">
             </form>
         </div>
     </div>
@@ -158,13 +159,19 @@
     <script src="https://releases.transloadit.com/uppy/locales/v1.20.1/ar_SA.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
     <script src="{{ asset('js/ckeditor/ckeditor.js') }}" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.1/adapters/jquery.js" defer></script>
     <script src="https://unpkg.com/sortablejs-make/Sortable.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js" defer></script>
     <script>
         $(function () {
 
-            initiateStepsCkEditor()
+            CKEDITOR.replace('introduction',{
+                language: 'ar',
+                contentsLangDirection: 'rtl',
+                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+
+
             setStepsValues()
 
             $('#steps').sortable({
@@ -178,7 +185,8 @@
         })
 
         $('.create-tutorial .create-tutorial-form-container .add-step-btn').on('click', function () {
-            $('#steps').append('<div class="single-step row rounded-lg bg-white px-3 pb-3 my-4 ">\n' +
+            $('<div class="single-step row rounded-lg bg-white px-3 pb-3 my-4 ">\n' +
+                '                        <i class="fas fa-times-circle remove-step"></i>' +
                 '                        <div class="col-1 handle ml-3 mr-0 mt-3"></div>\n' +
                 '                        <div class="col-md-6 row justify-content-between align-content-center">\n' +
                 '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
@@ -215,21 +223,38 @@
                 '                            </div>\n' +
                 '                        </div>\n' +
                 '                    </div>')
+                .hide()
+                .appendTo('#steps')
+                .slideDown()
 
-            initiateStepsCkEditor()
             setStepsValues()
 
         })
 
-        CKEDITOR.replace('introduction',{
-            language: 'ar',
-            contentsLangDirection: 'rtl',
-            filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-            filebrowserUploadMethod: 'form'
-        });
+        $('.create-tutorial .create-tutorial-form-container .steps-container').on('click', '.single-step .remove-step', function () {
+            if (confirm('هل تريد حذف الخطوة')){
+                $(this).parent().fadeOut(300, function(){
+                    $(this).remove()
+                    setStepsValues()
+                })
 
-        function initiateStepsCkEditor() {
-            $('.step-content').ckeditor({
+            }
+        })
+        function setStepsValues() {
+            $('#steps .single-step').each(function (index) {
+                $(this).find('.step-title-order').text("الخطوة " + (index + 1) )
+
+                $(this).find('.step-order').val(index + 1)
+                $(this).find('.step-order').attr('name', `steps[${index}][step_order]`)
+                $(this).find('.step-title').attr('name', `steps[${index}][step_title]`)
+                $(this).find('.step-content').attr('name', `steps[${index}][step_content]`)
+
+                StepsCKEditorChange(`steps[${index}][step_content]`);
+            })
+        }
+
+        function StepsCKEditorChange(TextareaName) {
+            CKEDITOR.replace(TextareaName,{
                 extraPlugins: 'divarea',
                 language: 'ar',
                 contentsLangDirection: 'rtl',
@@ -243,24 +268,12 @@
                     { name: "paragraph", items: ["NumberedList", "BulletedList"] },
                     { name: 'links', items: [ 'Link', 'Unlink' ] },
                 ],
-
             });
-        }
 
-        function setStepsValues() {
-            $('#steps .single-step').each(function (index) {
-                $(this).find('.step-title-order').text("الخطوة " + (index + 1) )
-
-                $(this).find('.step-order').val(index + 1)
-                $(this).find('.step-order').attr('name', 'steps[' + index + '][step_order]')
-                $(this).find('.step-title').attr('name', 'steps[' + index + '][step_title]')
-                $(this).find('.step-content').attr('name', 'steps[' + index + '][step_content]')
-
-            })
         }
     </script>
     <script>
-        $(document).ready(function(){
+        $(function () {
             $(".js-example-tokenizer").select2({
                 tags: true,
                 tokenSeparators: [',', ' '],
@@ -271,8 +284,7 @@
         })
     </script>
     <script>
-
-        $(document).ready(function (){
+        $(function () {
             var uppy = Uppy.Core({
                 restrictions: {
                     maxFileSize: 5500000,

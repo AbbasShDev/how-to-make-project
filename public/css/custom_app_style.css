@@ -34,6 +34,15 @@ button:active{
     outline: none !important;
 }
 
+input:focus, input.form-control:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
 span{
     display: inline-block;
 }
@@ -229,17 +238,41 @@ span{
     border: 0;
     border-bottom: 2px dotted #ddd;
 }
+.create-tutorial .create-tutorial-form-container .steps-container {
+    transition: all .3s ease-in-out;
+}
+
+.create-tutorial .create-tutorial-form-container .steps-container .single-step {
+    position: relative;
+}
+
+.create-tutorial .create-tutorial-form-container .steps-container .single-step .remove-step {
+    position: absolute;
+    cursor: pointer;
+    left: -9px;
+    top: -10px;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
+
+.create-tutorial .create-tutorial-form-container .steps-container .single-step:hover .remove-step {
+    opacity: 1;
+}
 
 .create-tutorial .create-tutorial-form-container .steps-container .handle {
     width: 2px !important;
     opacity: 0.4;
-    transition: 0.2s;
     cursor: move;
     background-image: url(http://demo.dokit.io/w/extensions/PageForms/skins/rearrangeDots.png);
     background-repeat: repeat;
     max-width: 2px !important;
     padding-left: 0 !important;
     padding-right: 9px !important;
+    transition: opacity .3s ease-in-out;
+}
+.create-tutorial .create-tutorial-form-container .steps-container .handle:hover {
+    opacity: 1;
 }
 
 .create-tutorial .create-tutorial-form-container .add-step-btn {
