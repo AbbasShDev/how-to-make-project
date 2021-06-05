@@ -167,8 +167,14 @@
             CKEDITOR.replace('introduction',{
                 language: 'ar',
                 contentsLangDirection: 'rtl',
-                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
+                toolbar : [
+                    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike'] },
+                    { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+                    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+                    { name: 'insert', items: [ 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', ] },
+                    { name: "paragraph", items: ["NumberedList", "BulletedList"] },
+                    { name: 'links', items: [ 'Link', 'Unlink' ] },
+                ],
             });
 
 
@@ -258,8 +264,6 @@
                 extraPlugins: 'divarea',
                 language: 'ar',
                 contentsLangDirection: 'rtl',
-                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form',
                 toolbar : [
                     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike'] },
                     { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },

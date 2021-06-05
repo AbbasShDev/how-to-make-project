@@ -21,5 +21,3 @@ Route::view('/home', 'home');
 
 Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
 Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');
-
-Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
