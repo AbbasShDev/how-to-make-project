@@ -246,6 +246,53 @@ span{
     position: relative;
 }
 
+
+.create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step{
+    max-width: 94% !important;
+}
+
+@media (min-width: 767px) {
+    .create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step{
+        max-width: 97% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step{
+        max-width: 46.666667% !important;
+    }
+}
+.create-tutorial .create-tutorial-form-container .steps-container .step-image-upload {
+    height: 100px;
+    background-color: #F4FDFF;
+    border: 2px solid #a5e9fa;
+    border-radius: 5px;
+    cursor: pointer;
+    background-image: none;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+}
+
+.create-tutorial .create-tutorial-form-container .steps-container .step-image-upload:hover {
+    background-color: #E4FAFF;
+    border: 2px solid #52BAD5;
+    transition: all .3s ease-in-out;
+}
+
+.create-tutorial .create-tutorial-form-container .steps-container .step-image-upload img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 .create-tutorial .create-tutorial-form-container .steps-container .single-step .remove-step {
     position: absolute;
     cursor: pointer;

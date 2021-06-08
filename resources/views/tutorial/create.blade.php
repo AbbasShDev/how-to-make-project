@@ -104,44 +104,47 @@
 
                 <hr class="custom-doted-hr">
                 <div id="steps" class="steps-container">
-                    <div class="single-step row rounded-lg bg-white px-3 pb-3 my-4 ">
-                        <i class="fas fa-times-circle remove-step"></i>
-                        <div class="col-1 handle ml-3 mr-0 mt-3"></div>
-                        <div class="col-md-6 row justify-content-between align-content-center">
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>
-                            </div>
-                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">
-                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 p-0 pt-3">
-                            <input type="text" name="" class="step-order" hidden>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text step-title-order">الخطوة 1</span>
-                                    </div>
-                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">--}}
+{{--                        <i class="fas fa-times-circle remove-step"></i>--}}
+{{--                        <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>--}}
+{{--                        <div class="col-lg-5 p-0 pt-3 left-single-step">--}}
+{{--                            <div id="step-images-container-1" class="step-images-container"></div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-lg-6 p-0 pt-3">--}}
+{{--                            <input type="text" name="" class="step-order" hidden>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <div class="input-group-prepend">--}}
+{{--                                        <span class="input-group-text step-title-order">الخطوة 1</span>--}}
+{{--                                    </div>--}}
+{{--                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div><div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">--}}
+{{--                        <i class="fas fa-times-circle remove-step"></i>--}}
+{{--                        <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>--}}
+{{--                        <div class="col-lg-5 p-0 pt-3 left-single-step">--}}
+{{--                            <div id="step-images-container-2"  class="step-images-container"></div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-lg-6 p-0 pt-3">--}}
+{{--                            <input type="text" name="" class="step-order" hidden>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <div class="input-group-prepend">--}}
+{{--                                        <span class="input-group-text step-title-order">الخطوة 1</span>--}}
+{{--                                    </div>--}}
+{{--                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
 
                 <div class="col-md-12 text-center">
@@ -191,49 +194,36 @@
         })
 
         $('.create-tutorial .create-tutorial-form-container .add-step-btn').on('click', function () {
-            $('<div class="single-step row rounded-lg bg-white px-3 pb-3 my-4 ">\n' +
-                '                        <i class="fas fa-times-circle remove-step"></i>' +
-                '                        <div class="col-1 handle ml-3 mr-0 mt-3"></div>\n' +
-                '                        <div class="col-md-6 row justify-content-between align-content-center">\n' +
-                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
-                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
-                '                            </div>\n' +
-                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
-                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
-                '                            </div>\n' +
-                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
-                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
-                '                            </div>\n' +
-                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
-                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
-                '                            </div>\n' +
-                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
-                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
-                '                            </div>\n' +
-                '                            <div class="col-4 pr-0 pl-3 mt-3" style="height: 100px">\n' +
-                '                                <div class="bg-secondary rounded-lg" style="height: 100px"></div>\n' +
-                '                            </div>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-md-6 p-0 pt-3">\n' +
-                '                            <input type="text" name="" class="step-order" hidden>\n' +
-                '                            <div class="form-group">\n' +
-                '                                <div class="input-group">\n' +
-                '                                    <div class="input-group-prepend">\n' +
-                '                                        <span class="input-group-text step-title-order">الخطوة 1</span>\n' +
-                '                                    </div>\n' +
-                '                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                            <div class="form-group">\n' +
-                '                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>\n' +
-                '                            </div>\n' +
-                '                        </div>\n' +
-                '                    </div>')
+
+            let stepCount = $('#steps .single-step').length +1;
+
+            $(`<div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">
+                        <i class="fas fa-times-circle remove-step"></i>
+                        <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                        <div class="col-lg-5 p-0 pt-3 left-single-step">
+                            <div id="step-${stepCount}-images-container" class="step-images-container" data-steporder=""></div>
+                        </div>
+                        <div class="col-lg-6 p-0 pt-3">
+                            <input type="text" name="" class="step-order" hidden>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text step-title-order">الخطوة 1</span>
+                                    </div>
+                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>
+                            </div>
+                        </div>
+                </div>`)
                 .hide()
                 .appendTo('#steps')
                 .slideDown()
 
             setStepsValues()
+            initializeUppyForSteps(`#step-${stepCount}-images-container`)
 
         })
 
@@ -254,6 +244,10 @@
                 $(this).find('.step-order').attr('name', `steps[${index}][step_order]`)
                 $(this).find('.step-title').attr('name', `steps[${index}][step_title]`)
                 $(this).find('.step-content').attr('name', `steps[${index}][step_content]`)
+                $(this).find('.step-images-container').data('steporder', `steps[${index}][step_images]`);
+                $(this).find('.step-images-container input').each(function (indexinput) {
+                    $(this).attr('name', `steps[${index}][step_images][${indexinput}]`);
+                })
 
                 StepsCKEditorChange(`steps[${index}][step_content]`);
             })
@@ -262,17 +256,95 @@
         function StepsCKEditorChange(TextareaName) {
             CKEDITOR.replace(TextareaName,{
                 extraPlugins: 'divarea',
+                height: 225,
                 language: 'ar',
                 contentsLangDirection: 'rtl',
                 toolbar : [
                     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike'] },
                     { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
                     { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                    { name: 'insert', items: [ 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', ] },
+                    { name: 'insert', items: [  'Table' ] },
                     { name: "paragraph", items: ["NumberedList", "BulletedList"] },
-                    { name: 'links', items: [ 'Link', 'Unlink' ] },
+                    { name: 'links', items: [ 'Link' ] },
                 ],
             });
+        }
+
+        var uppy = Uppy.Core({
+            restrictions: {
+                maxFileSize: 5500000,
+                maxNumberOfFiles: 1,
+                minNumberOfFiles: 1,
+                allowedFileTypes: ['image/*']
+            },
+            locale: Uppy.locales.ar_SA
+        })
+            .use(Uppy.Dashboard,{
+                note: "يفضل التنسيق الأفقي (مثل 800 × 600 بكسل)",
+            })
+            .use(Uppy.ImageEditor, {
+                target: Uppy.Dashboard,
+                quality: 0.8
+            })
+            .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
+
+        uppy.on('file-added', (file) => {
+            console.log('Added file', file)
+        })
+
+        uppy.on('complete', (result) => {
+            $('.create-tutorial .create-tutorial-form-container .main-image-upload').css({
+                'background-image': "url("+ result.successful[0].preview +")",
+                'border' : "1px solid #acacac"
+            }).addClass('image-added')
+
+            $('.create-tutorial .create-tutorial-form-container .main-image-upload img').css('display', "none")
+            $('.create-tutorial .create-tutorial-form-container .main-image-upload #main_image').val(result.successful[0].response.uploadURL.split("/").splice(3, 4).join("/"))
+        })
+
+        $('.create-tutorial .create-tutorial-form-container .main-image-upload').on('click', function (){
+            uppy.getPlugin('Dashboard').openModal()
+        })
+
+        function initializeUppyForSteps(target){
+                var StepsUppy = Uppy.Core()
+                                .use(Uppy.Dashboard, {
+                                    inline: true,
+                                    height: 350,
+                                    target: target,
+                                    doneButtonHandler:null,
+                                    showRemoveButtonAfterComplete: true,
+                                })
+                                .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
+
+
+                StepsUppy.on('complete', (result) => {
+
+                    console.log('Upload complete! We’ve uploaded these files:', result.successful)
+
+                    for (let i = 0; i < result.successful.length; i++){
+
+                        let j;
+                        if ($(target).find('input').length > 0 ){
+                            j =  $(target).find('input').length
+                        }else{
+                            j = i
+                        }
+
+                        $('<input>').attr({
+                            type: 'hidden',
+                            name: $(target).data('steporder') + `[${j}]`,
+                            value:  result.successful[i].response.uploadURL.split("/").splice(3, 4).join("/")
+                        }).appendTo(target);
+
+                        j++
+                    }
+                })
+
+                StepsUppy.on('file-removed', (file, reason) => {
+                    console.log(file)
+                    console.log(reason)
+                })
 
         }
     </script>
@@ -285,46 +357,6 @@
                 placeholder: "افصل الكلمات بفاصلة (,)",
                 allowClear: true
             })
-        })
-    </script>
-    <script>
-        $(function () {
-            var uppy = Uppy.Core({
-                restrictions: {
-                    maxFileSize: 5500000,
-                    maxNumberOfFiles: 1,
-                    minNumberOfFiles: 1,
-                    allowedFileTypes: ['image/*']
-                },
-                locale: Uppy.locales.ar_SA
-            })
-            .use(Uppy.Dashboard,{
-                note: "يفضل التنسيق الأفقي (مثل 800 × 600 بكسل)",
-            })
-            .use(Uppy.ImageEditor, {
-                target: Uppy.Dashboard,
-                quality: 0.8
-            })
-            .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
-
-            uppy.on('file-added', (file) => {
-                console.log('Added file', file)
-            })
-
-            uppy.on('complete', (result) => {
-                $('.create-tutorial .create-tutorial-form-container .main-image-upload').css({
-                    'background-image': "url("+ result.successful[0].preview +")",
-                    'border' : "1px solid #acacac"
-                }).addClass('image-added')
-
-                $('.create-tutorial .create-tutorial-form-container .main-image-upload img').css('display', "none")
-                $('.create-tutorial .create-tutorial-form-container .main-image-upload #main_image').val(result.successful[0].response.uploadURL.split("/").splice(3, 4).join("/"))
-            })
-
-            $('.create-tutorial .create-tutorial-form-container .main-image-upload').on('click', function (){
-                uppy.getPlugin('Dashboard').openModal()
-            })
-
         })
     </script>
     <script>
