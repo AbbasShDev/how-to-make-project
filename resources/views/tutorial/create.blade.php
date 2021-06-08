@@ -103,49 +103,7 @@
                 </div>
 
                 <hr class="custom-doted-hr">
-                <div id="steps" class="steps-container">
-{{--                    <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">--}}
-{{--                        <i class="fas fa-times-circle remove-step"></i>--}}
-{{--                        <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>--}}
-{{--                        <div class="col-lg-5 p-0 pt-3 left-single-step">--}}
-{{--                            <div id="step-images-container-1" class="step-images-container"></div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-lg-6 p-0 pt-3">--}}
-{{--                            <input type="text" name="" class="step-order" hidden>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <div class="input-group">--}}
-{{--                                    <div class="input-group-prepend">--}}
-{{--                                        <span class="input-group-text step-title-order">الخطوة 1</span>--}}
-{{--                                    </div>--}}
-{{--                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div><div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">--}}
-{{--                        <i class="fas fa-times-circle remove-step"></i>--}}
-{{--                        <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>--}}
-{{--                        <div class="col-lg-5 p-0 pt-3 left-single-step">--}}
-{{--                            <div id="step-images-container-2"  class="step-images-container"></div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-lg-6 p-0 pt-3">--}}
-{{--                            <input type="text" name="" class="step-order" hidden>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <div class="input-group">--}}
-{{--                                    <div class="input-group-prepend">--}}
-{{--                                        <span class="input-group-text step-title-order">الخطوة 1</span>--}}
-{{--                                    </div>--}}
-{{--                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                </div>
+                <div id="steps" class="steps-container"></div>
 
                 <div class="col-md-12 text-center">
                     <button type="button" class="add-step-btn"><i class="fa fa-plus fa-fw"></i> إضافة خطوة</button>
@@ -307,15 +265,24 @@
         })
 
         function initializeUppyForSteps(target){
-                var StepsUppy = Uppy.Core()
-                                .use(Uppy.Dashboard, {
-                                    inline: true,
-                                    height: 350,
-                                    target: target,
-                                    doneButtonHandler:null,
-                                    showRemoveButtonAfterComplete: true,
-                                })
-                                .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
+                var StepsUppy = Uppy.Core({
+                    restrictions: {
+                        maxFileSize: 5500000,
+                        maxNumberOfFiles: 6,
+                        minNumberOfFiles: 0,
+                        allowedFileTypes: ['image/*']
+                    },
+                    locale: Uppy.locales.ar_SA,
+                })
+                .use(Uppy.Dashboard, {
+                    inline: true,
+                    height: 350,
+                    target: target,
+                    doneButtonHandler:null,
+                    showRemoveButtonAfterComplete: true,
+                    note: "يفضل التنسيق الأفقي (مثل 800 × 600 بكسل)",
+                })
+                .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
 
 
                 StepsUppy.on('complete', (result) => {
@@ -334,6 +301,7 @@
                         $('<input>').attr({
                             type: 'hidden',
                             name: $(target).data('steporder') + `[${j}]`,
+                            id: result.successful[i].id,
                             value:  result.successful[i].response.uploadURL.split("/").splice(3, 4).join("/")
                         }).appendTo(target);
 
@@ -342,6 +310,15 @@
                 })
 
                 StepsUppy.on('file-removed', (file, reason) => {
+                    $(target).find('input').each(function (index) {
+                       if ($(this).attr('id') == file.id){
+                           $(this).remove()
+                       }
+                    })
+
+                    $(target).find('input').each(function (index) {
+                        $(this).attr('name',  $(target).data('steporder') + `[${index}]`)
+                    })
                     console.log(file)
                     console.log(reason)
                 })
