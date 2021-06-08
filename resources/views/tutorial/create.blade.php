@@ -6,10 +6,6 @@
 @endpush
 
 @section('content')
-    <div id="preloader">
-        <div id="status">
-        </div>
-    </div>
     <div class="container create-tutorial">
         <div class="create-tutorial-header py-5">
             <h2>إنشاء إرشادات: <strong>{{ $title }}</strong></h2>
@@ -343,13 +339,6 @@
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    <script>
-        $(window).on('load', function() {
-            $('#status').fadeOut();
-            $('#preloader').delay(50).fadeOut(100)
-            $('body').delay(50).css({'overflow':'visible'})
         })
     </script>
 @endpush

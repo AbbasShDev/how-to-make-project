@@ -91,6 +91,14 @@
         </ul>
     </div>
 </nav>
+
+<!-- Start page preloader -->
+<div id="preloader">
+    <div id="status">
+    </div>
+</div>
+<!-- End page preloader -->
+
 <!-- Start content -->
     @yield('content')
 <!-- End content -->
@@ -126,6 +134,13 @@
 
     });
 
+</script>
+<script>
+    $(window).on('load', function() {
+        $('#status').fadeOut();
+        $('#preloader').delay(50).fadeOut(100)
+        $('body').delay(50).css({'overflow':'visible'})
+    })
 </script>
 </body>
 </html>
