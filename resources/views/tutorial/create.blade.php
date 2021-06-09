@@ -6,13 +6,14 @@
 @endpush
 
 @section('content')
-    <div class="container create-tutorial">
+    <div class="container create-tutorial mb-5">
         <div class="create-tutorial-header py-5">
             <h2>إنشاء إرشادات: <strong>{{ $title }}</strong></h2>
         </div>
         <div class="create-tutorial-form-container container">
             <form id="create-tutorial-form" action="{{ route('tutorial.store') }}" method="post">
                 @csrf
+                <input type="hidden" name="title" value="{{ request('title') }}">
                 <div class="row">
                     <div class="col-md-4">
                         <label for="main_image" style="font-size: 18px">الصورة الرئيسية<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="يفضل التنسيق الأفقي (مثل 800 × 600 بكسل).<br/> يمكن تعديل الصورة بعد اضافتها.">
@@ -81,7 +82,7 @@
                                            <i class="fas fa-question-circle fa-fw"></i>
                                         </span></label>
                                     <p>
-                                        <select class="form-control js-example-tokenizer select2-hidden-accessible" name="tags" id="tags" multiple="" data-select2-id="select2-data-10-wfcs" tabindex="-1" aria-hidden="true" style="width: 100%">
+                                        <select class="form-control js-example-tokenizer select2-hidden-accessible" name="tags[]" id="tags" multiple="" data-select2-id="select2-data-10-wfcs" tabindex="-1" aria-hidden="true" style="width: 100%">
                                         </select>
                                     </p>
                                 </div>
@@ -103,13 +104,50 @@
                 </div>
 
                 <hr class="custom-doted-hr">
-                <div id="steps" class="steps-container"></div>
+                <div id="steps" class="steps-container">
+                    <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">
+                        <i class="fas fa-times-circle remove-step"></i>
+                        <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                        <div class="col-lg-5 p-0 pt-3 left-single-step">
+                            <div id="step-1-images-container" class="step-images-container" data-steporder=""></div>
+                        </div>
+                        <div class="col-lg-6 p-0 pt-3">
+                            <input type="text" name="" class="step-order" hidden>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text step-title-order">الخطوة 1</span>
+                                    </div>
+                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center mb-5">
                     <button type="button" class="add-step-btn"><i class="fa fa-plus fa-fw"></i> إضافة خطوة</button>
                 </div>
 
-                <input type="submit" name="submit" value="submit">
+                <div class="bottom-save-bar row m-0 align-items-center">
+                    <button type="submit" class="save-btn">حفظ</button>
+                    <button type="button" class="cancel-btn">إلغاء</button>
+                    <span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="<h6 class='text-right' >عام:</h5><p>سيكون مرئي للجميع</p><h6 class='text-right'>خاص:</h5><p>سيكون مرئي لك فقظ</p>">
+                        <i class="fas fa-question-circle fa-fw"></i>
+                    </span>
+                    <div class="form-group row m-0">
+                        <div class="col-9 p-0">
+                            <select class="form-control" id="tutorial_status" name="tutorial_status">
+                                <option value="public" selected>عام</option>
+                                <option value="private">خاص</option>
+                            </select>
+                        </div>
+                        <label class="col-3 col-form-label px-0" for="tutorial_status1">الحالة</label>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -140,6 +178,7 @@
 
 
             setStepsValues()
+            initializeUppyForSteps(`#step-1-images-container`)
 
             $('#steps').sortable({
                 group: 'list',
@@ -213,10 +252,10 @@
 
         function StepsCKEditorChange(TextareaName) {
             CKEDITOR.replace(TextareaName,{
-                extraPlugins: 'divarea',
+                extraPlugins: ['divarea', 'liststyle'],
                 height: 225,
-                language: 'ar',
-                contentsLangDirection: 'rtl',
+                language: 'en',
+                contentsLangDirection: 'ltr',
                 toolbar : [
                     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike'] },
                     { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
