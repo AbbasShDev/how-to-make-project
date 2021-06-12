@@ -92,12 +92,12 @@
     </div>
 </nav>
 
-<!-- Start page preloader -->
+<!-- Start article preloader -->
 <div id="preloader">
     <div id="status">
     </div>
 </div>
-<!-- End page preloader -->
+<!-- End article preloader -->
 
 <!-- Start content -->
     @yield('content')

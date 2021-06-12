@@ -10,7 +10,7 @@
                     <div class="nav-tabs-boxed">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info active" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الإرشادات" data-formAction="{{ route('tutorial.create') }}" data-formDescription="قم بإنشاء إرشادات خطوة بخطوة لإكمال مهمة." ><i class="fa fa-list-ol fa-fw"></i> إرشادات</a></li>
-                            <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الصفحة" data-formAction="/page/create" data-formDescription="قم بإنشاء مقالة."><i class="far fa-file-alt fa-fw"></i> صفحة</a></li>
+                            <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان المقالة" data-formAction="{{ route('article.create') }}" data-formDescription="قم بإنشاء مقالة."><i class="far fa-file-alt fa-fw"></i> مقالة</a></li>
                             <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الكتيب" data-formAction="/manual/create" data-formDescription="قم بإنشاء دليل لتجميع الإرشادات والمقالات الخاصة بك."><i class="fa fa-book fa-fw"></i> كتيب</a></li>
                         </ul>
                         <div class="tab-content border-0 pt-4 pb-0 px-0">

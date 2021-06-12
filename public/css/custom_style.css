@@ -385,7 +385,7 @@ span{
 
 /* ============== Register Login CSS ============== */
 
-/* ===== profile page ===== */
+/* ===== profile article ===== */
 
 .profile .profile-left p {
     color: var(--darker-main-color);
@@ -494,4 +494,4 @@ span{
     margin-top: 100px;
     background-color: var(--main-color);
 }
-/* ===== profile page ===== */
+/* ===== profile article ===== */
