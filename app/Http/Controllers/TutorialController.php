@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Mews\Purifier\Facades\Purifier;
 
 class TutorialController extends Controller {
 
@@ -55,7 +56,7 @@ class TutorialController extends Controller {
             'duration'             => $request->duration,
             'duration_measurement' => $request->duration_measurement,
             'area'                 => $request->area,
-            'introduction'         => $request->introduction,
+            'introduction'         => Purifier::clean($request->introduction),
             'introduction_video'   => $request->introduction_video,
             'tutorial_status'      => $request->tutorial_status,
         ]);
@@ -72,8 +73,8 @@ class TutorialController extends Controller {
             $Tutorial->steps()->create([
                 'order'       => $step['step_order'],
                 'title'       => $step['step_title'],
-                'content'     => $step['step_content'],
-                'images'      => json_encode($step['step_images']),
+                'content'     => Purifier::clean($step['step_content']),
+                'images'      => json_encode($step['step_images'] ?? null),
                 'tutorial_id' => $Tutorial->id
             ]);
         }
