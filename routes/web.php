@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/','welcome')->name('welcome');
 
-Route::view('/home', 'home');
+Route::view('/home', 'home')->name('home');
 
 Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
 Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');

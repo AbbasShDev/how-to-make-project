@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tutorial;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 
-class TutorialController extends Controller
-{
+class TutorialController extends Controller {
 
     public function index()
     {
@@ -14,7 +14,7 @@ class TutorialController extends Controller
     }
 
 
-    public function create(Request $request) : View
+    public function create(Request $request): View
     {
         $attributes = $request->validate([
             'title' => ['required']
@@ -26,13 +26,65 @@ class TutorialController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $request->validate([
+            'title'                => ['required'],
+            'main_image'           => ['required'],
+            'difficulty'           => ['required'],
+            'duration'             => ['required'],
+            'duration_measurement' => ['required'],
+            'tags'                 => ['array'],
+            'tags.*'               => ['required', 'string'],
+            'area'                 => ['required'],
+            'introduction'         => ['string'],
+            'introduction_video'   => ['string'],
+            'steps'                => ['array'],
+            'steps.*.step_images'  => ['nullable'],
+            'steps.*.step_order'   => ['required', 'numeric'],
+            'steps.*.step_title'   => ['required', 'string'],
+            'steps.*.step_content' => ['required', 'string'],
+            'tutorial_status'      => ['required'],
+        ]);
+
+
+        $Tutorial = Tutorial::create([
+            'user_id'              => 1,
+            'title'                => $request->title,
+            'main_image'           => $request->main_image,
+            'difficulty'           => $request->difficulty,
+            'duration'             => $request->duration,
+            'duration_measurement' => $request->duration_measurement,
+            'area'                 => $request->area,
+            'introduction'         => $request->introduction,
+            'introduction_video'   => $request->introduction_video,
+            'tutorial_status'      => $request->tutorial_status,
+        ]);
+
+        foreach ($request->tags as $tag) {
+            $Tutorial->tags()->create([
+                'name'        => $tag,
+                'tutorial_id' => $Tutorial->id
+            ]);
+        }
+
+
+        foreach ($request->steps as $step) {
+            $Tutorial->steps()->create([
+                'order'       => $step['step_order'],
+                'title'       => $step['step_title'],
+                'content'     => $step['step_content'],
+                'images'      => json_encode($step['step_images']),
+                'tutorial_id' => $Tutorial->id
+            ]);
+        }
+
+        return redirect()->route('home')->with('success', 'تم انشاء الإرشادات بتجاح.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -43,7 +95,7 @@ class TutorialController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -54,8 +106,8 @@ class TutorialController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -66,7 +118,7 @@ class TutorialController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

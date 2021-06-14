@@ -4,13 +4,21 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://releases.transloadit.com/uppy/v1.29.1/uppy.min.css" rel="stylesheet">
 @endpush
-
 @section('content')
     <div class="container create-tutorial mb-5">
         <div class="create-tutorial-header py-5">
             <h2>إنشاء إرشادات: <strong>{{ $title }}</strong></h2>
         </div>
         <div class="create-tutorial-form-container container">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="m-0 px-3">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form id="create-tutorial-form" action="{{ route('tutorial.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="title" value="{{ request('title') }}">
@@ -47,11 +55,11 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="difficulty" style="font-size: 18px">المدة</label>
+                                    <label for="duration" style="font-size: 18px">المدة</label>
                                     <div class="input-group">
-                                        <input class="form-control" id="difficulty" type="number" name="difficulty" required>
+                                        <input class="form-control" id="duration" type="number" name="duration" required>
                                         <div class="input-group-append">
-                                            <select class="form-control" id="difficulty_measurement" name="difficulty_measurement" style="border-bottom-right-radius: 0 !important; border-top-right-radius: 0 !important;" required >
+                                            <select class="form-control" id="duration_measurement" name="duration_measurement" style="border-bottom-right-radius: 0 !important; border-top-right-radius: 0 !important;" required >
                                                 <option value="دقيقة/دقائق" selected>دقيقة/دقائق</option>
                                                 <option value="ساعة/ساعات">ساعة/ساعات</option>
                                                 <option value="يوم/أيام">يوم/أيام</option>
