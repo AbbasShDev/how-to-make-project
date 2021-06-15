@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
 
-class ArticleController extends Controller
-{
+class ArticleController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +20,7 @@ class ArticleController extends Controller
         //
     }
 
-    public function create(Request $request) : View
+    public function create(Request $request): View
     {
         $attributes = $request->validate([
             'title' => ['required']
@@ -29,13 +32,34 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'title'          => ['required'],
+            'main_image'     => ['required'],
+            'tags'           => ['array'],
+            'tags.*'         => ['required', 'string'],
+            'article'        => ['string'],
+            'article_status' => ['required'],
+        ]);
+
+        $article = Article::create([
+            'user_id'        => 1,
+            'title'          => $request->title,
+            'main_image'     => $request->main_image,
+            'article'        => Purifier::clean($request->article),
+            'article_status' => $request->article_status,
+        ]);
+
+        foreach ($request->tags as $tag) {
+            $article->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
+        }
+
+        return redirect()->route('home')->with('success', 'تم انشاء المقالة بتجاح.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -46,7 +70,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -57,8 +81,8 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -69,7 +93,7 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

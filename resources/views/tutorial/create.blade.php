@@ -10,15 +10,7 @@
             <h2>إنشاء إرشادات: <strong>{{ $title }}</strong></h2>
         </div>
         <div class="create-tutorial-form-container container">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="m-0 px-3">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            @include('_partials._display_errors')
             <form id="create-tutorial-form" action="{{ route('tutorial.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="title" value="{{ request('title') }}">
@@ -153,7 +145,7 @@
                                 <option value="private">خاص</option>
                             </select>
                         </div>
-                        <label class="col-3 col-form-label px-0" for="tutorial_status1">الحالة</label>
+                        <label class="col-3 col-form-label px-0" for="tutorial_status">الحالة</label>
                     </div>
                 </div>
             </form>

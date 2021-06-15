@@ -11,6 +11,7 @@
             <h2>إنشاء مقالة: <strong>{{ $title }}</strong></h2>
         </div>
         <div class="create-tutorial-form-container container">
+            @include('_partials._display_errors')
             <form id="create-tutorial-form" action="{{ route('article.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="title" value="{{ request('title') }}">
@@ -56,12 +57,12 @@
                     </span>
                     <div class="form-group row m-0">
                         <div class="col-9 p-0">
-                            <select class="form-control" id="tutorial_status" name="tutorial_status">
+                            <select class="form-control" id="article_status" name="article_status">
                                 <option value="public" selected>عام</option>
                                 <option value="private">خاص</option>
                             </select>
                         </div>
-                        <label class="col-3 col-form-label px-0" for="tutorial_status1">الحالة</label>
+                        <label class="col-3 col-form-label px-0" for="article_status">الحالة</label>
                     </div>
                 </div>
             </form>
