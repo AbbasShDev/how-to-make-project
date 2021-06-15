@@ -10,4 +10,9 @@ class Tag extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function tutorials()
+    {
+        return $this->morphedByMany(Tutorial::class, 'taggable');
+    }
 }

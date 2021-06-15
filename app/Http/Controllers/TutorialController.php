@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
@@ -61,13 +62,10 @@ class TutorialController extends Controller {
             'tutorial_status'      => $request->tutorial_status,
         ]);
 
-        foreach ($request->tags as $tag) {
-            $Tutorial->tags()->create([
-                'name'        => $tag,
-                'tutorial_id' => $Tutorial->id
-            ]);
-        }
 
+        foreach ($request->tags as $tag) {
+            $Tutorial->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
+        }
 
         foreach ($request->steps as $step) {
             $Tutorial->steps()->create([
