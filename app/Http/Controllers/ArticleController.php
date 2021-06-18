@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Mews\Purifier\Facades\Purifier;
 
@@ -30,7 +31,7 @@ class ArticleController extends Controller {
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'title'          => ['required'],

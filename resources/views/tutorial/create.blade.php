@@ -19,29 +19,29 @@
                         <label for="main_image" style="font-size: 18px">الصورة الرئيسية<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="يفضل التنسيق الأفقي (مثل 800 × 600 بكسل).<br/> يمكن تعديل الصورة بعد اضافتها.">
                                            <i class="fas fa-question-circle fa-fw"></i>
                                         </span></label>
-                        <div class="main-image-upload">
+                        <div class="main-image-upload @if(old("main_image")) image-added @endif" @if(old("main_image")) style="background-image: url('https://tusd.tusdemo.net/{{ old("main_image") }}');border : 1px solid #acacac" @endif>
                             <div class="overlay"></div>
                             <p class="font-head"><i class="fas fa-edit fa-fw"></i> تغير الصورة</p>
-                            <input type="text" name="main_image" id="main_image" value="" hidden>
-                            <img src="{{ asset('images/image-add-icon-colord.png') }}" alt="image add icon">
+                            <input type="text" name="main_image" id="main_image" value="{{ old("main_image") }}" hidden>
+                            <img src="{{ asset('images/image-add-icon-colord.png') }}" alt="image add icon" @if(old("main_image")) style="display: none" @endif>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="description" style="font-size: 18px">الوصف</label>
-                            <textarea class="form-control" id="description" placeholder="صف الإرشادات الخاص بك في بضع جمل." required></textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="صف الإرشادات الخاص بك في بضع جمل." required>{{old("description")}}</textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="difficulty" style="font-size: 18px">الصعوبة</label>
                                     <select class="form-control" id="difficulty" name="difficulty" required>
-                                        <option value="" selected disabled></option>
-                                        <option value="سهل جداً">سهل جداً</option>
-                                        <option value="سهل">سهل</option>
-                                        <option value="متوسط">متوسط</option>
-                                        <option value="صعب">صعب</option>
-                                        <option value="صعب جداً">صعب جداً</option>
+                                        <option value="" @if(is_null(old("description"))) selected @endif disabled></option>
+                                        <option value="سهل جداً" @if(old("description") == "سهل جداً") selected @endif >سهل جداً</option>
+                                        <option value="سهل" @if(old("description") == "سهل") selected @endif >سهل</option>
+                                        <option value="متوسط" @if(old("description") == "متوسط") selected @endif >متوسط</option>
+                                        <option value="صعب" @if(old("description") == "صعب") selected @endif >صعب</option>
+                                        <option value="صعب جداً" @if(old("description") == "صعب جداً") selected @endif >صعب جداً</option>
                                     </select>
                                 </div>
                             </div>
@@ -49,13 +49,13 @@
                                 <div class="form-group">
                                     <label for="duration" style="font-size: 18px">المدة</label>
                                     <div class="input-group">
-                                        <input class="form-control" id="duration" type="number" name="duration" required>
+                                        <input class="form-control" id="duration" type="number" name="duration" value="{{ old("duration") }}" required>
                                         <div class="input-group-append">
                                             <select class="form-control" id="duration_measurement" name="duration_measurement" style="border-bottom-right-radius: 0 !important; border-top-right-radius: 0 !important;" required >
-                                                <option value="دقيقة/دقائق" selected>دقيقة/دقائق</option>
-                                                <option value="ساعة/ساعات">ساعة/ساعات</option>
-                                                <option value="يوم/أيام">يوم/أيام</option>
-                                                <option value="شهر/شهور">شهر/شهور</option>
+                                                <option value="دقيقة/دقائق"  @if(is_null(old("duration_measurement")) || old("duration_measurement") == "دقيقة/دقائق") selected @endif >دقيقة/دقائق</option>
+                                                <option value="ساعة/ساعات" @if(old("duration_measurement") == "ساعة/ساعات") selected @endif >ساعة/ساعات</option>
+                                                <option value="يوم/أيام" @if(old("duration_measurement") == "يوم/أيام") selected @endif >يوم/أيام</option>
+                                                <option value="شهر/شهور" @if(old("duration_measurement") == "شهر/شهور") selected @endif >شهر/شهور</option>
                                             </select>
                                         </div>
                                     </div>
@@ -67,12 +67,12 @@
                                 <div class="form-group">
                                     <label for="area" style="font-size: 18px">المجال</label>
                                     <select class="form-control" id="area" name="area" required>
-                                        <option value="" selected disabled></option>
-                                        <option value="الصيانة">الصيانة</option>
-                                        <option value="الأمن">الأمن</option>
-                                        <option value="الإنتاج">الإنتاج</option>
-                                        <option value="إستخدامات">إستخدامات</option>
-                                        <option value="أخرى">أخرى</option>
+                                        <option value="" @if(is_null(old("area"))) selected @endif disabled></option>
+                                        <option value="الصيانة" @if(old("duration_measurement") == "الصيانة") selected @endif >الصيانة</option>
+                                        <option value="الأمن" @if(old("duration_measurement") == "الأمن") selected @endif >الأمن</option>
+                                        <option value="الإنتاج" @if(old("duration_measurement") == "الإنتاج") selected @endif >الإنتاج</option>
+                                        <option value="إستخدامات" @if(old("duration_measurement") == "إستخدامات") selected @endif >إستخدامات</option>
+                                        <option value="أخرى" @if(old("duration_measurement") == "أخرى") selected @endif >أخرى</option>
                                     </select>
                                 </div>
                             </div>
@@ -95,12 +95,14 @@
                 <hr class="custom-doted-hr">
                 <div class="form-group">
                     <label for="introduction" style="font-size: 27px">مقدمة <span class="text-muted" style="font-size: 15px !important;">(اختياري)</span></label>
-                    <textarea class="form-control introduction" id="introduction" name="introduction" dir="rtl"></textarea>
+                    <textarea class="form-control introduction" id="introduction" name="introduction" dir="rtl">
+                        {{ old("introduction") }}
+                    </textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="introduction_video" style="font-size: 27px">فيديو (يوتيوب) للمقدمة <span class="text-muted" style="font-size: 15px !important;">(اختياري)</span></label>
-                    <input type="text" id="introduction_video" name="introduction_video" class="form-control" placeholder="أدخل عنوان URL لفيديو يوتيوب">
+                    <input type="text" id="introduction_video" name="introduction_video" class="form-control" placeholder="أدخل عنوان URL لفيديو يوتيوب" value="{{ old("introduction_video") }}">
                 </div>
 
                 <hr class="custom-doted-hr">
@@ -141,8 +143,8 @@
                     <div class="form-group row m-0">
                         <div class="col-9 p-0">
                             <select class="form-control" id="tutorial_status" name="tutorial_status">
-                                <option value="public" selected>عام</option>
-                                <option value="private">خاص</option>
+                                <option value="public" @if(is_null(old("tutorial_status")) || old("tutorial_status") == "public") selected @endif >عام</option>
+                                <option value="private"  @if(old("tutorial_status") == "private") selected @endif >خاص</option>
                             </select>
                         </div>
                         <label class="col-3 col-form-label px-0" for="tutorial_status">الحالة</label>
@@ -362,6 +364,24 @@
                     console.log(reason)
                 })
 
+            // fetch("https://tusd.tusdemo.net/files/f6adf1fe97a78aa872f8367b7373837e+si827XoA8LJk1LyLwvRP8vkU78yJMVR2OnsNCdrAOEr6ovgvOr5WHPwO6DUO23OhFzIveYb4sGoxpUfkKrMwBp_c5dLn903dsh58Y4zUNOAzdpGcDV8Wipw3nuhVZsGF")
+            //     .then((response) => response.blob())
+            //     .then((blob) => {
+            //         StepsUppy.addFile({
+            //             name: "image.jpg",
+            //             type: blob.type,
+            //             data: blob
+            //         });
+            //
+            //         StepsUppy.getFiles().forEach(file => {
+            //             console.log(file)
+            //             StepsUppy.setFileState(file.id, {
+            //                 progress: { uploadComplete: true, uploadStarted: true }
+            //             })
+            //         });
+            //
+            //     });
+
         }
     </script>
     <script>
@@ -373,6 +393,24 @@
                 placeholder: "افصل الكلمات بفاصلة (,)",
                 allowClear: true
             })
+
+            function convertObjectToSelectOptions(obj){
+                var htmlTags = '';
+                for (var tag in obj){
+                    htmlTags += '<option value="'+tag+'" selected="selected">'+obj[tag]+'</option>';
+                }
+                return htmlTags;
+            }
+            @if(old("tags"))
+                var tags = {};
+
+                @foreach(old("tags") as $tag)
+                    Object.assign(tags, {"{{ $tag }}": "{{ $tag }}"});
+
+                @endforeach
+
+                $('.js-example-tokenizer').html(convertObjectToSelectOptions(tags)).trigger('change');
+            @endif
         })
     </script>
     <script>

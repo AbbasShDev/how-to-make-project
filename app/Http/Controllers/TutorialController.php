@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Tutorial;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Mews\Purifier\Facades\Purifier;
@@ -26,20 +27,21 @@ class TutorialController extends Controller {
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
 
         $request->validate([
             'title'                => ['required'],
             'main_image'           => ['required'],
+            'description'          => ['required'],
             'difficulty'           => ['required'],
             'duration'             => ['required'],
             'duration_measurement' => ['required'],
             'tags'                 => ['array'],
             'tags.*'               => ['required', 'string'],
             'area'                 => ['required'],
-            'introduction'         => ['string'],
-            'introduction_video'   => ['string'],
+            'introduction'         => ['nullable'],
+            'introduction_video'   => ['nullable'],
             'steps'                => ['array'],
             'steps.*.step_images'  => ['nullable'],
             'steps.*.step_order'   => ['required', 'numeric'],
@@ -47,7 +49,6 @@ class TutorialController extends Controller {
             'steps.*.step_content' => ['required', 'string'],
             'tutorial_status'      => ['required'],
         ]);
-
 
         $Tutorial = Tutorial::create([
             'user_id'              => 1,
