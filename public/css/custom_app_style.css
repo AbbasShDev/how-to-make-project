@@ -163,7 +163,7 @@ span{
     margin-bottom: 130px !important;
 }
 
-.create-tutorial .create-tutorial-form-container .main-image-upload {
+.create-tutorial .create-tutorial-form-container .create-tutorial .bottom-save-bar {
     min-height: 220px;
     width: 100%;
     background-color: #F4FDFF;
@@ -349,6 +349,7 @@ span{
     left: 0px;
     bottom: 0px;
     padding: 10px 15px;
+    z-index: 10000000;
 }
 
 .create-tutorial .bottom-save-bar button {
