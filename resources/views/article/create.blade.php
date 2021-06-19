@@ -20,17 +20,17 @@
                         <label for="main_image" style="font-size: 18px">الصورة الرئيسية<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="يفضل التنسيق الأفقي (مثل 800 × 600 بكسل).<br/> يمكن تعديل الصورة بعد اضافتها.">
                                            <i class="fas fa-question-circle fa-fw"></i>
                                         </span></label>
-                        <div class="main-image-upload">
+                        <div class="main-image-upload @if(old("main_image")) image-added @endif" @if(old("main_image")) style="background-image: url('https://tusd.tusdemo.net/{{ old("main_image") }}');border : 1px solid #acacac" @endif>
                             <div class="overlay"></div>
                             <p class="font-head"><i class="fas fa-edit fa-fw"></i> تغير الصورة</p>
-                            <input type="text" name="main_image" id="main_image" value="" hidden>
-                            <img src="{{ asset('images/image-add-icon-colord.png') }}" alt="image add icon">
+                            <input type="text" name="main_image" id="main_image" value="{{ old("main_image") }}" hidden>
+                            <img src="{{ asset('images/image-add-icon-colord.png') }}" alt="image add icon" @if(old("main_image")) style="display: none" @endif>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="description" style="font-size: 18px">الوصف</label>
-                            <textarea class="form-control" id="description" placeholder="صف الإرشادات الخاص بك في بضع جمل." style="height: 137px !important;" required></textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="صف الإرشادات الخاص بك في بضع جمل." style="height: 137px !important;">{{ old("description") }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="tags" style="font-size: 18px">التصنيفات<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="افصل كل كلمة رئيسية بفاصلة (,) (على سبيل المثال: خشب , معدن , طباعة ثلاثية الأبعاد , إلخ.) <br> او اضغط (enter) بعد كتابة كل جملة">
@@ -46,7 +46,7 @@
 
                 <hr class="custom-doted-hr">
                 <div class="form-group">
-                    <textarea class="form-control article" id="article" name="article" dir="rtl"></textarea>
+                    <textarea class="form-control article" id="article" name="article" dir="rtl">{{ old("article") }}</textarea>
                 </div>
 
                 <div class="bottom-save-bar row m-0 align-items-center">
@@ -133,6 +133,24 @@
                 placeholder: "افصل الكلمات بفاصلة (,)",
                 allowClear: true
             })
+
+            @if(old("tags"))
+            function convertObjectToSelectOptions(obj){
+                var htmlTags = '';
+                for (var tag in obj){
+                    htmlTags += '<option value="'+tag+'" selected="selected">'+obj[tag]+'</option>';
+                }
+                return htmlTags;
+            }
+            var tags = {};
+
+            @foreach(old("tags") as $tag)
+            Object.assign(tags, {"{{ $tag }}": "{{ $tag }}"});
+
+            @endforeach
+
+            $('.js-example-tokenizer').html(convertObjectToSelectOptions(tags)).trigger('change');
+            @endif
         })
     </script>
     <script>

@@ -31,11 +31,12 @@ class ArticleController extends Controller {
     }
 
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'title'          => ['required'],
             'main_image'     => ['required'],
+            'description'    => ['required'],
             'tags'           => ['array'],
             'tags.*'         => ['required', 'string'],
             'article'        => ['string'],
