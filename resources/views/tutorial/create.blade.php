@@ -107,27 +107,61 @@
 
                 <hr class="custom-doted-hr">
                 <div id="steps" class="steps-container">
-                    <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">
-                        <i class="fas fa-times-circle remove-step"></i>
-                        <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
-                        <div class="col-lg-5 p-0 pt-3 left-single-step">
-                            <div id="step-1-images-container" class="step-images-container" data-steporder=""></div>
-                        </div>
-                        <div class="col-lg-6 p-0 pt-3">
-                            <input type="text" name="" class="step-order" hidden>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text step-title-order">الخطوة 1</span>
+
+                    @if(! is_null(old('steps')))
+                        @foreach(old('steps') as $step)
+                            <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">
+                                <i class="fas fa-times-circle remove-step"></i>
+                                <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                                <div class="col-lg-5 p-0 pt-3 left-single-step">
+                                    <div id="step-{{ $step['step_order'] }}-images-container" class="step-images-container" data-steporder="">
+
+                                        @if(isset($step['step_images']))
+                                            @foreach($step['step_images'] as $key => $val)
+                                                <input type="hidden" name="steps[{{ $step['step_order'] }}][step_images][{{ $key }}]" id="" value="{{ $val }}">
+                                            @endforeach
+                                        @endif
                                     </div>
-                                    <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">
+                                </div>
+                                <div class="col-lg-6 p-0 pt-3">
+                                    <input type="text" name="" class="step-order" hidden>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text step-title-order"></span>
+                                            </div>
+                                            <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title" value="{{ $step['step_title'] }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control step-content" name="" dir="rtl">{{ $step['step_content'] }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <textarea class="form-control step-content" name="" dir="rtl"></textarea>
+                        @endforeach
+                    @else
+                        <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">
+                            <i class="fas fa-times-circle remove-step"></i>
+                            <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                            <div class="col-lg-5 p-0 pt-3 left-single-step">
+                                <div id="step-1-images-container" class="step-images-container" data-steporder=""></div>
+                            </div>
+                            <div class="col-lg-6 p-0 pt-3">
+                                <input type="text" name="" class="step-order" hidden>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text step-title-order">الخطوة 1</span>
+                                        </div>
+                                        <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control step-content" name="" dir="rtl"></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
                 <div class="col-md-12 text-center mb-5">
@@ -180,7 +214,14 @@
 
 
             setStepsValues()
-            initializeUppyForSteps(`#step-1-images-container`)
+
+            @if(! is_null(old('steps')))
+                @foreach(old('steps') as $step)
+                    initializeUppyForSteps(`#step-{{ $step['step_order'] }}-images-container`)
+                @endforeach
+            @else
+                initializeUppyForSteps(`#step-1-images-container`)
+            @endif
 
             $('#steps').sortable({
                 group: 'list',
@@ -364,24 +405,37 @@
                     console.log(reason)
                 })
 
-            // fetch("https://tusd.tusdemo.net/files/f6adf1fe97a78aa872f8367b7373837e+si827XoA8LJk1LyLwvRP8vkU78yJMVR2OnsNCdrAOEr6ovgvOr5WHPwO6DUO23OhFzIveYb4sGoxpUfkKrMwBp_c5dLn903dsh58Y4zUNOAzdpGcDV8Wipw3nuhVZsGF")
-            //     .then((response) => response.blob())
-            //     .then((blob) => {
-            //         StepsUppy.addFile({
-            //             name: "image.jpg",
-            //             type: blob.type,
-            //             data: blob
-            //         });
-            //
-            //         StepsUppy.getFiles().forEach(file => {
-            //             console.log(file)
-            //             StepsUppy.setFileState(file.id, {
-            //                 progress: { uploadComplete: true, uploadStarted: true }
-            //             })
-            //         });
-            //
-            //     });
+            $(`${target} input`).each(function(){
 
+                fetch(`https://tusd.tusdemo.net/${$(this).val()}`)
+                    .then((response) => response.blob())
+                    .then((blob) => {
+                        StepsUppy.addFile({
+                            name: "image.jpg",
+                            type: blob.type,
+                            data: blob
+                        });
+
+                        StepsUppy.getFiles().forEach(file => {
+                            $(this).attr("id", file.id)
+                            StepsUppy.setFileState(file.id, {
+                                progress: { uploadComplete: true, uploadStarted: true }
+                            })
+                        });
+
+                    });
+            });
+
+
+{{--            @if(! is_null(old('steps')))--}}
+{{--                @foreach(old('steps') as $step)--}}
+{{--                    @foreach($step['step_images'] as $image)--}}
+{{--                        @if($step['step_images'] == )--}}
+{{--                            --}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
         }
     </script>
     <script>
@@ -394,14 +448,15 @@
                 allowClear: true
             })
 
-            function convertObjectToSelectOptions(obj){
-                var htmlTags = '';
-                for (var tag in obj){
-                    htmlTags += '<option value="'+tag+'" selected="selected">'+obj[tag]+'</option>';
-                }
-                return htmlTags;
-            }
+
             @if(old("tags"))
+                function convertObjectToSelectOptions(obj){
+                    var htmlTags = '';
+                    for (var tag in obj){
+                        htmlTags += '<option value="'+tag+'" selected="selected">'+obj[tag]+'</option>';
+                    }
+                    return htmlTags;
+                }
                 var tags = {};
 
                 @foreach(old("tags") as $tag)
