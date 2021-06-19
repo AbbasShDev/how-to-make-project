@@ -29,7 +29,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark py-0 px-3 px-lg-5">
-    <a class="navbar-brand" href="#"><img class="logo" src="{{ asset('images/logo-white.png') }}" alt="logo"></a>
+    <a class="navbar-brand mr-0" href="#"><img class="logo" src="{{ asset('images/logo-white.png') }}" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -52,7 +52,7 @@
         </ul>
 
         <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mr-auto ml-2">
             <li class="nav-item">
                 <button class="btn btn-info mx-0 mx-lg-3" type="button" data-toggle="modal" data-target="#infoModal"><i class="fas fa-pencil-alt fa-fw"></i> قم بإنشاء صفحة</button>
             </li>
@@ -70,12 +70,24 @@
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
+                <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <div class="c-avatar my-2 my-lg-0">
+                            <img class="c-avatar-img" src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&color=30373B&background=EBEDEF" alt="{{ auth()->user()->name }} img">
+                        </div>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-right pt-0 mb-3 mb-lg-0">
+                        <div class="dropdown-header bg-light py-2 text-right">
+                            <strong>{{ auth()->user()->name }}</strong>
+                        </div>
+                        <a class="dropdown-item" href="#">
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            Profile
+                        </a>
+
+                        <a class="dropdown-item" href="#">
+                            Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

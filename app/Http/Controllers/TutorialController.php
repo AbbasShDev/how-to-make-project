@@ -52,7 +52,7 @@ class TutorialController extends Controller {
         ]);
 
         $Tutorial = Tutorial::create([
-            'user_id'              => 1,
+            'user_id'              => auth()->id(),
             'title'                => $request->title,
             'main_image'           => $request->main_image,
             'difficulty'           => $request->difficulty,
