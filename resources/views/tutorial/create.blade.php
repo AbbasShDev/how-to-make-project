@@ -426,16 +426,6 @@
                     });
             });
 
-
-{{--            @if(! is_null(old('steps')))--}}
-{{--                @foreach(old('steps') as $step)--}}
-{{--                    @foreach($step['step_images'] as $image)--}}
-{{--                        @if($step['step_images'] == )--}}
-{{--                            --}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
-{{--                @endforeach--}}
-{{--            @endif--}}
         }
     </script>
     <script>

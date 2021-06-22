@@ -177,6 +177,7 @@ span{
     position: relative;
     transition: all .3s ease-in-out;
     overflow: hidden;
+    z-index: 1005 !important;
 }
 
 .create-tutorial .create-tutorial-form-container .custom-tooltip i {
@@ -199,6 +200,16 @@ span{
     background-color: #00000080;
     transition: all .3s ease-in-out;
 
+}
+
+.create-tutorial .create-tutorial-form-container .main-image-upload {
+    background-color: #f3fdff;
+    border: 2px solid #a5e9fa;
+    border-radius: 3px;
+    transition: all .3s ease-in-out;
+    height: 220px;
+    cursor: pointer;
+    position: relative;
 }
 
 .create-tutorial .create-tutorial-form-container .main-image-upload:hover {
@@ -349,7 +360,7 @@ span{
     left: 0px;
     bottom: 0px;
     padding: 10px 15px;
-    z-index: 10000000;
+    z-index: 1000 !important;
 }
 
 .create-tutorial .bottom-save-bar button {
@@ -422,6 +433,10 @@ span{
 #cke_1_top {
     text-align: right;
 }
+
+.uppy-DashboardContent-bar,
+.uppy-StatusBar {
+    z-index: 999 !important;}
 
 #preloader {
     position: fixed;
