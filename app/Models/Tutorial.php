@@ -25,4 +25,9 @@ class Tutorial extends Model
     {
         return $this->hasMany(Step::class);
     }
+
+    public function manuals()
+    {
+        return $this->belongsToMany(Manual::class);
+    }
 }

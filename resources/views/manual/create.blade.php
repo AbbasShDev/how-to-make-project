@@ -17,7 +17,7 @@
                 <input type="hidden" name="title" value="{{ request('title') }}">
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="logo" style="font-size: 18px">الصورة الرئيسية<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="يفضل التنسيق الأفقي (مثل 800 × 600 بكسل).<br/> يمكن تعديل الصورة بعد اضافتها.">
+                        <label for="logo" style="font-size: 18px">الشعار<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="يفضل التنسيق الأفقي (مثل 800 × 600 بكسل).<br/> يمكن تعديل الصورة بعد اضافتها.">
                                            <i class="fas fa-question-circle fa-fw"></i>
                                         </span></label>
                         <div class="main-image-upload logo @if(old("logo")) image-added @endif" @if(old("logo")) style="background-image: url('https://tusd.tusdemo.net/{{ old("logo") }}');border : 1px solid #acacac" @endif>
@@ -159,7 +159,7 @@
                 }).addClass('image-added')
 
                 $('.create-tutorial .create-tutorial-form-container .main-image-upload.main-image img').css('display', "none")
-                $('.create-tutorial .create-tutorial-form-container .main-image-upload.main-image #logo').val(result.successful[0].response.uploadURL.split("/").splice(3, 4).join("/"))
+                $('.create-tutorial .create-tutorial-form-container .main-image-upload.main-image #banner').val(result.successful[0].response.uploadURL.split("/").splice(3, 4).join("/"))
             })
 
             $('.create-tutorial .create-tutorial-form-container .main-image-upload.main-image').on('click', function (){

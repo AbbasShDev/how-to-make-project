@@ -15,7 +15,7 @@ class CreateTutorialsTable extends Migration
     {
         Schema::create('tutorials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id");
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete();
             $table->string("title");
             $table->text("main_image");
             $table->string("difficulty");

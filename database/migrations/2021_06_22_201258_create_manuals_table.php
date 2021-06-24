@@ -15,6 +15,8 @@ class CreateManualsTable extends Migration
     {
         Schema::create('manuals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("user_id")->constrained()->cascadeOnDelete();
+            $table->string("title");
             $table->string("logo");
             $table->string("banner");
             $table->text("description");
