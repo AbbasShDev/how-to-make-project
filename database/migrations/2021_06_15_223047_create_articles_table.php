@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string("title");
             $table->text("main_image");
             $table->text("article");
+            $table->text("description");
             $table->tinyText("article_status");
             $table->timestamps();
         });

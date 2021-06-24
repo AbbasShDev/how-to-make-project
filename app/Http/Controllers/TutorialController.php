@@ -55,6 +55,7 @@ class TutorialController extends Controller {
             'user_id'              => auth()->id(),
             'title'                => $request->title,
             'main_image'           => $request->main_image,
+            'description'           => $request->description,
             'difficulty'           => $request->difficulty,
             'duration'             => $request->duration,
             'duration_measurement' => $request->duration_measurement,
@@ -85,6 +86,8 @@ class TutorialController extends Controller {
 
     public function show(Tutorial $tutorial) : View
     {
+        $tutorial = $tutorial->with('tags')->first();
+
         return view('tutorial.show', compact('tutorial'));
 
     }

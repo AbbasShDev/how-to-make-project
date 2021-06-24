@@ -19,6 +19,7 @@ class CreateTutorialsTable extends Migration
             $table->foreignId("user_id")->constrained()->cascadeOnDelete();
             $table->string("title");
             $table->text("main_image");
+            $table->text("description");
             $table->string("difficulty");
             $table->double("duration");
             $table->string("duration_measurement");
