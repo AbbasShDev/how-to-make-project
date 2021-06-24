@@ -82,15 +82,11 @@ class TutorialController extends Controller {
         return redirect()->route('home')->with('success', 'تم انشاء الإرشادات بتجاح.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(Tutorial $tutorial) : View
     {
-        //
+        return view('tutorial.show', compact('tutorial'));
+
     }
 
     /**

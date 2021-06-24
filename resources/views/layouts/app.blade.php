@@ -26,7 +26,7 @@
 
     @stack('css-links')
 </head>
-
+@stack('css-additional-styles')
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark py-0 px-3 px-lg-5">
     <a class="navbar-brand mr-0" href="#"><img class="logo" src="{{ asset('images/logo-white.png') }}" alt="logo"></a>

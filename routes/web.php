@@ -13,6 +13,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
     Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');
+    Route::get('/tutorial/{tutorial}', [TutorialController::class, 'show'])->name('tutorial.show');
 
     Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
     Route::post('/article/create', [ArticleController::class, 'store'])->name('article.store');
