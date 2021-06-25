@@ -30,7 +30,6 @@ class TutorialController extends Controller {
     public function store(Request $request): RedirectResponse
     {
 
-
         $request->validate([
             'title'                => ['required'],
             'main_image'           => ['required'],
@@ -61,7 +60,7 @@ class TutorialController extends Controller {
             'duration_measurement' => $request->duration_measurement,
             'area'                 => $request->area,
             'introduction'         => Purifier::clean($request->introduction),
-            'introduction_video'   => $request->introduction_video,
+            'introduction_video'   => $request->introduction_video ? getYoutubeId($request->introduction_video) : "",
             'tutorial_status'      => $request->tutorial_status,
         ]);
 
@@ -86,7 +85,7 @@ class TutorialController extends Controller {
 
     public function show(Tutorial $tutorial) : View
     {
-        $tutorial = $tutorial->with('tags')->first();
+        $tutorial = $tutorial->with('tags', 'steps')->first();
 
         return view('tutorial.show', compact('tutorial'));
 

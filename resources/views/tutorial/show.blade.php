@@ -6,6 +6,9 @@
 
 @push('css-additional-styles')
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             background-color: #ffffff !important;
         }
@@ -31,25 +34,25 @@
             <div class="col-md-8 mt-3 mt-md-0">
                 <p>{{ $tutorial->description }}</p>
                 <ul class="list-group">
-                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span><i class="fas fa-tachometer-alt fa-fw"></i>
                             الصعوبة
                         </span>
                         <span>{{ $tutorial->difficulty }}</span>
                     </li>
-                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span><i class="far fa-clock fa-fw"></i>
                             المدة
                         </span>
                         <span>{{ $tutorial->duration." ".$tutorial->duration_measurement }}</span>
                     </li>
-                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span><i class="far fa-building fa-fw"></i>
                             المجال
                         </span>
                         <span>{{ $tutorial->area }}</span>
                     </li>
-                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span><i class="fas fa-tags fa-fw"></i>
                             التصنيفات
                         </span>
@@ -59,12 +62,60 @@
                             @endforeach
                         </span>
                     </li>
+                    <li class="list-group-item d-flex flex-column">
+                        <span class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-list-ol fa-fw"></i>
+                            المحتوى
+                            </span>
+                            <span>[<span class="show-hide-intro-content">إخفاء</span>]</span>
+                        </span>
+
+                        <span class="mt-2 intro-content">
+                            @if($tutorial->introduction)<a href="{{ request()->fullUrl()."#introduction" }}">المقدمة</a>@endif
+                            @if($tutorial->introduction_video)<a href="{{ request()->fullUrl()."#introduction_video" }}">فيديو توضيحي</a>@endif
+                            @foreach($tutorial->steps as $step)
+                                    <a href="{{ request()->fullUrl()."#step".$step->order }}">خطوة {{ $step->order }}</a>
+                            @endforeach
+                        </span>
+                    </li>
                 </ul>
             </div>
         </div>
+
+        @if($tutorial->introduction)
+            <div id="introduction">
+                <h1>المقدمة</h1>
+                <p>
+                    {!! $tutorial->introduction !!}
+                </p>
+            </div>
+        @endif
+
+        @if($tutorial->introduction_video)
+        <div id="introduction_video">
+            <h1>فيديو توضيحي</h1>
+            <div class="col-12 col-md-10 mx-auto">
+                <div class="embed-responsive embed-responsive-16by9 mt-4">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ $tutorial->introduction_video }}" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 @endsection
 
 @push('js-scripts')
+    <script>
+        $(function () {
+            $('.show-hide-intro-content').on('click', function(){
+                if ($(this).text() == "إخفاء"){
+                    $(this).text("إظهار")
+               }else {
+                   $(this).text("إخفاء")
+                }
+                $('.intro-content').slideToggle();
+            });
+        })
+    </script>
 
 @endpush

@@ -432,6 +432,31 @@ span{
     margin-bottom: 13px;
     padding: 8px 15px;
 }
+
+.show-tutorial .list-group .show-hide-intro-content {
+    color: #337ab7;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.show-tutorial .list-group .show-hide-intro-content:hover,
+.show-tutorial .list-group .show-hide-intro-content:visited:hover {
+    color: #2c9ab7;
+    text-decoration: underline;
+}
+
+.show-tutorial .list-group .intro-content a {
+    display: block !important;
+    color: #2c9ab7;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.show-tutorial .list-group .intro-content a:hover {
+    text-decoration: underline !important;
+}
+
 /* End show tutorial */
 
 /* Start custom select2 styles */

@@ -204,7 +204,7 @@
                 contentsLangDirection: 'rtl',
                 toolbar : [
                     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike'] },
-                    { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+                    { name: 'styles', items: [ 'Styles', 'Font', 'FontSize' ] },
                     { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
                     { name: 'insert', items: [ 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', ] },
                     { name: "paragraph", items: ["NumberedList", "BulletedList"] },
