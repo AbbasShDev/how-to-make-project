@@ -86,7 +86,7 @@ class TutorialController extends Controller {
     public function show(Tutorial $tutorial) : View
     {
         $tutorial = $tutorial->with('tags', 'steps')->first();
-
+        //dd($tutorial->steps[0]->images[0]);
         return view('tutorial.show', compact('tutorial'));
 
     }

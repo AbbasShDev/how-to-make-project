@@ -82,6 +82,8 @@
             </div>
         </div>
 
+        <hr class="custom-doted-hr">
+
         @if($tutorial->introduction)
             <div id="introduction">
                 <h1>المقدمة</h1>
@@ -101,6 +103,24 @@
             </div>
         </div>
         @endif
+
+        @foreach($tutorial->steps as $step)
+            <div class="single-step row my-4">
+                <div class="col-md-5">
+                    <h3>{{ $step->title }}</h3>
+                    <p>{!! $step->content !!}</p>
+                </div>
+                <div class="col-md-7 d-flex flex-column image-gallery">
+                    <img class="img-fluid active-image" src="{{ presentImage($step->images[0]) }}" alt="step image">
+                    <div class="row">
+                        @foreach($step->images as $image)
+                            <img class="img-fluid images-list-item @if($loop->first) active @endif" src="{{ presentImage($image) }}" alt="step image">
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            @if(! $loop->last) <hr class="custom-doted-hr"> @endif
+        @endforeach
     </div>
 @endsection
 
@@ -115,6 +135,15 @@
                 }
                 $('.intro-content').slideToggle();
             });
+
+            //image gallery
+
+            $(".image-gallery .images-list-item").each(function () {
+                $(this).on("click", function () {
+                    $(this).parents('.row').siblings(".active-image").hide().attr("src", $(this).attr("src")).fadeIn();
+                    $(this).addClass("active").siblings().removeClass("active")
+                })
+            })
         })
     </script>
 
