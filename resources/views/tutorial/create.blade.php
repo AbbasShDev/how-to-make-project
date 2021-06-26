@@ -19,7 +19,7 @@
                         <label for="main_image" style="font-size: 18px">الصورة الرئيسية<span class="custom-tooltip rounded-circle" type="button" data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="يفضل التنسيق الأفقي (مثل 800 × 600 بكسل).<br/> يمكن تعديل الصورة بعد اضافتها.">
                                            <i class="fas fa-question-circle fa-fw"></i>
                                         </span></label>
-                        <div class="main-image-upload @if(old("main_image")) image-added @endif" @if(old("main_image")) style="background-image: url('https://tusd.tusdemo.net/{{ old("main_image") }}');border : 1px solid #acacac" @endif>
+                        <div class="main-image-upload @if(old("main_image")) image-added @endif" @if(old("main_image")) style="background-image: url('{{ presentImage(old("main_image")) }}');border : 1px solid #acacac" @endif>
                             <div class="overlay"></div>
                             <p class="font-head"><i class="fas fa-edit fa-fw"></i> تغير الصورة</p>
                             <input type="text" name="main_image" id="main_image" value="{{ old("main_image") }}" hidden>
@@ -319,27 +319,35 @@
             },
             locale: Uppy.locales.ar_SA
         })
-            .use(Uppy.Dashboard,{
-                note: "يفضل التنسيق الأفقي (مثل 800 × 600 بكسل)",
-            })
-            .use(Uppy.ImageEditor, {
-                target: Uppy.Dashboard,
-                quality: 0.8
-            })
-            .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
+        .use(Uppy.Dashboard,{
+            note: "يفضل التنسيق الأفقي (مثل 800 × 600 بكسل)",
+        })
+        .use(Uppy.ImageEditor, {
+            target: Uppy.Dashboard,
+            quality: 0.8
+        })
+        .use(Uppy.XHRUpload, {
+            endpoint: "{{ route('upload.uppy.files') }}",
+            formData: true,
+            fieldName: 'file',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+        })
 
         uppy.on('file-added', (file) => {
             console.log('Added file', file)
         })
 
         uppy.on('complete', (result) => {
+            console.log(result.successful[0])
             $('.create-tutorial .create-tutorial-form-container .main-image-upload').css({
                 'background-image': "url("+ result.successful[0].preview +")",
                 'border' : "1px solid #acacac"
             }).addClass('image-added')
 
             $('.create-tutorial .create-tutorial-form-container .main-image-upload img').css('display', "none")
-            $('.create-tutorial .create-tutorial-form-container .main-image-upload #main_image').val(result.successful[0].response.uploadURL.split("/").splice(3, 4).join("/"))
+            $('.create-tutorial .create-tutorial-form-container .main-image-upload #main_image').val(result.successful[0].response.body.filePath)
         })
 
         $('.create-tutorial .create-tutorial-form-container .main-image-upload').on('click', function (){
@@ -364,7 +372,14 @@
                     showRemoveButtonAfterComplete: true,
                     note: "يفضل التنسيق الأفقي (مثل 800 × 600 بكسل)",
                 })
-                .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
+                .use(Uppy.XHRUpload, {
+                    endpoint: "{{ route('upload.uppy.files') }}",
+                    formData: true,
+                    fieldName: 'file',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                })
 
 
                 StepsUppy.on('complete', (result) => {
@@ -384,7 +399,7 @@
                             type: 'hidden',
                             name: $(target).data('steporder') + `[${j}]`,
                             id: result.successful[i].id,
-                            value:  result.successful[i].response.uploadURL.split("/").splice(3, 4).join("/")
+                            value:  result.successful[i].response.body.filePath
                         }).appendTo(target);
 
                         j++
@@ -407,7 +422,7 @@
 
             $(`${target} input`).each(function(){
 
-                fetch(`https://tusd.tusdemo.net/${$(this).val()}`)
+                fetch(`https://watheqah.s3.eu-west-3.amazonaws.com/${$(this).val()}`)
                     .then((response) => response.blob())
                     .then((blob) => {
                         StepsUppy.addFile({
