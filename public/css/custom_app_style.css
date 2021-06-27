@@ -219,6 +219,9 @@ span{
     height: 220px;
     cursor: pointer;
     position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .create-tutorial .create-tutorial-form-container .main-image-upload:hover {

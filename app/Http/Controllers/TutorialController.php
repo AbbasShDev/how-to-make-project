@@ -74,7 +74,7 @@ class TutorialController extends Controller {
                 'order'       => $step['step_order'],
                 'title'       => $step['step_title'],
                 'content'     => Purifier::clean($step['step_content']),
-                'images'      => json_encode($step['step_images'] ?? null),
+                'images'      => $step['step_images'] ?? null,
                 'tutorial_id' => $Tutorial->id
             ]);
         }
@@ -85,8 +85,9 @@ class TutorialController extends Controller {
 
     public function show(Tutorial $tutorial) : View
     {
-        $tutorial = $tutorial->with('tags', 'steps')->first();
-        //dd($tutorial->steps[0]->images[0]);
+
+        $tutorial = Tutorial::where('uuid', $tutorial->uuid)->with('tags', 'steps')->first();
+
         return view('tutorial.show', compact('tutorial'));
 
     }

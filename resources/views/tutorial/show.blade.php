@@ -74,7 +74,7 @@
                             @if($tutorial->introduction)<a href="{{ request()->fullUrl()."#introduction" }}">المقدمة</a>@endif
                             @if($tutorial->introduction_video)<a href="{{ request()->fullUrl()."#introduction_video" }}">فيديو توضيحي</a>@endif
                             @foreach($tutorial->steps as $step)
-                                    <a href="{{ request()->fullUrl()."#step".$step->order }}">خطوة {{ $step->order }}</a>
+                                    <a href="{{ request()->fullUrl()."#step".$step->order }}">خطوة {{ $step->order }} - {{ $step->title }}</a>
                             @endforeach
                         </span>
                     </li>
@@ -104,8 +104,10 @@
         </div>
         @endif
 
+        @if($tutorial->introduction && $tutorial->introduction_video) <hr class="custom-doted-hr"> @endif
+
         @foreach($tutorial->steps as $step)
-            <div class="single-step row my-4">
+            <div id="step{{ $step->order }}" class="single-step row my-4">
                 <div class="col-md-5">
                     <h3>{{ $step->title }}</h3>
                     <p>{!! $step->content !!}</p>
