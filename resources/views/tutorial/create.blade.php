@@ -340,7 +340,6 @@
         })
 
         uppy.on('complete', (result) => {
-            console.log(result.successful[0])
             $('.create-tutorial .create-tutorial-form-container .main-image-upload').css({
                 'background-image': "url("+ result.successful[0].preview +")",
                 'border' : "1px solid #acacac"

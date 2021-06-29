@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
     Route::post('/article/create', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/article/{article}', [ArticleController::class, 'show'])->name('article.show');
 
     Route::get('/manual/create', [ManualController::class, 'create'])->name('manual.create');
     Route::post('/manual/create', [ManualController::class, 'store'])->name('manual.store');

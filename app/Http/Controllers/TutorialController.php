@@ -85,8 +85,7 @@ class TutorialController extends Controller {
 
     public function show(Tutorial $tutorial) : View
     {
-
-        $tutorial = Tutorial::where('uuid', $tutorial->uuid)->with('tags', 'steps')->first();
+        $tutorial->load('tags', 'steps', 'user');
 
         return view('tutorial.show', compact('tutorial'));
 

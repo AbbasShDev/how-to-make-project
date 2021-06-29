@@ -47,6 +47,7 @@ class ArticleController extends Controller {
             'user_id'        => auth()->id(),
             'title'          => $request->title,
             'main_image'     => $request->main_image,
+            'description'    => $request->description,
             'article'        => Purifier::clean($request->article),
             'article_status' => $request->article_status,
         ]);
@@ -58,15 +59,12 @@ class ArticleController extends Controller {
         return redirect()->route('home')->with('success', 'تم انشاء المقالة بتجاح.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(Article $article) : View
     {
-        //
+        $article->load('tags', 'user');
+
+        return view('article.show', compact('article'));
     }
 
     /**

@@ -103,7 +103,14 @@
                     target: Uppy.Dashboard,
                     quality: 0.8
                 })
-                .use(Uppy.Tus, {endpoint: 'https://tusd.tusdemo.net/files/'})
+                .use(Uppy.XHRUpload, {
+                    endpoint: "{{ route('upload.uppy.files') }}",
+                    formData: true,
+                    fieldName: 'file',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                })
 
             uppy.on('file-added', (file) => {
                 console.log('Added file', file)
@@ -116,7 +123,7 @@
                 }).addClass('image-added')
 
                 $('.create-tutorial .create-tutorial-form-container .main-image-upload img').css('display', "none")
-                $('.create-tutorial .create-tutorial-form-container .main-image-upload #main_image').val(result.successful[0].response.uploadURL.split("/").splice(3, 4).join("/"))
+                $('.create-tutorial .create-tutorial-form-container .main-image-upload #main_image').val(result.successful[0].response.body.filePath)
             })
 
             $('.create-tutorial .create-tutorial-form-container .main-image-upload').on('click', function (){
