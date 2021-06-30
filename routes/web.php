@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\TutorialController;
@@ -14,6 +15,7 @@ Route::post('upload-uppy-files',[FileUploadController::class, "uppy"])->name('up
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
     Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');
