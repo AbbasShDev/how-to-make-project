@@ -91,6 +91,7 @@
                     {!! $tutorial->introduction !!}
                 </p>
             </div>
+            <hr class="custom-doted-hr">
         @endif
 
         @if($tutorial->introduction_video)
@@ -101,6 +102,7 @@
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ $tutorial->introduction_video }}" allowfullscreen></iframe>
                 </div>
             </div>
+            <hr class="custom-doted-hr">
         </div>
         @endif
 

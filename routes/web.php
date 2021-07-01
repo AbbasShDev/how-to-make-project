@@ -15,8 +15,6 @@ Route::post('upload-uppy-files',[FileUploadController::class, "uppy"])->name('up
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-
     Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
     Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');
     Route::get('/tutorial/{tutorial}', [TutorialController::class, 'show'])->name('tutorial.show');
@@ -28,4 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/manual/create', [ManualController::class, 'create'])->name('manual.create');
     Route::post('/manual/create', [ManualController::class, 'store'])->name('manual.store');
 
+    Route::prefix('dashboard')->group(function (){
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/tutorials', [TutorialController::class, 'index'])->name('tutorial.index');
+    });
 });

@@ -11,9 +11,12 @@ use Mews\Purifier\Facades\Purifier;
 
 class TutorialController extends Controller {
 
-    public function index()
+    public function index(): View
     {
 
+        $tutorials = Tutorial::where('user_id', auth()->id())->withCount('steps')->get();
+
+        return view('tutorial.index', compact('tutorials'));
     }
 
 
@@ -46,7 +49,7 @@ class TutorialController extends Controller {
             'steps.*.step_images'  => ['nullable'],
             'steps.*.step_order'   => ['required', 'numeric'],
             'steps.*.step_title'   => ['required', 'string'],
-            'steps.*.step_content' => ['required', 'string'],
+            'steps.*.step_content' => ['nullable', 'string'],
             'tutorial_status'      => ['required'],
         ]);
 
@@ -54,13 +57,13 @@ class TutorialController extends Controller {
             'user_id'              => auth()->id(),
             'title'                => $request->title,
             'main_image'           => $request->main_image,
-            'description'           => $request->description,
+            'description'          => $request->description,
             'difficulty'           => $request->difficulty,
             'duration'             => $request->duration,
             'duration_measurement' => $request->duration_measurement,
             'area'                 => $request->area,
             'introduction'         => Purifier::clean($request->introduction),
-            'introduction_video'   => $request->introduction_video ? getYoutubeId($request->introduction_video) : "",
+            'introduction_video'   => $request->introduction_video ? getYoutubeId($request->introduction_video)  : "",
             'tutorial_status'      => $request->tutorial_status,
         ]);
 
@@ -83,7 +86,7 @@ class TutorialController extends Controller {
     }
 
 
-    public function show(Tutorial $tutorial) : View
+    public function show(Tutorial $tutorial): View
     {
         $tutorial->load('tags', 'steps', 'user');
 
