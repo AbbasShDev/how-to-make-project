@@ -34,7 +34,11 @@
                 </td>
                 <td>
                     <a href="#" class="btn btn-sm btn-success my-1">تعديبل</a>
-                    <a href="#" class="btn btn-sm btn-danger my-1">حذف</a>
+                    <form action="{{ route("dashboard.tutorial.destroy", $tutorial) }}" method="post" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="حذف" onclick="return confirm('هل انت متاكد من الحذف؟')" class="btn btn-sm btn-danger my-1">
+                    </form>
                 </td>
             </tr>
         @empty

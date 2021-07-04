@@ -63,7 +63,7 @@ class TutorialController extends Controller {
             'duration_measurement' => $request->duration_measurement,
             'area'                 => $request->area,
             'introduction'         => Purifier::clean($request->introduction),
-            'introduction_video'   => $request->introduction_video ? getYoutubeId($request->introduction_video)  : "",
+            'introduction_video'   => $request->introduction_video ? getYoutubeId($request->introduction_video) : "",
             'tutorial_status'      => $request->tutorial_status,
         ]);
 
@@ -117,14 +117,12 @@ class TutorialController extends Controller {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Tutorial $tutorial): RedirectResponse
     {
-        //
+        $tutorial->tags()->detach();
+        $tutorial->delete();
+
+        return redirect()->back()->with('success', 'تم حذف الإرشادات بتجاح.');
     }
 }

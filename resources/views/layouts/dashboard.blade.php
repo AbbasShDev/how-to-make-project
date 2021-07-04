@@ -19,7 +19,7 @@
     <link href="{{ asset('css/custom_app_style.css') }}" rel="stylesheet">
 
     <!-- CoreUI CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@3.4.0/dist/css/coreui.min.css">
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -131,6 +131,13 @@
     <div class="c-body">
         <main class="c-main">
             <div class="container-fluid">
+                @if(session()->has('success'))
+                    <div class="alert alert-success my-3">
+                        <p class="m-0">
+                            {{ session()->get('success') }}
+                        </p>
+                    </div>
+                @endif
                 <div class="fade-in">
                     <!-- Start inner content -->
                     @yield('content')
@@ -151,7 +158,7 @@
 <!-- End modal -->
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@3.4.0/dist/js/coreui.bundle.min.js"></script>
 @stack('js-scripts')
 <script>
     $(function() {
