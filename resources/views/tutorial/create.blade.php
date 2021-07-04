@@ -68,11 +68,11 @@
                                     <label for="area" style="font-size: 18px">المجال</label>
                                     <select class="form-control" id="area" name="area" required>
                                         <option value="" @if(is_null(old("area"))) selected @endif disabled></option>
-                                        <option value="الصيانة" @if(old("duration_measurement") == "الصيانة") selected @endif >الصيانة</option>
-                                        <option value="الأمن" @if(old("duration_measurement") == "الأمن") selected @endif >الأمن</option>
-                                        <option value="الإنتاج" @if(old("duration_measurement") == "الإنتاج") selected @endif >الإنتاج</option>
-                                        <option value="إستخدامات" @if(old("duration_measurement") == "إستخدامات") selected @endif >إستخدامات</option>
-                                        <option value="أخرى" @if(old("duration_measurement") == "أخرى") selected @endif >أخرى</option>
+                                        <option value="الصيانة" @if(old("area") == "الصيانة") selected @endif >الصيانة</option>
+                                        <option value="الأمن" @if(old("area") == "الأمن") selected @endif >الأمن</option>
+                                        <option value="الإنتاج" @if(old("area") == "الإنتاج") selected @endif >الإنتاج</option>
+                                        <option value="إستخدامات" @if(old("area") == "إستخدامات") selected @endif >إستخدامات</option>
+                                        <option value="أخرى" @if(old("area") == "أخرى") selected @endif >أخرى</option>
                                     </select>
                                 </div>
                             </div>

@@ -15,6 +15,7 @@ Route::post('upload-uppy-files',[FileUploadController::class, "uppy"])->name('up
 
 Route::middleware('auth')->group(function () {
 
+    Route::resource('test',TutorialController::class );
     Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
     Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');
     Route::get('/tutorial/{tutorial}', [TutorialController::class, 'show'])->name('tutorial.show');
@@ -28,7 +29,10 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('dashboard')->as('dashboard.')->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('index');
+
         Route::get('/tutorials', [TutorialController::class, 'index'])->name('tutorial.index');
-        Route::delete('/tutorials{tutorial}', [TutorialController::class, 'destroy'])->name('tutorial.destroy');
+        Route::delete('/tutorials/{tutorial}', [TutorialController::class, 'destroy'])->name('tutorial.destroy');
+        Route::get('/tutorials/{tutorial}/edit', [TutorialController::class, 'edit'])->name('tutorial.edit');
+        Route::put('/tutorials/{tutorial}', [TutorialController::class, 'update'])->name('tutorial.update');
     });
 });

@@ -94,27 +94,18 @@ class TutorialController extends Controller {
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Tutorial $tutorial): View
     {
-        //
+        $tutorial->load('tags', 'steps', 'user');
+
+        return view('tutorial.edit', compact('tutorial'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Tutorial $tutorial) : RedirectResponse
     {
-        //
+        dd($request->all());
     }
 
 

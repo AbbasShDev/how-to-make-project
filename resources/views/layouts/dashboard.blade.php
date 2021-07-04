@@ -132,7 +132,7 @@
         <main class="c-main">
             <div class="container-fluid">
                 @if(session()->has('success'))
-                    <div class="alert alert-success my-3">
+                    <div class="alert alert-success my-3 fade-in">
                         <p class="m-0">
                             {{ session()->get('success') }}
                         </p>
@@ -145,10 +145,11 @@
                 </div>
             </div>
         </main>
-        <footer class="c-footer">
-            <div><a href="https://coreui.io">CoreUI</a> © 2020 creativeLabs.</div>
-            <div class="ml-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>
-        </footer>
+{{--        //if page is edit d-none--}}
+{{--        <footer class="c-footer">--}}
+{{--            <div><a href="https://coreui.io">CoreUI</a> © 2020 creativeLabs.</div>--}}
+{{--            <div class="ml-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>--}}
+{{--        </footer>--}}
     </div>
 </div>
 <!-- End content -->

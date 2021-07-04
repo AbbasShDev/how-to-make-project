@@ -56,6 +56,15 @@ span{
     display: inline-block;
 }
 
+.c-sidebar {
+    background: #30373B !important;
+}
+
+.c-sidebar .c-sidebar-nav-dropdown-toggle:hover, .c-sidebar .c-sidebar-nav-link:hover {
+     background: #666666 !important;
+}
+
+
 /* notification message */
 .notify-message {
     padding: 5px;
@@ -186,7 +195,7 @@ span{
     position: relative;
     transition: all .3s ease-in-out;
     overflow: hidden;
-    z-index: 1005 !important;
+    z-index: 1007 !important;
 }
 
 .create-tutorial .create-tutorial-form-container .custom-tooltip i {
@@ -365,7 +374,7 @@ span{
     left: 0px;
     bottom: 0px;
     padding: 10px 15px;
-    z-index: 1000 !important;
+    z-index: 1005 !important;
 }
 
 .create-tutorial .bottom-save-bar button {
