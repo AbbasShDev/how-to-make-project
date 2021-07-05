@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardTutorialController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\TutorialController;
@@ -30,9 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::prefix('dashboard')->as('dashboard.')->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-        Route::get('/tutorials', [TutorialController::class, 'index'])->name('tutorial.index');
-        Route::delete('/tutorials/{tutorial}', [TutorialController::class, 'destroy'])->name('tutorial.destroy');
-        Route::get('/tutorials/{tutorial}/edit', [TutorialController::class, 'edit'])->name('tutorial.edit');
-        Route::put('/tutorials/{tutorial}', [TutorialController::class, 'update'])->name('tutorial.update');
+        Route::get('/tutorials', [DashboardTutorialController::class, 'index'])->name('tutorial.index');
+        Route::delete('/tutorial/{tutorial}', [DashboardTutorialController::class, 'destroy'])->name('tutorial.destroy');
+        Route::get('/tutorial/{tutorial}/edit', [DashboardTutorialController::class, 'edit'])->name('tutorial.edit');
+        Route::put('/tutorial/{tutorial}', [DashboardTutorialController::class, 'update'])->name('tutorial.update');
     });
 });
