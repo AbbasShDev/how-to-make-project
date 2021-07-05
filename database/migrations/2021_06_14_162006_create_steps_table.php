@@ -19,7 +19,7 @@ class CreateStepsTable extends Migration
             $table->integer("order");
             $table->string("title");
             $table->text("content");
-            $table->json("images");
+            $table->json("images")->nullable();
             $table->timestamps();
         });
     }

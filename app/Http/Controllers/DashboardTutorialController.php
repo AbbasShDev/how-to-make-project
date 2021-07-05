@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Tutorial\UpdateTutorialRequest;
+use App\Models\Tag;
 use App\Models\Tutorial;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
 
 class DashboardTutorialController extends Controller
 {
@@ -17,37 +20,6 @@ class DashboardTutorialController extends Controller
         return view('tutorial.index', compact('tutorials'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     public function edit(Tutorial $tutorial): View
     {
@@ -58,9 +30,40 @@ class DashboardTutorialController extends Controller
     }
 
 
-    public function update(Request $request, Tutorial $tutorial) : RedirectResponse
+    public function update(UpdateTutorialRequest $request, Tutorial $tutorial) : RedirectResponse
     {
-        dd($request->all());
+        $tutorial->update([
+            'user_id'              => auth()->id(),
+            'title'                => $request->title,
+            'main_image'           => $request->main_image,
+            'description'          => $request->description,
+            'difficulty'           => $request->difficulty,
+            'duration'             => $request->duration,
+            'duration_measurement' => $request->duration_measurement,
+            'area'                 => $request->area,
+            'introduction'         => Purifier::clean($request->introduction),
+            'introduction_video'   => $request->introduction_video ? getYoutubeId($request->introduction_video) : "",
+            'tutorial_status'      => $request->tutorial_status,
+        ]);
+
+
+        foreach ($request->tags as $tag) {
+            $tutorial->tags()->sync(Tag::firstOrCreate(['name' => $tag]));
+        }
+
+        $tutorial->steps()->delete();
+
+        foreach ($request->steps as $step) {
+            $tutorial->steps()->create([
+                'order'       => $step['step_order'],
+                'title'       => $step['step_title'],
+                'content'     => Purifier::clean($step['step_content']),
+                'images'      => $step['step_images'] ?? null,
+                'tutorial_id' => $tutorial->id
+            ]);
+        }
+
+        return redirect()->route('home')->with('success', 'تم تعديل الإرشادات بتجاح.');
     }
 
 

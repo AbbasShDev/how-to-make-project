@@ -33,7 +33,7 @@
                     @endif
                 </td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-success my-1">تعديبل</a>
+                    <a href="{{ route('dashboard.tutorial.edit', $tutorial) }}" class="btn btn-sm btn-success my-1">تعديبل</a>
                     <form action="{{ route("dashboard.tutorial.destroy", $tutorial) }}" method="post" class="d-inline-block">
                         @csrf
                         @method('DELETE')

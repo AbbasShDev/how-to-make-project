@@ -50,7 +50,7 @@
                         >
                             <div class="overlay"></div>
                             <p class="font-head"><i class="fas fa-edit fa-fw"></i> تغير الصورة</p>
-                            <input type="text" name="main_image" id="main_image" value="{{ old("main_image") }}" hidden>
+                            <input type="text" name="main_image" id="main_image" value="{{ old("main_image") ? old("main_image") : $tutorial->main_image }}" hidden>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -66,23 +66,23 @@
                                     <label for="difficulty" style="font-size: 18px">الصعوبة</label>
                                     <select class="form-control" id="difficulty" name="difficulty" required>
                                         <option value="سهل جداً"
-                                                @if(old("description") == "سهل جداً" || $tutorial->description == "سهل جداً" ) selected @endif >
+                                                @if(old("difficulty") == "سهل جداً") selected @elseif($tutorial->difficulty == "سهل جداً") selected @endif >
                                             سهل جداً
                                         </option>
                                         <option value="سهل"
-                                                @if(old("description") == "سهل" || $tutorial->description == "سهل" ) selected @endif >
+                                                @if(old("difficulty") == "سهل") selected @elseif($tutorial->difficulty == "سهل") selected @endif >
                                             سهل
                                         </option>
                                         <option value="متوسط"
-                                                @if(old("description") == "متوسط" || $tutorial->description == "متوسط" ) selected @endif >
+                                                @if(old("difficulty") == "متوسط") selected @elseif($tutorial->difficulty == "متوسط") selected @endif >
                                             متوسط
                                         </option>
                                         <option value="صعب"
-                                                @if(old("description") == "صعب" || $tutorial->description == "صعب" ) selected @endif >
+                                                @if(old("difficulty") == "صعب") selected @elseif($tutorial->difficulty == "صعب" ) selected @endif >
                                             صعب
                                         </option>
                                         <option value="صعب جداً"
-                                                @if(old("description") == "صعب جداً" || $tutorial->description == "صعب جداً" ) selected @endif >
+                                                @if(old("difficulty") == "صعب جداً") selected @elseif($tutorial->difficulty == "صعب جداً" ) selected @endif >
                                             صعب جداً
                                         </option>
                                     </select>
@@ -101,19 +101,19 @@
                                                     style="border-bottom-right-radius: 0 !important; border-top-right-radius: 0 !important;"
                                                     required>
                                                 <option value="دقيقة/دقائق"
-                                                        @if($tutorial->duration_measurement == "دقيقة/دقائق") selected @endif >
+                                                        @if(old("duration_measurement") == "دقيقة/دقائق") selected @elseif($tutorial->duration_measurement == "دقيقة/دقائق") selected @endif >
                                                     دقيقة/دقائق
                                                 </option>
                                                 <option value="ساعة/ساعات"
-                                                        @if(old("duration_measurement") == "ساعة/ساعات" || $tutorial->duration_measurement == "ساعة/ساعات") selected @endif >
+                                                        @if(old("duration_measurement") == "ساعة/ساعات") selected @elseif($tutorial->duration_measurement == "ساعة/ساعات") selected @endif >
                                                     ساعة/ساعات
                                                 </option>
                                                 <option value="يوم/أيام"
-                                                        @if(old("duration_measurement") == "يوم/أيام" || $tutorial->duration_measurement == "يوم/أيام") selected @endif >
+                                                        @if(old("duration_measurement") == "يوم/أيام") selected @elseif($tutorial->duration_measurement == "يوم/أيام") selected @endif >
                                                     يوم/أيام
                                                 </option>
                                                 <option value="شهر/شهور"
-                                                        @if(old("duration_measurement") == "شهر/شهور" || $tutorial->duration_measurement == "شهر/شهور") selected @endif >
+                                                        @if(old("duration_measurement") == "شهر/شهور") selected @elseif($tutorial->duration_measurement == "شهر/شهور") selected @endif >
                                                     شهر/شهور
                                                 </option>
                                             </select>
@@ -128,22 +128,22 @@
                                     <label for="area" style="font-size: 18px">المجال</label>
                                     <select class="form-control" id="area" name="area" required>
                                         <option value="الصيانة"
-                                                @if(old("area") == "الصيانة" || $tutorial->area == "الصيانة") selected @endif >
+                                                @if(old("area") == "الصيانة") selected @elseif($tutorial->area == "الصيانة")  selected @endif>
                                             الصيانة
                                         </option>
-                                        <option value="الأمن" @if(old("area") == "الأمن" || $tutorial->area == "الأمن"))
-                                                selected @endif >الأمن
+                                        <option value="الأمن" @if(old("area") == "الأمن") selected @elseif($tutorial->area == "الأمن") selected @endif>
+                                            الأمن
                                         </option>
                                         <option value="الإنتاج"
-                                                @if(old("area") == "الإنتاج" || $tutorial->area == "الإنتاج"))
-                                                selected @endif >الإنتاج
+                                                @if(old("area") == "الإنتاج") selected @elseif($tutorial->area == "الإنتاج") selected @endif>
+                                            الإنتاج
                                         </option>
                                         <option value="إستخدامات"
-                                                @if(old("area") == "إستخدامات" || $tutorial->area == "إستخدامات"))
-                                                selected @endif >إستخدامات
+                                                @if(old("area") == "إستخدامات") selected @elseif($tutorial->area == "إستخدامات") selected @endif>
+                                            إستخدامات
                                         </option>
-                                        <option value="أخرى" @if(old("area") == "أخرى" || $tutorial->area == "أخرى"))
-                                                selected @endif >أخرى
+                                        <option value="أخرى" @if(old("area") == "أخرى") selected @elseif($tutorial->area == "أخرى") selected @endif>
+                                            أخرى
                                         </option>
                                     </select>
                                 </div>
@@ -190,7 +190,38 @@
                 <hr class="custom-doted-hr">
                 <div id="steps" class="steps-container">
 
-                    @if($tutorial->steps)
+                    @if(! is_null(old('steps')))
+                        @foreach(old('steps') as $step)
+                            <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">
+                                <i class="fas fa-times-circle remove-step"></i>
+                                <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                                <div class="col-lg-5 p-0 pt-3 left-single-step">
+                                    <div id="step-{{ $step['step_order'] }}-images-container" class="step-images-container" data-steporder="">
+
+                                        @if(isset($step['step_images']))
+                                            @foreach($step['step_images'] as $key => $val)
+                                                <input type="hidden" name="steps[{{ $step['step_order'] }}][step_images][{{ $key }}]" id="" value="{{ $val }}">
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 p-0 pt-3">
+                                    <input type="text" name="" class="step-order" hidden>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text step-title-order"></span>
+                                            </div>
+                                            <input type="text" name="" placeholder="عنوان الخطوة" class="form-control step-title" value="{{ $step['step_title'] }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control step-content" name="" dir="rtl">{{ $step['step_content'] }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @elseif($tutorial->steps)
                         @foreach($tutorial->steps  as $step)
                             <div class="single-step row rounded-lg justify-content-between bg-white px-2 pb-3 my-4">
                                 <i class="fas fa-times-circle remove-step"></i>
@@ -315,11 +346,15 @@
             setStepsValues()
 
             @if($tutorial->steps)
-            @foreach($tutorial->steps as $step)
-            initializeUppyForSteps(`#step-{{ $step->order }}-images-container`)
-            @endforeach
+                @foreach($tutorial->steps as $step)
+                initializeUppyForSteps(`#step-{{ $step->order }}-images-container`)
+                @endforeach
+            @elseif(! is_null(old('steps')))
+                @foreach(old('steps') as $step)
+                initializeUppyForSteps(`#step-{{ $step['step_order'] }}-images-container`)
+                @endforeach
             @else
-            initializeUppyForSteps(`#step-1-images-container`)
+                initializeUppyForSteps(`#step-1-images-container`)
             @endif
 
             $('#steps').sortable({
@@ -519,9 +554,7 @@
                 console.log(reason)
             })
 
-            $(`${target} input`).each(function () {
-
-                console.log($(this).val())
+            $(`${target} > input`).each(function () {
 
                 var reader = new FileReader();
                 fetch(`https://watheqah.s3.eu-west-3.amazonaws.com/${$(this).val()}`)
@@ -555,8 +588,6 @@
                 allowClear: true
             })
 
-
-            @if($tutorial->tags)
             function convertObjectToSelectOptions(obj) {
                 var htmlTags = '';
                 for (var tag in obj) {
@@ -567,12 +598,16 @@
 
             var tags = {};
 
-            @foreach($tutorial->tags as $tag)
-            Object.assign(tags, {"{{ $tag->name }}": "{{ $tag->name }}"});
-
-            @endforeach
-
-            $('.js-example-tokenizer').html(convertObjectToSelectOptions(tags)).trigger('change');
+            @if(old("tags"))
+                @foreach(old("tags") as $tag)
+                Object.assign(tags, {"{{ $tag }}": "{{ $tag }}"});
+                @endforeach
+                $('.js-example-tokenizer').html(convertObjectToSelectOptions(tags)).trigger('change');
+            @elseif($tutorial->tags )
+                @foreach($tutorial->tags as $tag)
+                Object.assign(tags, {"{{ $tag->name }}": "{{ $tag->name }}"});
+                @endforeach
+                $('.js-example-tokenizer').html(convertObjectToSelectOptions(tags)).trigger('change');
             @endif
         })
     </script>

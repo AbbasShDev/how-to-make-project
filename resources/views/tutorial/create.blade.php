@@ -36,12 +36,12 @@
                                 <div class="form-group">
                                     <label for="difficulty" style="font-size: 18px">الصعوبة</label>
                                     <select class="form-control" id="difficulty" name="difficulty" required>
-                                        <option value="" @if(is_null(old("description"))) selected @endif disabled></option>
-                                        <option value="سهل جداً" @if(old("description") == "سهل جداً") selected @endif >سهل جداً</option>
-                                        <option value="سهل" @if(old("description") == "سهل") selected @endif >سهل</option>
-                                        <option value="متوسط" @if(old("description") == "متوسط") selected @endif >متوسط</option>
-                                        <option value="صعب" @if(old("description") == "صعب") selected @endif >صعب</option>
-                                        <option value="صعب جداً" @if(old("description") == "صعب جداً") selected @endif >صعب جداً</option>
+                                        <option value="" @if(is_null(old("difficulty"))) selected @endif disabled></option>
+                                        <option value="سهل جداً" @if(old("difficulty") == "سهل جداً") selected @endif >سهل جداً</option>
+                                        <option value="سهل" @if(old("difficulty") == "سهل") selected @endif >سهل</option>
+                                        <option value="متوسط" @if(old("difficulty") == "متوسط") selected @endif >متوسط</option>
+                                        <option value="صعب" @if(old("difficulty") == "صعب") selected @endif >صعب</option>
+                                        <option value="صعب جداً" @if(old("difficulty") == "صعب جداً") selected @endif >صعب جداً</option>
                                     </select>
                                 </div>
                             </div>
@@ -419,7 +419,7 @@
                     console.log(reason)
                 })
 
-            $(`${target} input`).each(function(){
+            $(`${target} > input`).each(function(){
 
                 fetch(`https://watheqah.s3.eu-west-3.amazonaws.com/${$(this).val()}`)
                     .then((response) => response.blob())

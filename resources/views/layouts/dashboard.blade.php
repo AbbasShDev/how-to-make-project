@@ -49,7 +49,7 @@
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="#">
+            <a href=" {{ route('dashboard.tutorial.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.tutorial.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon fas fa-list-ol fa-fw"></i>
                 الإرشادات
             </a>
