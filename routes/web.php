@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DashboardTutorialController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DashboardTutorialController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\TutorialController;

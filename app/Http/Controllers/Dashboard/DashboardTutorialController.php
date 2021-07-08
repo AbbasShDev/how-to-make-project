@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Tutorial\UpdateTutorialRequest;
 use App\Models\Tag;
 use App\Models\Tutorial;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Mews\Purifier\Facades\Purifier;
 
 class DashboardTutorialController extends Controller
@@ -17,7 +17,7 @@ class DashboardTutorialController extends Controller
 
         $tutorials = Tutorial::where('user_id', auth()->id())->withCount('steps')->get();
 
-        return view('tutorial.index', compact('tutorials'));
+        return view('dashboard.tutorial.index', compact('tutorials'));
     }
 
 
@@ -25,7 +25,7 @@ class DashboardTutorialController extends Controller
     {
         $tutorial->load('tags', 'steps', 'user');
 
-        return view('tutorial.edit', compact('tutorial'));
+        return view('dashboard.tutorial.edit', compact('tutorial'));
 
     }
 
