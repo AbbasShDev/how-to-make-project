@@ -40,15 +40,7 @@
         </form>
 
         <ul class="navbar-nav mx-0 ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Disabled</a>
-            </li>
+            @include('_partials._right_nav_items')
         </ul>
 
         <!-- Right Side Of Navbar -->
@@ -122,30 +114,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 @stack('js-scripts')
-<script>
-    $(function() {
-        $('.create-modal .modal-body .nav-tabs .tab-btn').each(function (index) {
-            let modalCreateInfo = $('.create-modal .modal-body .tab-content .modal-create-info h6')
-            let modalCreateForm = $('.create-modal .modal-body .tab-content .modal-create-form')
-            let titleInput = $('.create-modal .modal-body .tab-content .modal-create-form .title-input')
-
-
-            $(this).on('click', function () {
-
-                console.log($(this).data('formtitle'))
-                console.log($(this).data('formaction'))
-                console.log($(this).data('formdescription'))
-
-                modalCreateInfo.text('').text($(this).data('formdescription'))
-                modalCreateForm.attr('action', $(this).data('formaction'))
-                titleInput.attr('placeholder', $(this).data('formtitle'))
-            })
-        })
-
-
-    });
-
-</script>
 <script>
     $(window).on('load', function() {
         $('#status').fadeOut();

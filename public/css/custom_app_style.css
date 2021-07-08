@@ -82,8 +82,18 @@ span{
 /* notification message */
 
 /* Start navbar */
-.navbar {
+.navbar,
+.c-header{
     background-color: #30373B !important;
+}
+
+.c-header .c-icon {
+    color: #838789;
+    transition: color .3s ease-in-out;
+}
+
+.c-header .c-icon :hover {
+    color: #ffffff;
 }
 
 .navbar .logo {
@@ -104,12 +114,14 @@ span{
     box-shadow: none;
 }
 
-.navbar .navbar-nav .nav-item .nav-link {
+.navbar .navbar-nav .nav-item .nav-link,
+.c-header .c-header-nav .nav-item .nav-link {
     color: #838789;
     transition: color .3s ease-in-out;
 }
 
-.navbar .navbar-nav .nav-item .nav-link:hover {
+.navbar .navbar-nav .nav-item .nav-link:hover,
+.c-header .c-header-nav .nav-item .nav-link:hover {
     color: #ffffff;
 }
 /* End navbar */
