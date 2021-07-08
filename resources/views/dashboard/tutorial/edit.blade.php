@@ -27,15 +27,17 @@
 @section('content')
     <form id="create-tutorial-form" class="create-tutorial" action="{{ route('dashboard.tutorial.update', $tutorial) }}" method="post">
         <div class="container mb-5">
-            <div class="create-tutorial-header py-2">
-                <h2>تعديل إرشادات: <strong>{{ $tutorial->title }}</strong></h2>
-            </div>
+            <h2 class="px-3 d-lg-flex">
+                <div style="line-height: 1.4 !important;">تعديل إرشادات:</div>
+                <div class="form-group col-lg-5 m-0 p-0 pr-lg-2">
+                    <input class="form-control form-control-lg mt-2 mt-lg-0" id="title" type="text" name="title" value="{{ old('title') ? old('title') : $tutorial->title }}">
+                </div>
+            </h2>
             <hr class="custom-doted-hr">
             <div class="create-tutorial-form-container container">
                 @include('_partials._display_errors')
                 @csrf
                 @method("PUT")
-                <input type="hidden" name="title" value="{{ old('title') ? old('title') : $tutorial->title }}">
                 <div class="row">
                     <div class="col-md-4">
                         <label for="main_image" style="font-size: 18px">الصورة الرئيسية<span
@@ -301,11 +303,11 @@
                 <div class="col-9 p-0">
                     <select class="form-control" id="tutorial_status" name="tutorial_status">
                         <option value="public"
-                                @if( old("tutorial_status") == "public" || $tutorial->tutorial_status == "public" ) selected @endif >
+                                @if( old("tutorial_status") == "public" ) selected @elseif($tutorial->tutorial_status == "public") selected @endif >
                             عام
                         </option>
                         <option value="private"
-                                @if(old("tutorial_status") == "private" || $tutorial->tutorial_status == "private" ) selected @endif >
+                                @if( old("tutorial_status") == "private" ) selected @elseif($tutorial->tutorial_status == "private") selected @endif >
                             خاص
                         </option>
                     </select>

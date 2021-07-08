@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\DashboardTutorialController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\TutorialController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DashboardTutorialController;
+use App\Http\Controllers\Dashboard\DashboardArticleController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('welcome');
@@ -35,5 +36,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('/tutorial/{tutorial}', [DashboardTutorialController::class, 'destroy'])->name('tutorial.destroy');
         Route::get('/tutorial/{tutorial}/edit', [DashboardTutorialController::class, 'edit'])->name('tutorial.edit');
         Route::put('/tutorial/{tutorial}', [DashboardTutorialController::class, 'update'])->name('tutorial.update');
+
+        Route::get('/articles', [DashboardArticleController::class, 'index'])->name('article.index');
+        Route::delete('/article/{article}', [DashboardArticleController::class, 'destroy'])->name('article.destroy');
+        Route::get('/article/{article}/edit', [DashboardArticleController::class, 'edit'])->name('article.edit');
+        Route::put('/article/{article}', [DashboardArticleController::class, 'update'])->name('article.update');
+
     });
 });

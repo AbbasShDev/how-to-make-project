@@ -36,7 +36,7 @@
 <!-- End article preloader -->
 
 <!-- End sidebar -->
-<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show c-sidebar-minimized" id="sidebar">
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
         <a href="{{ route("home") }}"><img class="c-sidebar-brand-full" style="width: 100px !important;" src="{{ asset("images/logo-white.png") }}" alt="logo"></a>
         <a href="{{ route("home") }}"><img class="c-sidebar-brand-minimized" style="width: 70px !important;" src="{{ asset("images/logo-white.png") }}" alt="logo"></a>
@@ -55,7 +55,7 @@
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="#">
+            <a  href="{{ route('dashboard.article.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.article.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon far fa-file-alt fa-fw"></i>
                 المقالات
             </a>
@@ -188,6 +188,30 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@3.4.0/dist/js/coreui.bundle.min.js"></script>
 @stack('js-scripts')
+<script>
+    $(function() {
+        $('.create-modal .modal-body .nav-tabs .tab-btn').each(function (index) {
+            let modalCreateInfo = $('.create-modal .modal-body .tab-content .modal-create-info h6')
+            let modalCreateForm = $('.create-modal .modal-body .tab-content .modal-create-form')
+            let titleInput = $('.create-modal .modal-body .tab-content .modal-create-form .title-input')
+
+
+            $(this).on('click', function () {
+
+                console.log($(this).data('formtitle'))
+                console.log($(this).data('formaction'))
+                console.log($(this).data('formdescription'))
+
+                modalCreateInfo.text('').text($(this).data('formdescription'))
+                modalCreateForm.attr('action', $(this).data('formaction'))
+                titleInput.attr('placeholder', $(this).data('formtitle'))
+            })
+        })
+
+
+    });
+
+</script>
 <script>
     $(window).on('load', function() {
         $('#status').fadeOut();

@@ -11,7 +11,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info active" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الإرشادات" data-formAction="{{ route('tutorial.create') }}" data-formDescription="قم بإنشاء إرشادات خطوة بخطوة لإكمال مهمة." ><i class="fa fa-list-ol fa-fw"></i> إرشادات</a></li>
                             <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان المقالة" data-formAction="{{ route('article.create') }}" data-formDescription="قم بإنشاء مقالة."><i class="far fa-file-alt fa-fw"></i> مقالة</a></li>
-                            <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الكتيب" data-formAction="/manual/create" data-formDescription="قم بإنشاء دليل لتجميع الإرشادات والمقالات الخاصة بك."><i class="fa fa-book fa-fw"></i> كتيب</a></li>
+                            <li class="nav-item mr-0 ml-2"><a class="tab-btn btn btn-outline-info" data-toggle="tab" href="#" role="tab" data-formTitle="عنوان الكتيب" data-formAction="{{ route('manual.create') }}" data-formDescription="قم بإنشاء دليل لتجميع الإرشادات والمقالات الخاصة بك."><i class="fa fa-book fa-fw"></i> كتيب</a></li>
                         </ul>
                         <div class="tab-content border-0 pt-4 pb-0 px-0">
                             <div class="modal-create-info">
@@ -38,30 +38,3 @@
         </div>
     </div>
 </div>
-
-@push('js-js-scripts')
-    <script>
-        $(function() {
-            $('.create-modal .modal-body .nav-tabs .tab-btn').each(function (index) {
-                let modalCreateInfo = $('.create-modal .modal-body .tab-content .modal-create-info h6')
-                let modalCreateForm = $('.create-modal .modal-body .tab-content .modal-create-form')
-                let titleInput = $('.create-modal .modal-body .tab-content .modal-create-form .title-input')
-
-
-                $(this).on('click', function () {
-
-                    console.log($(this).data('formtitle'))
-                    console.log($(this).data('formaction'))
-                    console.log($(this).data('formdescription'))
-
-                    modalCreateInfo.text('').text($(this).data('formdescription'))
-                    modalCreateForm.attr('action', $(this).data('formaction'))
-                    titleInput.attr('placeholder', $(this).data('formtitle'))
-                })
-            })
-
-
-        });
-
-    </script>
-@endpush

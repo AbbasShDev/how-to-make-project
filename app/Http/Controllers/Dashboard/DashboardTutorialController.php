@@ -23,7 +23,7 @@ class DashboardTutorialController extends Controller
 
     public function edit(Tutorial $tutorial): View
     {
-        $tutorial->load('tags', 'steps', 'user');
+        $tutorial->load('tags', 'steps');
 
         return view('dashboard.tutorial.edit', compact('tutorial'));
 
@@ -47,8 +47,11 @@ class DashboardTutorialController extends Controller
         ]);
 
 
-        foreach ($request->tags as $tag) {
-            $tutorial->tags()->sync(Tag::firstOrCreate(['name' => $tag]));
+        if ($request->tags){
+            $tutorial->tags()->detach();
+            foreach ($request->tags as $tag) {
+                $tutorial->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
+            }
         }
 
         $tutorial->steps()->delete();
@@ -63,7 +66,7 @@ class DashboardTutorialController extends Controller
             ]);
         }
 
-        return redirect()->route('home')->with('success', 'تم تعديل الإرشادات بتجاح.');
+        return redirect()->route('dashboard.tutorial.index')->with('success', 'تم تعديل الإرشادات بتجاح.');
     }
 
 
@@ -72,7 +75,7 @@ class DashboardTutorialController extends Controller
         $tutorial->tags()->detach();
         $tutorial->delete();
 
-        return redirect()->back()->with('success', 'تم حذف الإرشادات بتجاح.');
+        return redirect()->back()->with('success', 'تم حذف الإرشادات بنجاح.');
     }
 
 }

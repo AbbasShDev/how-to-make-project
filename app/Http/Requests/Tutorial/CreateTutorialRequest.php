@@ -4,8 +4,8 @@ namespace App\Http\Requests\Tutorial;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTutorialRequest extends FormRequest
-{
+class CreateTutorialRequest extends FormRequest {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -30,8 +30,8 @@ class CreateTutorialRequest extends FormRequest
             'difficulty'           => ['required'],
             'duration'             => ['required'],
             'duration_measurement' => ['required'],
-            'tags'                 => ['array'],
-            'tags.*'               => ['required', 'string'],
+            'tags'                 => ['nullable', 'array'],
+            'tags.*'               => ['nullable', 'string'],
             'area'                 => ['required'],
             'introduction'         => ['nullable'],
             'introduction_video'   => ['nullable'],

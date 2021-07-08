@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Article\CreateArticleRequest;
 use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
@@ -31,17 +32,8 @@ class ArticleController extends Controller {
     }
 
 
-    public function store(Request $request): RedirectResponse
+    public function store(CreateArticleRequest $request): RedirectResponse
     {
-        $request->validate([
-            'title'          => ['required'],
-            'main_image'     => ['required'],
-            'description'    => ['required'],
-            'tags'           => ['array'],
-            'tags.*'         => ['required', 'string'],
-            'article'        => ['string'],
-            'article_status' => ['required'],
-        ]);
 
         $article = Article::create([
             'user_id'        => auth()->id(),
@@ -52,8 +44,10 @@ class ArticleController extends Controller {
             'article_status' => $request->article_status,
         ]);
 
-        foreach ($request->tags as $tag) {
-            $article->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
+        if ($request->tags){
+            foreach ($request->tags as $tag) {
+                $article->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
+            }
         }
 
         return redirect()->route('home')->with('success', 'تم انشاء المقالة بتجاح.');
@@ -67,37 +61,4 @@ class ArticleController extends Controller {
         return view('article.show', compact('article'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

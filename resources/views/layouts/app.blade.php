@@ -115,6 +115,30 @@
 <script src="{{ asset('js/app.js') }}"></script>
 @stack('js-scripts')
 <script>
+    $(function() {
+        $('.create-modal .modal-body .nav-tabs .tab-btn').each(function (index) {
+            let modalCreateInfo = $('.create-modal .modal-body .tab-content .modal-create-info h6')
+            let modalCreateForm = $('.create-modal .modal-body .tab-content .modal-create-form')
+            let titleInput = $('.create-modal .modal-body .tab-content .modal-create-form .title-input')
+
+
+            $(this).on('click', function () {
+
+                console.log($(this).data('formtitle'))
+                console.log($(this).data('formaction'))
+                console.log($(this).data('formdescription'))
+
+                modalCreateInfo.text('').text($(this).data('formdescription'))
+                modalCreateForm.attr('action', $(this).data('formaction'))
+                titleInput.attr('placeholder', $(this).data('formtitle'))
+            })
+        })
+
+
+    });
+
+</script>
+<script>
     $(window).on('load', function() {
         $('#status').fadeOut();
         $('#preloader').delay(50).fadeOut(100)

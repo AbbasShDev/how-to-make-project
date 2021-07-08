@@ -40,8 +40,10 @@ class TutorialController extends Controller {
         ]);
 
 
-        foreach ($request->tags as $tag) {
-            $Tutorial->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
+        if ($request->tags){
+            foreach ($request->tags as $tag) {
+                $Tutorial->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
+            }
         }
 
         foreach ($request->steps as $step) {
