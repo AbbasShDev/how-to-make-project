@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Dashboard\DashboardManualController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\TutorialController;
@@ -41,6 +42,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('/article/{article}', [DashboardArticleController::class, 'destroy'])->name('article.destroy');
         Route::get('/article/{article}/edit', [DashboardArticleController::class, 'edit'])->name('article.edit');
         Route::put('/article/{article}', [DashboardArticleController::class, 'update'])->name('article.update');
+
+        Route::get('/manuals', [DashboardManualController::class, 'index'])->name('manual.index');
+        Route::delete('/manual/{manual}', [DashboardManualController::class, 'destroy'])->name('manual.destroy');
+        Route::get('/manual/{manual}/edit', [DashboardManualController::class, 'edit'])->name('manual.edit');
+        Route::put('/manual/{manual}', [DashboardManualController::class, 'update'])->name('manual.update');
 
     });
 });

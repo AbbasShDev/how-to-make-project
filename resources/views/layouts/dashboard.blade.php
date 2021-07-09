@@ -43,7 +43,7 @@
     </div>
     <ul class="c-sidebar-nav ps ps__rtl ps--active-y">
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="#">
+            <a href="{{ route('dashboard.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon fas fa-tachometer-alt fa-fw"></i>
                 لوحة التحكم
             </a>
@@ -61,7 +61,7 @@
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="#">
+            <a href="{{ route('dashboard.manual.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.manual.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon fa fa-book fa-fw"></i>
                 الكتيبات
             </a>

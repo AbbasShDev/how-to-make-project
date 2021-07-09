@@ -112,10 +112,6 @@
                     },
                 })
 
-            uppy.on('file-added', (file) => {
-                console.log('Added file', file)
-            })
-
             uppy.on('complete', (result) => {
                 $('.create-tutorial .create-tutorial-form-container .main-image-upload').css({
                     'background-image': "url("+ result.successful[0].preview +")",

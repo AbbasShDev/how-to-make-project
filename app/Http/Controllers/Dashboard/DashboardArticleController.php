@@ -8,49 +8,16 @@ use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Mews\Purifier\Facades\Purifier;
 
-class DashboardArticleController extends Controller
-{
+class DashboardArticleController extends Controller {
+
     public function index(): View
     {
 
         $articles = Article::where('user_id', auth()->id())->get();
 
         return view('dashboard.article.index', compact('articles'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     public function edit(Article $article): View
@@ -60,7 +27,6 @@ class DashboardArticleController extends Controller
         return view('dashboard.article.edit', compact('article'));
 
     }
-
 
     public function update(UpdateArticleRequest $request, Article $article): RedirectResponse
     {
@@ -73,7 +39,7 @@ class DashboardArticleController extends Controller
             'article_status' => $request->article_status,
         ]);
 
-        if ($request->tags){
+        if ($request->tags) {
             $article->tags()->detach();
             foreach ($request->tags as $tag) {
                 $article->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
