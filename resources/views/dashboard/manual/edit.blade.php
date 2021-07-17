@@ -164,34 +164,6 @@
                 <hr class="custom-doted-hr">
                 <div class="manual-tutorials-container">
                     <div id="tutorials" class="tutorials-container">
-                        <div  class="single-tutorial row rounded-lg justify-content-start bg-white px-2 pb-3 my-4">
-                            <i class="fas fa-times-circle remove-tutorial"></i>
-                            <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
-                            <div class="col-11 p-0 pt-3">
-                                <div class="show-tutorial-title pr-3">من وتم استمرار وباستثناء. أما عن بأيدي مشاركة</div>
-                                <input type="text" name="tutorial_order" class="tutorial-order" hidden>
-                                <input type="text" name="tutorial_title"  class="form-control tutorial-title" value="من وتم استمرار وباستثناء. أما عن بأيدي مشاركة" hidden>
-                            </div>
-                        </div>
-                        <div  class="single-tutorial row rounded-lg justify-content-start bg-white px-2 pb-3 my-4">
-                            <i class="fas fa-times-circle remove-tutorial"></i>
-                            <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
-                            <div class="col-11 p-0 pt-3">
-                                <div class="show-tutorial-title pr-3">من وتم استمرار وباستثناء. أما عن بأيدي مشاركة2</div>
-                                <input type="text" name="tutorial_order" class="tutorial-order"  hidden>
-                                <input type="text" name="tutorial_title"  class="form-control tutorial-title" value="من وتم استمرار وباستثناء. أما عن بأيدي مشاركة2" hidden>
-                            </div>
-                        </div>
-                        <div  class="single-tutorial row rounded-lg justify-content-start bg-white px-2 pb-3 my-4">
-                            <i class="fas fa-times-circle remove-tutorial"></i>
-                            <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
-                            <div class="col-11 p-0 pt-3">
-                                <div class="show-tutorial-title pr-3">من وتم استمرار وباستثناء. أما عن بأيدي مشاركة3</div>
-                                <input type="text" name="tutorial_id" class="tutorial-order" hidden>
-                                <input type="text" name="tutorial_order" class="tutorial-order" hidden>
-                                <input type="text" name="tutorial_title"  class="form-control tutorial-title" value="من وتم استمرار وباستثناء. أما عن بأيدي مشاركة3" hidden>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -211,14 +183,14 @@
                     </span>
             <div class="form-group row m-0">
                 <div class="col-9 p-0">
-                    <select class="form-control" id="article_status" name="article_status">
+                    <select class="form-control" id="manual_status" name="manual_status">
                         <option value="public"
-                                @if( old("article_status") == "public" ) selected
+                                @if( old("manual_status") == "public" ) selected
                                 @elseif($manual->manual_status == "public") selected @endif >
                             عام
                         </option>
                         <option value="private"
-                                @if( old("article_status") == "private" ) selected
+                                @if( old("manual_status") == "private" ) selected
                                 @elseif($manual->manual_status == "private") selected @endif >
                             خاص
                         </option>
@@ -229,8 +201,8 @@
         </div>
     </form>
 
-    <div class="modal fade create-modal" id="addTutorialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog " role="document">
+    <div class="modal fade" id="addTutorialModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">قم بإختيار إرشادات لاضافتها</h4>
@@ -238,18 +210,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="multiple-select">الإرشادات</label>
-                        <div class="col-md-9">
-                            <select class="form-control" id="multiple-select" name="multiple-select" size="5" multiple="">
-                                @foreach($tutorials as $tutorial)
-                                    <option value="{{ $tutorial->id }}" data-title="{{ $tutorial->title }}">{{ $tutorial->title }}</option>
-                                @endforeach
-                            </select>
+                        <label class="col-md-3 col-form-label">الإرشادات</label>
+                        <div class="col-md-9 col-form-label">
+                            @foreach($tutorials as $tutorial)
+                            <div class="form-check checkbox">
+                                <input class="form-check-input checkbox-tutorials" id="checkbox-{{ $tutorial->id }}" type="checkbox" data-title="{{ $tutorial->title }}" value="{{ $tutorial->id }}">
+                                <label class="form-check-label" for="checkbox-{{ $tutorial->id }}">{{ $tutorial->title }}</label>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-start">
-                    <button class="btn btn-info" type="button">حفظ</button>
+                    <button class="btn btn-info add-tutorial-btn" type="button">حفظ</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">الغاء</button>
                 </div>
             </div>
@@ -287,11 +260,36 @@
                 }
             })
 
+            $('#addTutorialModal .add-tutorial-btn').on('click', function(){
+                let selectedTutorials = [];
+                $('#addTutorialModal .checkbox-tutorials:checked').each(function () {
+                    selectedTutorials.push({ id:$(this).val(), title: $(this).data('title') })
+
+                })
+
+                selectedTutorials.forEach(tutorial => {
+                    let singleTutorial = `
+                        <div  class="single-tutorial row rounded-lg justify-content-start bg-white px-2 pb-3 my-4">
+                            <i class="fas fa-times-circle remove-tutorial"></i>
+                            <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                            <div class="col-11 p-0 pt-3">
+                                <div class="show-tutorial-title pr-3">${tutorial.title}</div>
+                                <input type="number" name="tutorial_id" class="tutorial-id" value="${tutorial.id}" hidden>
+                                <input type="number" name="tutorial_order" class="tutorial-order" hidden>
+                            </div>
+                        </div>
+                    `
+                    $('.manual-tutorials-container .tutorials-container').append(singleTutorial)
+                });
+                setTutorialsValues()
+                $('#addTutorialModal').modal('hide')
+            });
+
             function setTutorialsValues() {
                 $('#tutorials .single-tutorial').each(function (index) {
 
                     $(this).find('.tutorial-order').val(index + 1)
-                    $(this).find('.tutorial_id').attr('name', `tutorials[${index}][tutorial_id]`)
+                    $(this).find('.tutorial-id').attr('name', `tutorials[${index}][tutorial_id]`)
                     $(this).find('.tutorial-order').attr('name', `tutorials[${index}][tutorial_order]`)
                     $(this).find('.tutorial-title').attr('name', `tutorials[${index}][tutorial_title]`)
 

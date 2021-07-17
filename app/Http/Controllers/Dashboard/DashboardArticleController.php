@@ -46,7 +46,7 @@ class DashboardArticleController extends Controller {
             }
         }
 
-        return redirect()->route('dashboard.article.index')->with('success', 'تم تعديل المقالة بتجاح.');
+        return redirect()->route('dashboard.article.index')->with('success', 'تم تعديل المقالة بنجاح.');
     }
 
     public function destroy(Article $article): RedirectResponse

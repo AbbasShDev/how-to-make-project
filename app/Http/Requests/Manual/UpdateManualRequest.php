@@ -4,8 +4,8 @@ namespace App\Http\Requests\Manual;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateManualRequest extends FormRequest
-{
+class UpdateManualRequest extends FormRequest {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +13,7 @@ class UpdateManualRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class UpdateManualRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title'         => ['required'],
+            'logo'          => ['nullable'],
+            'banner'        => ['nullable'],
+            'description'   => ['nullable'],
+            'tags'          => ['nullable', 'array'],
+            'tags.*'        => ['nullable', 'string'],
+            'tutorials'     => ['nullable', 'array'],
+            'tutorials.*'   => ['nullable'],
+            'manual_status' => ['required'],
         ];
     }
 }
