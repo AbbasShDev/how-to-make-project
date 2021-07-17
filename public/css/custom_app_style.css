@@ -552,8 +552,15 @@ span{
 }
 
 .uppy-DashboardContent-bar,
-.uppy-StatusBar {
-    z-index: 999 !important;}
+.uppy-StatusBar
+{
+    z-index: 999 !important;
+}
+
+.uppy-Dashboard--modal .uppy-Dashboard-overlay,
+.uppy-Dashboard--modal .uppy-Dashboard-inner {
+    z-index: 1030 !important;
+}
 
 #preloader {
     position: fixed;

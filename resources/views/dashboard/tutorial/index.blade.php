@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ substr($tutorial->uuid, -10) }}</td>
                 <td><img class="rounded-lg" height="34" src="{{ presentImage($tutorial->main_image) }}" alt="main image"></td>
-                <td>{{ $tutorial->title }}</td>
+                <td><a href="{{ route('tutorial.show', $tutorial) }}">{{ $tutorial->title }}</a></td>
                 <td>{{ $tutorial->steps_count }}</td>
                 <td>
                     @if($tutorial->tutorial_status === "private")

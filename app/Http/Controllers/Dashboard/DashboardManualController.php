@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Manual;
+use App\Models\Tutorial;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,27 +21,6 @@ class DashboardManualController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -51,33 +31,26 @@ class DashboardManualController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Manual $manual): View
     {
-        //
+        $manual->load('tags');
+
+        $tutorials = Tutorial::select('title', 'id as id')->where('user_id', auth()->id())->get();
+
+        return view('dashboard.manual.edit', compact('manual', 'tutorials'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Manual $manual): RedirectResponse
     {
-        //
+        dd($request->all());
     }
 
     public function destroy(Manual $manual): RedirectResponse
     {
         $manual->tags()->detach();
         $manual->delete();
+
 
         return redirect()->back()->with('success', 'تم حذف الكتيب بنجاح.');
     }
