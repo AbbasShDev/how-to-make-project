@@ -164,7 +164,34 @@
                 <hr class="custom-doted-hr">
                 <div class="manual-tutorials-container">
                     <div id="tutorials" class="tutorials-container">
+                        @if(old('tutorials'))
+                            @foreach(old('tutorials') as $tutorial)
+                                <div  class="single-tutorial row rounded-lg justify-content-start bg-white px-2 pb-3 my-4">
+                                    <i class="fas fa-times-circle remove-tutorial"></i>
+                                    <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                                    <div class="col-11 p-0 pt-3">
+                                        <div class="show-tutorial-title pr-3">{{ $tutorial['tutorial_title'] }}</div>
+                                        <input type="number" name="tutorial_id" class="tutorial-id" value="{{ $tutorial['tutorial_id'] }}" hidden>
+                                        <input type="number" name="tutorial_order" class="tutorial-order" value="" hidden>
+                                        <input type="text" name="tutorial_title" class="tutorial-title" value="{{ $tutorial['tutorial_title'] }}" hidden>
 
+                                    </div>
+                                </div>
+                            @endforeach
+                        @elseif($manual->tutorials)
+                            @foreach($manual->tutorials as $tutorial)
+                            <div  class="single-tutorial row rounded-lg justify-content-start bg-white px-2 pb-3 my-4">
+                                <i class="fas fa-times-circle remove-tutorial"></i>
+                                <div class="col-1 handle ml-3 ml-md-0 mr-0 mt-3"></div>
+                                <div class="col-11 p-0 pt-3">
+                                    <div class="show-tutorial-title pr-3">{{ $tutorial->title }}</div>
+                                    <input type="number" name="tutorial_id" class="tutorial-id" value="{{ $tutorial->id }}" hidden>
+                                    <input type="number" name="tutorial_order" class="tutorial-order" value="" hidden>
+                                    <input type="text" name="tutorial_title" class="tutorial-title" value="{{ $tutorial->title }}" hidden>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
                     </div>
 
                     <div class="col-md-12 text-center mb-5">
@@ -213,10 +240,29 @@
                         <label class="col-md-3 col-form-label">الإرشادات</label>
                         <div class="col-md-9 col-form-label">
                             @foreach($tutorials as $tutorial)
-                            <div class="form-check checkbox">
-                                <input class="form-check-input checkbox-tutorials" id="checkbox-{{ $tutorial->id }}" type="checkbox" data-title="{{ $tutorial->title }}" value="{{ $tutorial->id }}">
-                                <label class="form-check-label" for="checkbox-{{ $tutorial->id }}">{{ $tutorial->title }}</label>
-                            </div>
+                                <div class="form-check checkbox">
+                                    <input
+                                        class="form-check-input checkbox-tutorials"
+                                        id="checkbox-{{ $tutorial->id }}"
+                                        type="checkbox"
+                                        data-title="{{ $tutorial->title }}"
+                                        value="{{ $tutorial->id }}"
+                                        @if(old('tutorials'))
+                                            @foreach(old('tutorials') as $oldTutorial)
+                                                @if($oldTutorial['tutorial_id'] == $tutorial->id)
+                                                     checked
+                                                @endif
+                                            @endforeach
+                                        @elseif($manual->tutorials)
+                                            @foreach($manual->tutorials as $requestTutorial)
+                                                @if($requestTutorial->id == $tutorial->id)
+                                                    checked
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    >
+                                    <label class="form-check-label" for="checkbox-{{ $tutorial->id }}">{{ $tutorial->title }}</label>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -240,6 +286,8 @@
     <script>
         $(function () {
 
+            setTutorialsValues()
+
             $('#tutorials').sortable({
                 group: 'list',
                 animation: 200,
@@ -252,11 +300,16 @@
 
             $('.manual-tutorials-container .tutorials-container').on('click', '.single-tutorial .remove-tutorial', function () {
                 if (confirm('هل تريد حذف الخطوة')){
+                    let deletedTutorialId = $(this).parents('.single-tutorial').find('.tutorial-id').val();
+                    $('#addTutorialModal .checkbox-tutorials:checked').each(function (){
+                       if ($(this).val() === deletedTutorialId){
+                           $(this).prop( "checked", false );
+                       }
+                    });
                     $(this).parent().fadeOut(300, function(){
                         $(this).remove()
                         setTutorialsValues()
                     })
-
                 }
             })
 
@@ -267,6 +320,7 @@
 
                 })
 
+                $('.manual-tutorials-container .tutorials-container').html('');
                 selectedTutorials.forEach(tutorial => {
                     let singleTutorial = `
                         <div  class="single-tutorial row rounded-lg justify-content-start bg-white px-2 pb-3 my-4">
@@ -276,10 +330,11 @@
                                 <div class="show-tutorial-title pr-3">${tutorial.title}</div>
                                 <input type="number" name="tutorial_id" class="tutorial-id" value="${tutorial.id}" hidden>
                                 <input type="number" name="tutorial_order" class="tutorial-order" hidden>
+                                <input type="text" name="tutorial_title" class="tutorial-title" value="${tutorial.title}" hidden>
                             </div>
                         </div>
                     `
-                    $('.manual-tutorials-container .tutorials-container').append(singleTutorial)
+                    $('.manual-tutorials-container .tutorials-container').append(singleTutorial);
                 });
                 setTutorialsValues()
                 $('#addTutorialModal').modal('hide')

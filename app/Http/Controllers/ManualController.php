@@ -39,6 +39,8 @@ class ManualController extends Controller {
             }
         }
 
-        return redirect()->route('home')->with('success', 'تم انشاء الكتيب بتجاح، انتقل للوحة التحكم لاضافات الارشادات الخاصة بك الى الكتيب.');
+        $routeToManual = "<a style='color: #18603a;font-weight: 700;' href='".route('dashboard.manual.edit', $manual)."'>$manual->title</a>";
+
+        return redirect()->route('home')->with('success', "تم انشاء الكتيب بنجاح، انتقل للوحة التحكم لاضافات الارشادات الخاصة بك الى الكتيب ({$routeToManual}).");
     }
 }

@@ -35,7 +35,7 @@ class DashboardManualController extends Controller
 
     public function edit(Manual $manual): View
     {
-        $manual->load('tags');
+        $manual->load('tags', 'tutorials');
 
         $tutorials = Tutorial::select('title', 'id as id')->where('user_id', auth()->id())->get();
 
@@ -43,29 +43,9 @@ class DashboardManualController extends Controller
 
     }
 
-//    public function any()
-//    {
-//        $manual = Manual::create([
-//            'user_id'       => auth()->id(),
-//            'title'         => $request->title,
-//            'logo'          => $request->logo,
-//            'banner'        => $request->banner,
-//            'description'   => $request->description,
-//            'manual_status' => $request->manual_status,
-//
-//        ]);
-//
-//        if ($request->tags){
-//            foreach ($request->tags as $tag) {
-//                $manual->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
-//            }
-//        }
-//
-//        return redirect()->route('home')->with('success', 'تم انشاء الكتيب بتجاح، انتقل للوحة التحكم لاضافات الارشادات الخاصة بك الى الكتيب.');
-//    }
-
     public function update(UpdateManualRequest $request, Manual $manual): RedirectResponse
     {
+
         $manual->update([
             'user_id'       => auth()->id(),
             'title'         => $request->title,
@@ -85,6 +65,7 @@ class DashboardManualController extends Controller
 
         if ($request->tutorials) {
 
+            $manual->tutorials()->detach();
             foreach ($request->tutorials as $tutorial) {
                 $manual->tutorials()->attach($tutorial['tutorial_id'],['tutorial_order' => $tutorial['tutorial_order']]);
             }
