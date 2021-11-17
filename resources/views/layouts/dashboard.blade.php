@@ -132,6 +132,9 @@
 
                             Profile
                         </a>
+                        <a class="dropdown-item" href="{{route('dashboard.index')}}">
+                            لوحة التحكم
+                        </a>
 
                         <a class="dropdown-item" href="#">
                             Settings
