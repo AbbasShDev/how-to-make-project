@@ -22,7 +22,8 @@
             <tr>
                 <td>{{ substr($article->uuid, -10) }}</td>
                 <td><img class="rounded-lg" height="34" src="{{ presentImage($article->main_image) }}" alt="main image"></td>
-                <td>{{ $article->title }}</td>
+                <td><a href="{{ route('article.show', $article) }}">{{ $article->title }}</a></td>
+
                 <td>
                     @if($article->article_status === "private")
                         <span class="badge badge-warning">خاص</span>
