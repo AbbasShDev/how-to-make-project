@@ -11,7 +11,7 @@
 
     <div class="row justify-content-around">
 
-        <div class="col-6 col-lg-4">
+        <div class="col-12 col-sm-6 col-lg-4">
             <div class="card">
                 <div class="card-body p-3 d-flex align-items-center">
                     <div class="bg-gradient-warning p-3 mfe-3 rounded-lg">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="col-6 col-lg-4">
+        <div class="col-12 col-sm-6 col-lg-4">
             <div class="card">
                 <div class="card-body p-3 d-flex align-items-center">
                     <div class="bg-gradient-danger p-3 mfe-3 rounded-lg">
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="col-6 col-lg-4">
+        <div class="col-12 col-sm-6 col-lg-4">
             <div class="card">
                 <div class="card-body p-3 d-flex align-items-center">
                     <div class="bg-gradient-success p-3 mfe-3 rounded-lg">
