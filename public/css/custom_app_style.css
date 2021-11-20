@@ -11,7 +11,7 @@
 body {
     font-style: normal;
     color: #ffffff;
-    font-family:noto naskh arabic,Arial,sans-serif !important;
+    font-family: noto naskh arabic, Arial, sans-serif !important;
 }
 
 .custom-doted-hr {
@@ -31,28 +31,28 @@ body {
     box-sizing: border-box;
 }
 
-.font-head, h1 ,h2, h3, h4, h5, h6{
-    font-family:railway,cairo,Arial,sans-serif !important;
+.font-head, h1, h2, h3, h4, h5, h6 {
+    font-family: railway, cairo, Arial, sans-serif !important;
     font-weight: 700;
 }
 
 a,
 button:focus,
-button:active{
+button:active {
     text-decoration: none !important;
     outline: none !important;
 }
 
 input:focus, input.form-control:focus {
 
-    outline:none !important;
+    outline: none !important;
     outline-width: 0 !important;
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
 }
 
-span{
+span {
     display: inline-block;
 }
 
@@ -61,7 +61,7 @@ span{
 }
 
 .c-sidebar .c-sidebar-nav-dropdown-toggle:hover, .c-sidebar .c-sidebar-nav-link:hover {
-     background: #666666 !important;
+    background: #666666 !important;
 }
 
 /* notification message */
@@ -78,11 +78,12 @@ span{
     left: -400px;
     z-index: 9999;
 }
+
 /* notification message */
 
 /* Start navbar */
 .navbar,
-.c-header{
+.c-header {
     background-color: #30373B !important;
 }
 
@@ -112,6 +113,7 @@ span{
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
 /*.c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover>.c-sidebar-nav-dropdown-toggle,*/
 /*.c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover>.c-sidebar-nav-link {*/
 /*    background: #666666 !important;*/
@@ -137,6 +139,7 @@ span{
 .c-header .c-header-nav .nav-item .nav-link:hover {
     color: #ffffff;
 }
+
 /* End navbar */
 
 /* Start login, register */
@@ -144,26 +147,27 @@ span{
     background-color: #F9FAFC;
     padding: 40px 0px;
 }
+
 .login-register label {
     color: #30373B;
 }
 
-.login-register .container{
+.login-register .container {
     box-shadow: 0px 0px 6px #bcbdbecc;
     background-color: #FFFFFF;
     padding: 0px 30px 30px 30px;
     border-radius: 10px;
 }
 
-.login-register .container img{
+.login-register .container img {
     width: 200px;
 }
 
-.login-register .container p{
+.login-register .container p {
     color: #30373B;
 }
 
-.login-register .container .sign input{
+.login-register .container .sign input {
     color: #30373B;
     border-radius: 10px;
     box-shadow: 0px 0px 6px #bcbdbecc;
@@ -171,16 +175,16 @@ span{
     border: none;
 }
 
-.login-register .container .sign .form-check-input{
+.login-register .container .sign .form-check-input {
     box-shadow: none;
     height: fit-content;
 }
 
-.login-register .container .sign input::placeholder{
+.login-register .container .sign input::placeholder {
     color: #aaaaaa;
 }
 
-.login-register .container .sign .btn{
+.login-register .container .sign .btn {
     color: #ffffff;
     background-color: #30373B;
     transition: all 0.3s ease-out;
@@ -197,6 +201,7 @@ span{
 .login-register .container a:hover {
     text-decoration: underline !important;
 }
+
 /* End login, register */
 
 
@@ -233,7 +238,7 @@ span{
     opacity: 1;
 }
 
-.create-tutorial .create-tutorial-form-container .main-image-upload .overlay{
+.create-tutorial .create-tutorial-form-container .main-image-upload .overlay {
     display: none;
     position: absolute;
     left: 0;
@@ -301,21 +306,22 @@ span{
 }
 
 
-.create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step{
+.create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step {
     max-width: 94% !important;
 }
 
 @media (min-width: 767px) {
-    .create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step{
+    .create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step {
         max-width: 97% !important;
     }
 }
 
 @media (min-width: 992px) {
-    .create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step{
+    .create-tutorial .create-tutorial-form-container .steps-container .single-step .left-single-step {
         max-width: 46.666667% !important;
     }
 }
+
 .create-tutorial .create-tutorial-form-container .steps-container .step-image-upload {
     height: 100px;
     background-color: #F4FDFF;
@@ -372,6 +378,7 @@ span{
     padding-right: 9px !important;
     transition: opacity .3s ease-in-out;
 }
+
 .create-tutorial .create-tutorial-form-container .steps-container .handle:hover {
     opacity: 1;
 }
@@ -388,7 +395,7 @@ span{
 }
 
 .create-tutorial .create-tutorial-form-container .add-step-btn:hover {
-     background-color: #2c9ab7;
+    background-color: #2c9ab7;
 }
 
 .create-tutorial .bottom-save-bar {
@@ -439,7 +446,7 @@ span{
     color: #ffffff;
 }
 
-.create-tutorial .bottom-save-bar .custom-tooltip i{
+.create-tutorial .bottom-save-bar .custom-tooltip i {
     color: #ffffff;
 }
 
@@ -527,6 +534,7 @@ span{
 .select2-container .selection {
     width: 100%;
 }
+
 .select2-container .select2-selection {
     border-top-left-radius: 4px !important;
     border-top-right-radius: 4px !important;
@@ -544,6 +552,7 @@ span{
 .select2-dropdown.select2-dropdown--below {
     display: none !important;
 }
+
 /* End custom select2 styles */
 
 /* Start other */
@@ -552,8 +561,7 @@ span{
 }
 
 .uppy-DashboardContent-bar,
-.uppy-StatusBar
-{
+.uppy-StatusBar {
     z-index: 999 !important;
 }
 
@@ -564,25 +572,82 @@ span{
 
 #preloader {
     position: fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color:#FFF; /* change if the mask should have another color then white */
-    z-index:99999; /* makes sure it stays on top */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF; /* change if the mask should have another color then white */
+    z-index: 99999; /* makes sure it stays on top */
 }
+
 #status {
-    width:100px;
-    height:100px;
-    position:absolute;
-    left:50%; /* centers the loading animation horizontally one the screen */
-    top:50%; /* centers the loading animation vertically one the screen */
-    background-image:url("/images/preloader.gif");
-    z-index:9999; /* path to your loading animation */
-    background-repeat:no-repeat;
-    background-position:center;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%; /* centers the loading animation horizontally one the screen */
+    top: 50%; /* centers the loading animation vertically one the screen */
+    background-image: url("/images/preloader.gif");
+    z-index: 9999; /* path to your loading animation */
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
-    margin:-50px 0 0 -50px; /* is width and height divided by two */
+    margin: -50px 0 0 -50px; /* is width and height divided by two */
 }
+
 /* End other */
+
+/* Start show manual */
+.show-manual a {
+    color: inherit
+}
+
+.show-manual a:hover {
+    color: inherit
+}
+
+.show-manual .banner img {
+    height: 250px !important;
+    object-fit: cover;
+}
+
+.show-manual .banner .overlay {
+    position: absolute;
+    top: auto;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+}
+
+.show-manual .container .description-container {
+    margin-top: -116px;
+}
+
+.show-manual .container .description-container .title {
+    margin-top: 44px;
+    color: #EBEDEF;
+    overflow: hidden
+}
+
+.show-manual .container .tutorial-list-item {
+    overflow: hidden;
+    max-height: 76px !important;
+    transition: all .2s ease-in-out;
+}
+
+.show-manual .container .tutorial-list-item:hover {
+    transform: scale(1.02);
+}
+
+.show-manual .container .tutorial-list-item img {
+    width: 100px !important;
+    height: 76px !important;
+}
+
+.show-manual .container .tutorial-list-item h6 {
+    color: #2B9AB7
+}
+
+/* End show manual */
+
 

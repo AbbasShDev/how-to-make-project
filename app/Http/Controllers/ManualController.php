@@ -43,4 +43,11 @@ class ManualController extends Controller {
 
         return redirect()->route('home')->with('success', "تم انشاء الكتيب بنجاح، انتقل للوحة التحكم لاضافات الارشادات الخاصة بك الى الكتيب ({$routeToManual}).");
     }
+
+    public function show(Manual $manual) : View
+    {
+        $manual->load('tags', 'user', "tutorials");
+
+        return view('manual.show', compact('manual'));
+    }
 }

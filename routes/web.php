@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/manual/create', [ManualController::class, 'create'])->name('manual.create');
     Route::post('/manual/create', [ManualController::class, 'store'])->name('manual.store');
+    Route::get('/manual/{manual}', [ManualController::class, 'show'])->name('manual.show');
 
     Route::prefix('dashboard')->as('dashboard.')->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('index');
