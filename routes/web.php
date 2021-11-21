@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardManualController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\TutorialController;
+use \App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardTutorialController;
 use App\Http\Controllers\Dashboard\DashboardArticleController;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 
 Route::view('/home', 'home')->name('home');
+
+Route::get('/user/{user}', [ProfileController::class, 'show'])->name('profile.show');
 
 Route::post('upload-uppy-files',[FileUploadController::class, "uppy"])->name('upload.uppy.files');
 

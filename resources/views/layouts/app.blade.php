@@ -71,7 +71,7 @@
                                                           role="button" aria-haspopup="true" aria-expanded="false">
                         <div class="c-avatar my-2 my-lg-0">
                             <img class="c-avatar-img"
-                                 src="https://ui-avatars.com/api/?name={{ auth()->user()->name }}&color=30373B&background=EBEDEF"
+                                 src="{{ presentProfileImage(auth()->user()->name) }}"
                                  alt="{{ auth()->user()->name }} img">
                         </div>
                     </a>

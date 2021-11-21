@@ -650,4 +650,26 @@ span {
 
 /* End show manual */
 
+/* Start show profile */
+
+.profile-card {
+    height: 340px !important;
+    min-height: 340px !important;
+}
+
+.profile-card h5 {
+    color: #2B9AB7;
+}
+
+.profile-card p {
+    color: #444444;
+}
+
+.profile-card .card-img-top {
+    height: 155px !important;
+    object-fit: cover;
+}
+
+/* End show profile */
+
 

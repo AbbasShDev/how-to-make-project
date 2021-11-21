@@ -7,6 +7,15 @@ if (! function_exists('presentImage')) {
     }
 }
 
+if (! function_exists('presentProfileImage')) {
+    function presentProfileImage($name, $size = null, $rounded = false)
+    {
+        $presentSize = $size ? "&size={$size}" : "";
+
+        return "https://ui-avatars.com/api/?name={$name}&color=30373B&background=FFFFFF&rounded={$rounded}{$presentSize}";
+    }
+}
+
 if (! function_exists('getYoutubeId')) {
     function getYoutubeId($url)
     {
