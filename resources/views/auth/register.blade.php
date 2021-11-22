@@ -11,7 +11,9 @@
                 @csrf
 
                 <div class="input-container">
-                    <input id="name" type="text" class="form-control mt-3 @error('name') is-invalid @enderror" name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input id="name" type="text" class="form-control mt-3 @error('name') is-invalid @enderror"
+                           name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required
+                           autocomplete="name" autofocus>
 
                     @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -20,7 +22,9 @@
                     @enderror
                 </div>
                 <div class="input-container">
-                    <input id="email" type="email"  class="form-control mt-3 @error('email') is-invalid @enderror" name="email" placeholder="البريد الإلكتروني" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="email" type="email" class="form-control mt-3 @error('email') is-invalid @enderror"
+                           name="email" placeholder="البريد الإلكتروني" value="{{ old('email') }}" required
+                           autocomplete="email" autofocus>
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -28,7 +32,9 @@
                     @enderror
                 </div>
                 <div class="input-container">
-                    <input id="password" type="password" class="form-control mt-3 @error('password') is-invalid @enderror" placeholder="كلمة المرور" name="password" required autocomplete="current-password">
+                    <input id="password" type="password"
+                           class="form-control mt-3 @error('password') is-invalid @enderror" placeholder="كلمة المرور"
+                           name="password" required autocomplete="current-password">
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -36,7 +42,9 @@
                     @enderror
                 </div>
                 <div class="input-container">
-                    <input id="password-confirm" type="password" class="form-control mt-3 " placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required autocomplete="new-password">
+                    <input id="password-confirm" type="password" class="form-control mt-3 "
+                           placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required
+                           autocomplete="new-password">
                 </div>
 
                 <input type="submit" class="btn btn-block mb-3 mt-3" name="login" value="تسجيل">

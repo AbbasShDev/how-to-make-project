@@ -22,7 +22,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@3.4.0/dist/css/coreui.min.css">
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+          crossorigin="anonymous"/>
 
     @stack('css-links')
 </head>
@@ -38,36 +40,43 @@
 <!-- End sidebar -->
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
-        <a href="{{ route("home") }}"><img class="c-sidebar-brand-full" style="width: 100px !important;" src="{{ asset("images/logo-white.png") }}" alt="logo"></a>
-        <a href="{{ route("home") }}"><img class="c-sidebar-brand-minimized" style="width: 70px !important;" src="{{ asset("images/logo-white.png") }}" alt="logo"></a>
+        <a href="{{ route("home") }}"><img class="c-sidebar-brand-full" style="width: 100px !important;"
+                                           src="{{ asset("images/logo-white.png") }}" alt="logo"></a>
+        <a href="{{ route("home") }}"><img class="c-sidebar-brand-minimized" style="width: 70px !important;"
+                                           src="{{ asset("images/logo-white.png") }}" alt="logo"></a>
     </div>
     <ul class="c-sidebar-nav ps ps__rtl ps--active-y">
         <li class="c-sidebar-nav-item">
-            <a href="{{ route('dashboard.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.index') ? 'c-active' : '' }} ">
+            <a href="{{ route('dashboard.index') }}"
+               class="c-sidebar-nav-link {{ Route::is('dashboard.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon fas fa-tachometer-alt fa-fw"></i>
                 لوحة التحكم
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a href=" {{ route('dashboard.tutorial.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.tutorial.index') ? 'c-active' : '' }} ">
+            <a href=" {{ route('dashboard.tutorial.index') }}"
+               class="c-sidebar-nav-link {{ Route::is('dashboard.tutorial.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon fas fa-list-ol fa-fw"></i>
                 الإرشادات
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a  href="{{ route('dashboard.article.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.article.index') ? 'c-active' : '' }} ">
+            <a href="{{ route('dashboard.article.index') }}"
+               class="c-sidebar-nav-link {{ Route::is('dashboard.article.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon far fa-file-alt fa-fw"></i>
                 المقالات
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a href="{{ route('dashboard.manual.index') }}" class="c-sidebar-nav-link {{ Route::is('dashboard.manual.index') ? 'c-active' : '' }} ">
+            <a href="{{ route('dashboard.manual.index') }}"
+               class="c-sidebar-nav-link {{ Route::is('dashboard.manual.index') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon fa fa-book fa-fw"></i>
                 الكتيبات
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="#">
+            <a href="{{ route('profile.edit', auth()->user()) }}"
+               class="c-sidebar-nav-link {{ Route::is('profile.edit') ? 'c-active' : '' }} ">
                 <i class="c-sidebar-nav-icon fas fa-user-circle fa-fw"></i>
                 الحساب
             </a>
@@ -80,20 +89,23 @@
             <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 340px;"></div>
         </div>
     </ul>
-    <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+    <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
+            data-class="c-sidebar-minimized"></button>
 </div>
 <!-- End sidebar -->
 
 <!-- End content -->
 <div class="c-wrapper c-fixed-components">
     <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-        <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+        <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
+                data-class="c-sidebar-show">
             <i class="c-icon c-icon-lg fas fa-bars"></i>
         </button>
         <a class="c-header-brand d-lg-none" href="{{ route("home") }}">
             <img style="width: 100px !important;" src="{{ asset("images/logo-white.png") }}" alt="logo">
         </a>
-        <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+        <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar"
+                data-class="c-sidebar-lg-show" responsive="true">
             <i class="c-icon c-icon-lg fas fa-bars"></i>
         </button>
         <ul class="c-header-nav d-md-down-none mx-0 ml-auto ">
@@ -103,7 +115,9 @@
         <!-- Right Side Of Navbar -->
         <ul class="c-header-nav mr-auto ml-2">
             <li class="nav-item d-md-down-none">
-                <button class="btn btn-info mx-0 mx-lg-3" type="button" data-toggle="modal" data-target="#infoModal"><i class="fas fa-pencil-alt fa-fw"></i> قم بإنشاء صفحة</button>
+                <button class="btn btn-info mx-0 mx-lg-3" type="button" data-toggle="modal" data-target="#infoModal"><i
+                        class="fas fa-pencil-alt fa-fw"></i> قم بإنشاء صفحة
+                </button>
             </li>
             <!-- Authentication Links -->
             @guest
@@ -119,9 +133,11 @@
                     </li>
                 @endif
             @else
-                <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#"
+                                                          role="button" aria-haspopup="true" aria-expanded="false">
                         <div class="c-avatar my-2 my-lg-0">
-                            <img class="c-avatar-img" src="{{ presentProfileImage(auth()->user()->name) }}" alt="{{ auth()->user()->name }} img">
+                            <img class="c-avatar-img" src="{{ presentProfileImage(auth()->user()->name) }}"
+                                 alt="{{ auth()->user()->name }} img">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pt-0 mb-3 mb-lg-0">
@@ -140,7 +156,9 @@
                             Settings
                         </a>
                         <div class="dropdown-item d-lg-none" href="#">
-                            <button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#infoModal"><i class="fas fa-pencil-alt fa-fw"></i> قم بإنشاء صفحة</button>
+                            <button class="btn btn-sm btn-info" type="button" data-toggle="modal"
+                                    data-target="#infoModal"><i class="fas fa-pencil-alt fa-fw"></i> قم بإنشاء صفحة
+                            </button>
                         </div>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -162,7 +180,7 @@
         <main class="c-main">
             <div class="container-fluid">
                 @if(session()->has('success'))
-                    <div class="alert alert-success my-3 fade-in">
+                    <div class="alert alert-success m-3 fade-in">
                         <p class="m-0">
                             {{ session()->get('success') }}
                         </p>
@@ -170,29 +188,30 @@
                 @endif
                 <div class="fade-in">
                     <!-- Start inner content -->
-                    @yield('content')
-                    <!-- End inner content -->
+                @yield('content')
+                <!-- End inner content -->
                 </div>
             </div>
         </main>
-{{--        //if page is edit d-none--}}
-{{--        <footer class="c-footer">--}}
-{{--            <div><a href="https://coreui.io">CoreUI</a> © 2020 creativeLabs.</div>--}}
-{{--            <div class="ml-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>--}}
-{{--        </footer>--}}
+        {{--        //if page is edit d-none--}}
+        {{--        <footer class="c-footer">--}}
+        {{--            <div><a href="https://coreui.io">CoreUI</a> © 2020 creativeLabs.</div>--}}
+        {{--            <div class="ml-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>--}}
+        {{--        </footer>--}}
     </div>
 </div>
 <!-- End content -->
 
 <!-- Start modal -->
-    @include('_partials._modal')
+@include('_partials._modal')
 <!-- End modal -->
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@3.4.0/dist/js/coreui.bundle.min.js"></script>
 @stack('js-scripts')
 <script>
-    $(function() {
+    $(function () {
         $('.create-modal .modal-body .nav-tabs .tab-btn').each(function (index) {
             let modalCreateInfo = $('.create-modal .modal-body .tab-content .modal-create-info h6')
             let modalCreateForm = $('.create-modal .modal-body .tab-content .modal-create-form')
@@ -216,10 +235,10 @@
 
 </script>
 <script>
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('#status').fadeOut();
         $('#preloader').delay(50).fadeOut(100)
-        $('body').delay(50).css({'overflow':'visible'})
+        $('body').delay(50).css({'overflow': 'visible'})
     })
 </script>
 </body>

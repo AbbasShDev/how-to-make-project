@@ -12,21 +12,56 @@
                 <h3 class="mt-3">{{ $user->name }}</h3>
                 <h6 class="mt-2 text-muted">تاريخ التسجيل: {{ $user->created_at->diffForHumans() }}</h6>
 
+                @if($user->date_of_birth || $user->bio || $user->personal_website)
+                    <hr class="custom-doted-hr">
+
+                    @if($user->date_of_birth)
+                        <h6 class="mt-3">
+                            <i class="fas fa-birthday-cake fa-fw"></i>
+                            {{ $user->date_of_birth->translatedFormat('j F') }}
+                        </h6>
+                    @endif
+
+                    @if($user->date_of_birth)
+                        <h6 class="mt-3">
+                            <i class="fas fa-globe fa-fw"></i>
+                            <a href="{{ $user->personal_website }}"
+                               target="_blank">{{ presentUrl($user->personal_website) }}</a>
+                        </h6>
+                    @endif
+
+                    @if($user->bio)
+                        <p class="bg-white text-dark rounded-lg p-2 mt-3">{{ $user->bio }}</p>
+                    @endif
+                @endif
+
             </div>
             <div class="col-md-9">
                 <div class="nav-tabs-boxed">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile-tutorials"
-                                                role="tab" aria-controls="home" aria-selected="true">الإرشادات</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile-articles" role="tab"
-                                                aria-controls="profile" aria-selected="false">المقالات</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile-manuals" role="tab"
-                                                aria-controls="messages" aria-selected="false">الكتيبات</a></li>
-                    </ul>
-                    <div class="tab-content">
+                    <div class="row justify-content-between pl-2" style="padding-right: 15px !important;">
+                        <ul class="nav nav-tabs" role="tablist">
+
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile-tutorials"
+                                                    role="tab" aria-controls="home" aria-selected="true">الإرشادات</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile-articles"
+                                                    role="tab"
+                                                    aria-controls="profile" aria-selected="false">المقالات</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile-manuals"
+                                                    role="tab"
+                                                    aria-controls="messages" aria-selected="false">الكتيبات</a></li>
+                        </ul>
+                        @if(auth()->user()->is($user))
+                            <a href="{{ route('profile.edit', $user) }}">
+                                <button class="btn btn-sm btn-dark mr-2 float-left" type="button">تعديل الملف الشخصي
+                                </button>
+                            </a>
+                        @endif
+                    </div>
+                    <div class="tab-content" style="border-radius: 0 !important;">
                         <div class="tab-pane active" id="profile-tutorials" role="tabpanel">
                             <div class="row">
-                                @foreach($user->tutorials as $tutorial)
+                                @forelse($user->tutorials as $tutorial)
                                     <div class="col-md-6 col-lg-4">
                                         <a href="{{ route("tutorial.show", $tutorial) }}">
                                             <div class="card profile-card">
@@ -40,12 +75,14 @@
                                             </div>
                                         </a>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <h3 class="p-5 mx-auto">لايوجد إرشادات لعرضها</h3>
+                                @endforelse
                             </div>
                         </div>
                         <div class="tab-pane" id="profile-articles" role="tabpanel">
                             <div class="row">
-                                @foreach($user->articles as $article)
+                                @forelse($user->articles as $article)
                                     <div class="col-md-6 col-lg-4">
                                         <a href="{{ route("article.show", $article) }}">
                                             <div class="card profile-card">
@@ -58,12 +95,14 @@
                                             </div>
                                         </a>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <h3 class="p-5 mx-auto">لايوجد مقالات لعرضها</h3>
+                                @endforelse
                             </div>
                         </div>
                         <div class="tab-pane" id="profile-manuals" role="tabpanel">
                             <div class="row">
-                                @foreach($user->manuals as $manual)
+                                @forelse($user->manuals as $manual)
                                     <div class="col-md-6 col-lg-4">
                                         <a href="{{ route("manual.show", $manual) }}">
                                             <div class="card profile-card">
@@ -76,7 +115,9 @@
                                             </div>
                                         </a>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <h3 class="p-5 mx-auto">لايوجد كتيبات لعرضها</h3>
+                                @endforelse
                             </div>
                         </div>
                     </div>

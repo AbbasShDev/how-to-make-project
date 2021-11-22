@@ -17,11 +17,13 @@ Route::view('/home', 'home')->name('home');
 
 Route::get('/user/{user}', [ProfileController::class, 'show'])->name('profile.show');
 
-Route::post('upload-uppy-files',[FileUploadController::class, "uppy"])->name('upload.uppy.files');
+Route::post('upload-uppy-files', [FileUploadController::class, "uppy"])->name('upload.uppy.files');
 
 Route::middleware('auth')->group(function () {
 
-    Route::resource('test',TutorialController::class );
+    Route::get('/user/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/user/{user}', [ProfileController::class, 'update'])->name('profile.update');
+
     Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
     Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');
     Route::get('/tutorial/{tutorial}', [TutorialController::class, 'show'])->name('tutorial.show');
@@ -34,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/manual/create', [ManualController::class, 'store'])->name('manual.store');
     Route::get('/manual/{manual}', [ManualController::class, 'show'])->name('manual.show');
 
-    Route::prefix('dashboard')->as('dashboard.')->group(function (){
+    Route::prefix('dashboard')->as('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
         Route::get('/tutorials', [DashboardTutorialController::class, 'index'])->name('tutorial.index');

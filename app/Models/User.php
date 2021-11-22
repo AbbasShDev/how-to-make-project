@@ -20,6 +20,14 @@ class User extends Authenticatable {
         'name',
         'email',
         'password',
+        'date_of_birth',
+        'personal_website',
+        'bio',
+    ];
+
+
+    protected $dates = [
+        'date_of_birth',
     ];
 
     /**

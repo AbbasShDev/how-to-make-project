@@ -1,13 +1,13 @@
 <?php
 
-if (! function_exists('presentImage')) {
+if ( ! function_exists('presentImage')) {
     function presentImage($path)
     {
         return "https://watheqah.s3.eu-west-3.amazonaws.com/" . $path;
     }
 }
 
-if (! function_exists('presentProfileImage')) {
+if ( ! function_exists('presentProfileImage')) {
     function presentProfileImage($name, $size = null, $rounded = false)
     {
         $presentSize = $size ? "&size={$size}" : "";
@@ -16,7 +16,18 @@ if (! function_exists('presentProfileImage')) {
     }
 }
 
-if (! function_exists('getYoutubeId')) {
+if ( ! function_exists('presentUrl')) {
+    function presentUrl($url)
+    {
+        if(!strpos($url, "//")){
+            return $url;
+        }
+
+        return explode("//", $url)[1];
+    }
+}
+
+if ( ! function_exists('getYoutubeId')) {
     function getYoutubeId($url)
     {
 
