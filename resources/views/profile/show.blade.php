@@ -51,7 +51,7 @@
                                                     role="tab"
                                                     aria-controls="messages" aria-selected="false">الكتيبات</a></li>
                         </ul>
-                        @if(auth()->user()->is($user))
+                        @if(auth()->user()?->is($user))
                             <a href="{{ route('profile.edit', $user) }}">
                                 <button class="btn btn-sm btn-dark mr-2 float-left" type="button">تعديل الملف الشخصي
                                 </button>

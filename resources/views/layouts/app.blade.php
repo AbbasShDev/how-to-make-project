@@ -71,7 +71,7 @@
                                                           role="button" aria-haspopup="true" aria-expanded="false">
                         <div class="c-avatar my-2 my-lg-0">
                             <img class="c-avatar-img"
-                                 src="{{ presentProfileImage(auth()->user()->name) }}"
+                                 src="{{ presentProfileImage(auth()->user()) }}"
                                  alt="{{ auth()->user()->name }} img">
                         </div>
                     </a>

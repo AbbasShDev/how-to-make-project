@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/{user}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/user/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/user/{user}/password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+    Route::patch('/user/{user}/picture', [ProfileController::class, 'updatePicture'])->name('profile.update.picture');
 
     Route::get('/tutorial/create', [TutorialController::class, 'create'])->name('tutorial.create');
     Route::post('/tutorial/create', [TutorialController::class, 'store'])->name('tutorial.store');

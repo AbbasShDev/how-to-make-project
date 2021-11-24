@@ -36,9 +36,10 @@
 
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile-edit-personal"
-                                    role="tab" aria-controls="home" aria-selected="true">المعلومات الشخصية</a></li>
+                                    role="tab" aria-controls="home" aria-selected="true">المعلومات الشخصية</a>
+            </li>
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile-edit-password" role="tab"
-                                    aria-controls="profile" aria-selected="false">كلمة السر</a></li>
+                                    aria-controls="profile" aria-selected="false">كلمة المرور</a></li>
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile-edit-picture" role="tab"
                                     aria-controls="messages" aria-selected="false">الصورة الشخصية</a></li>
         </ul>
@@ -148,10 +149,78 @@
                 </form>
             </div>
             <div class="tab-pane" id="profile-edit-password" role="tabpanel">
-                <h1>profile-edit-password</h1>
+                <form class="form-horizontal p-3" action="{{ route('profile.update.password', $user) }}" method="post">
+                    @method('patch')
+                    @csrf
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="old_password">كلمة المرور الحالية</label>
+                        <div class="col-md-6">
+                            <input
+                                class="form-control @error('old_password') is-invalid @enderror"
+                                id="old_password"
+                                type="password"
+                                name="old_password"
+                            >
+
+                            @error('old_password')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="password">كلمة المرور الجديدة</label>
+                        <div class="col-md-6">
+                            <input
+                                class="form-control @error('password') is-invalid @enderror"
+                                id="password"
+                                type="password"
+                                name="password"
+                            >
+
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label" for="password_confirmation">تأكيد كلمة المرور
+                            الجديدة</label>
+                        <div class="col-md-6">
+                            <input
+                                class="form-control"
+                                id="password_confirmation"
+                                type="password"
+                                name="password_confirmation"
+                            >
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-info" type="submit">حفظ</button>
+
+                </form>
             </div>
             <div class="tab-pane" id="profile-edit-picture" role="tabpanel">
-                <h1>profile-edit-picture</h1>
+                <form class="form-horizontal p-3" action="{{ route('profile.update.picture', $user) }}" method="post" enctype="multipart/form-data">
+                    @method('patch')
+                    @csrf
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="profile_image">الصورة الشخصية</label>
+                        <div class="col-md-9">
+                            <input class="@error('profile_image') is-invalid @enderror" id="profile_image" type="file" name="profile_image">
+                            @error('profile_image')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-info" type="submit">حفظ</button>
+
+                </form>
+
             </div>
         </div>
     </div>
@@ -159,6 +228,22 @@
 @endsection
 
 @push('js-scripts')
+    <script>
+        if (window.location.hash.length > 0) {
+            $(".nav.nav-tabs .nav-item .nav-link").each(function () {
+                $(this).removeClass("active")
+            })
+
+            $(".tab-content .tab-pane").each(function () {
+                $(this).removeClass("active")
+            })
+
+            $(window.location.hash).addClass("active")
+            $(`.nav.nav-tabs .nav-item .nav-link[href="${window.location.hash}"]`).addClass("active")
+        }
+
+    </script>
+
     {{--    <script src="https://releases.transloadit.com/uppy/v1.29.1/uppy.min.js"></script>--}}
     {{--    <script src="https://releases.transloadit.com/uppy/locales/v1.20.1/ar_SA.min.js"></script>--}}
     {{--    <script>--}}

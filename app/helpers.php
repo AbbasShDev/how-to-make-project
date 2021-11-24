@@ -8,11 +8,15 @@ if ( ! function_exists('presentImage')) {
 }
 
 if ( ! function_exists('presentProfileImage')) {
-    function presentProfileImage($name, $size = null, $rounded = false)
+    function presentProfileImage($user, $size = null, $rounded = false)
     {
+        if($user->profile_image){
+            return "https://watheqah.s3.eu-west-3.amazonaws.com/" . $user->profile_image;
+        }
+
         $presentSize = $size ? "&size={$size}" : "";
 
-        return "https://ui-avatars.com/api/?name={$name}&color=30373B&background=FFFFFF&rounded={$rounded}{$presentSize}";
+        return "https://ui-avatars.com/api/?name={$user->name}&color=30373B&background=FFFFFF&rounded={$rounded}{$presentSize}";
     }
 }
 
