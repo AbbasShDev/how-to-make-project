@@ -4,7 +4,7 @@
     <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-md-3">
-                <img class="img-fluid mx-auto rounded-lg" src="{{ presentProfileImage($user->name, 512) }}"
+                <img class="img-fluid mx-auto rounded-lg" src="{{ presentProfileImage($user, 512) }}"
                      alt="{{ $user->name }} image">
 
                 <hr class="custom-doted-hr">
