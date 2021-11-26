@@ -12,16 +12,6 @@ use Mews\Purifier\Facades\Purifier;
 
 class ArticleController extends Controller {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     public function create(Request $request): View
     {
         $attributes = $request->validate([
@@ -56,6 +46,10 @@ class ArticleController extends Controller {
 
     public function show(Article $article) : View
     {
+        if ($article->isPrivate() && $article->user_id !== auth()->id()) {
+            abort(401);
+        }
+
         $article->load('tags', 'user');
 
         return view('article.show', compact('article'));

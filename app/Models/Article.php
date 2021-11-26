@@ -33,6 +33,11 @@ class Article extends Model
         return 'uuid';
     }
 
+    public function isPrivate()
+    {
+        return $this->article_status === "private";
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

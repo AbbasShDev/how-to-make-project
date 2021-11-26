@@ -33,19 +33,23 @@ class ManualController extends Controller {
 
         ]);
 
-        if ($request->tags){
+        if ($request->tags) {
             foreach ($request->tags as $tag) {
                 $manual->tags()->attach(Tag::firstOrCreate(['name' => $tag]));
             }
         }
 
-        $routeToManual = "<a style='color: #18603a;font-weight: 700;' href='".route('dashboard.manual.edit', $manual)."'>$manual->title</a>";
+        $routeToManual = "<a style='color: #18603a;font-weight: 700;' href='" . route('dashboard.manual.edit', $manual) . "'>$manual->title</a>";
 
         return redirect()->route('home')->with('success', "تم انشاء الكتيب بنجاح، انتقل للوحة التحكم لاضافات الارشادات الخاصة بك الى الكتيب ({$routeToManual}).");
     }
 
-    public function show(Manual $manual) : View
+    public function show(Manual $manual): View
     {
+        if ($manual->isPrivate() && $manual->user_id !== auth()->id()) {
+            abort(401);
+        }
+
         $manual->load('tags', 'user', "tutorials");
 
         return view('manual.show', compact('manual'));

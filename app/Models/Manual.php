@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
-class Manual extends Model
-{
+class Manual extends Model {
+
     use HasFactory;
 
     protected $guarded = [];
@@ -32,6 +32,12 @@ class Manual extends Model
     {
         return 'uuid';
     }
+
+    public function isPrivate()
+    {
+        return $this->manual_status === "private";
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

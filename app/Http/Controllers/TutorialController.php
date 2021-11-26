@@ -62,6 +62,11 @@ class TutorialController extends Controller {
 
     public function show(Tutorial $tutorial): View
     {
+
+        if ($tutorial->isPrivate() && $tutorial->user_id !== auth()->id()) {
+            abort(401);
+        }
+
         $tutorial->load('tags', 'steps', 'user');
 
         return view('tutorial.show', compact('tutorial'));
