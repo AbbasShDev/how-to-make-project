@@ -119,61 +119,12 @@
                         class="fas fa-pencil-alt fa-fw"></i> قم بإنشاء صفحة
                 </button>
             </li>
+
             <!-- Authentication Links -->
-            @guest
-                @if (Route::has('login'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                @endif
+            @include('_partials._left_nav_profile_dropdown')
 
-                @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
-                @endif
-            @else
-                <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#"
-                                                          role="button" aria-haspopup="true" aria-expanded="false">
-                        <div class="c-avatar my-2 my-lg-0">
-                            <img class="c-avatar-img" src="{{ presentProfileImage(auth()->user()) }}"
-                                 alt="{{ auth()->user()->name }} img">
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right pt-0 mb-3 mb-lg-0">
-                        <div class="dropdown-header bg-light py-2 text-right">
-                            <strong>{{ auth()->user()->name }}</strong>
-                        </div>
-                        <a class="dropdown-item" href="#">
-
-                            Profile
-                        </a>
-                        <a class="dropdown-item" href="{{route('dashboard.index')}}">
-                            لوحة التحكم
-                        </a>
-
-                        <a class="dropdown-item" href="#">
-                            Settings
-                        </a>
-                        <div class="dropdown-item d-lg-none" href="#">
-                            <button class="btn btn-sm btn-info" type="button" data-toggle="modal"
-                                    data-target="#infoModal"><i class="fas fa-pencil-alt fa-fw"></i> قم بإنشاء صفحة
-                            </button>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-            @endguest
         </ul>
+
 
     </header>
     <div class="c-body">

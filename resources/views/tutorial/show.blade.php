@@ -16,7 +16,7 @@
 @endpush
 @section('content')
     <div class="container mt-3 mb-5 show-tutorial">
-        <h1 class="mb-2">{{ $tutorial->title }}</h1>
+        <h1 class="mb-4">{{ $tutorial->title }}</h1>
         <p><i class="fas fa-user-circle fa-fw"></i>
             الكاتب:
             <a href="">{{ $tutorial->user->name }}</a>
