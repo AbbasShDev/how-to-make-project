@@ -700,11 +700,12 @@ span {
 
 /* Start footer */
 .footer {
-    background-color: #2F3E47;
+    background-color: #30373B !important;
     width: 100%;
     color: #fff;
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-top: 20px;
 }
 
 .footer .logo {

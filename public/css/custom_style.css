@@ -200,6 +200,10 @@ span{
     box-shadow: 0px 0px 6px #bcbdbecc;
 }
 
+.navbar-area .dropdown-menu .dropdown-item:hover {
+    color: #000000 !important;
+}
+
 .navbar-area .dropdown-menu a{
     font-size: 14px;
 }
