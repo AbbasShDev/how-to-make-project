@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
-class Tutorial extends Model
-{
+class Tutorial extends Model {
+
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $appends = ['url', 'post_image'];
 
     /**
      *  Setup model event hooks
@@ -23,11 +25,16 @@ class Tutorial extends Model
         });
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
+    public function getUrlAttribute()
+    {
+        return route('tutorial.show', $this);
+    }
+
+    public function getPostImageAttribute()
+    {
+        return presentImage($this->main_image);
+    }
+
     public function getRouteKeyName()
     {
         return 'uuid';

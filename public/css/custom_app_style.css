@@ -672,4 +672,85 @@ span {
 
 /* End show profile */
 
+/* Start home */
+.home-card {
+    transition: transform .2s ease-in-out;
+    box-shadow: 0px 0px 15px 0 rgb(0 0 0 / 10%);
+    border: none !important;
+    border-radius: 10px !important;
+}
+
+.home-card:hover {
+    transform: scale(1.1);
+}
+
+.home-card .card-img-top {
+    height: 140px !important;
+    object-fit: cover !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+.home-card .card-text {
+    height: 85px !important;
+    max-height: 85px !important;
+}
+
+/* End home */
+
+/* Start footer */
+.footer {
+    background-color: #2F3E47;
+    width: 100%;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer .logo {
+    width: 120px;
+    margin-right: -25px;
+}
+
+.footer p {
+    color: #9DAAC7;
+}
+
+.footer .copyright {
+    color: #667387;
+}
+
+.footer .left-side {
+    padding-top: 30px;
+}
+
+.footer .left-side h3 {
+    margin-bottom: 16px;
+}
+
+.footer .left-side a {
+    color: #9DAAC7;
+    transition: all .3s ease-in-out;
+}
+
+.footer .left-side a:hover {
+    text-decoration: underline;
+    color: #667387;
+}
+
+.footer i {
+    text-align: center;
+    color: #9DAAC7;
+    transform: scaleX(1);
+    font-size: 20px;
+    transition: all .3s ease-in-out;
+}
+
+.footer i:hover {
+    transform: scale(1.6);
+    color: #ffffff;
+}
+
+/* End footer */
+
 

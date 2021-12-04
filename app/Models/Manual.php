@@ -12,6 +12,8 @@ class Manual extends Model {
 
     protected $guarded = [];
 
+    protected $appends = ['url', 'post_image'];
+
     /**
      *  Setup model event hooks
      */
@@ -23,11 +25,16 @@ class Manual extends Model {
         });
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
+    public function getUrlAttribute()
+    {
+        return route('manual.show', $this);
+    }
+
+    public function getPostImageAttribute()
+    {
+        return presentImage($this->banner);
+    }
+
     public function getRouteKeyName()
     {
         return 'uuid';

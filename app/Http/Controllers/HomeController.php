@@ -16,7 +16,7 @@ class HomeController extends Controller {
         $articles = Article::latest()->where("article_status", "public")->get();
         $manuals = Manual::latest()->where("manual_status", "public")->get();
 
-        $posts = $tutorials->concat($articles)->concat($manuals)->sortByDesc(function($item){
+        $posts = $tutorials->concat($articles)->concat($manuals)->sortByDesc(function ($item) {
             return $item->created_at;
         });
 

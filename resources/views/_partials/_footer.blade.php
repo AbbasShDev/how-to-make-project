@@ -1,5 +1,5 @@
 <div class="d-flex flex-column flex-lg-row justify-content-around ">
-    <div class="col-10 col-lg-4 text-left mx-auto">
+    <div class="col-10 col-lg-4 mx-auto {{ request()->is('/') ? 'text-left' : 'text-right' }}">
         <a class="" href="{{ route('welcome') }}">
             <img class="logo" src="{{ asset('images/logo-white.png') }}" alt="white logo">
         </a>
@@ -13,13 +13,17 @@
     <div class="col-10 col-lg-4 text-center left-side mx-auto">
         <h3>تابعني</h3>
         <p>
-            طور بواسطة <a href="https://abbas-alshaqaq.com/" target="_blank">abbas-alshaqaq.com</a>
+            طور بواسطة <a href="https://abbasalshaqaq.tech/" target="_blank">abbasalshaqaq.tech</a>
         </p>
         <div class="row justify-content-center">
-            <a href="https://twitter.com/AbbasShDev" target="_blank"><i class="mx-2 p-3 fab fa-twitter" aria-hidden="true"></i></a>
-            <a href="https://github.com/AbbasShDev" target="_blank"><i class="mx-2 p-3 fab fa-github " aria-hidden="true"></i></a>
-            <a href="https://www.linkedin.com/in/abbas-alshaqaq/" target="_blank"><i class="mx-2 p-3 fab fa-linkedin" aria-hidden="true"></i></a>
-            <a href="mailto: abbas20alzaeem@gmail.com" target="_blank"><i class="mx-2 p-3 fas fa-at" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/AbbasShDev" target="_blank"><i class="mx-2 p-3 fab fa-twitter"
+                                                                        aria-hidden="true"></i></a>
+            <a href="https://github.com/AbbasShDev" target="_blank"><i class="mx-2 p-3 fab fa-github "
+                                                                       aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/abbas-alshaqaq/" target="_blank"><i class="mx-2 p-3 fab fa-linkedin"
+                                                                                     aria-hidden="true"></i></a>
+            <a href="mailto: abbas20alzaeem@gmail.com" target="_blank"><i class="mx-2 p-3 fas fa-at"
+                                                                          aria-hidden="true"></i></a>
         </div>
     </div>
 
